@@ -1,0 +1,83 @@
+🌌 [V8-PRIMARY] Initializing Powder Galaxy Cluster...
+🧠 [V8-PRIMARY] Detected 12 CPU cores. Forging workers...
+⚙️ [V8-WORKER-2892] Booting instance...
+[API] Server running on port 5555
+[WS] Server running on port 5556
+✅ [V8-WORKER-2892] Systems online.
+⚙️ [V8-WORKER-29720] Booting instance...
+[API] Server running on port 5555
+[WS] Server running on port 5556
+✅ [V8-WORKER-29720] Systems online.
+⚙️ [V8-WORKER-27048] Booting instance...
+⚙️ [V8-WORKER-23164] Booting instance...
+[API] Server running on port 5555
+[WS] Server running on port 5556
+✅ [V8-WORKER-27048] Systems online.
+[API] Server running on port 5555
+[WS] Server running on port 5556
+✅ [V8-WORKER-23164] Systems online.
+⚙️ [V8-WORKER-25680] Booting instance...
+[API] Server running on port 5555
+[WS] Server running on port 5556
+✅ [V8-WORKER-25680] Systems online.
+⚙️ [V8-WORKER-7412] Booting instance...
+[API] Server running on port 5555
+[WS] Server running on port 5556
+✅ [V8-WORKER-7412] Systems online.
+⚙️ [V8-WORKER-33644] Booting instance...
+[API] Server running on port 5555
+[WS] Server running on port 5556
+✅ [V8-WORKER-33644] Systems online.
+⚙️ [V8-WORKER-28408] Booting instance...
+[API] Server running on port 5555
+[WS] Server running on port 5556
+✅ [V8-WORKER-28408] Systems online.
+⚙️ [V8-WORKER-10404] Booting instance...
+[API] Server running on port 5555
+[WS] Server running on port 5556
+✅ [V8-WORKER-10404] Systems online.
+⚙️ [V8-WORKER-23784] Booting instance...
+[API] Server running on port 5555
+[WS] Server running on port 5556
+✅ [V8-WORKER-23784] Systems online.
+⚙️ [V8-WORKER-9832] Booting instance...
+[API] Server running on port 5555
+[WS] Server running on port 5556
+✅ [V8-WORKER-9832] Systems online.
+⚙️ [V8-WORKER-31960] Booting instance...
+[API] Server running on port 5555
+[WS] Server running on port 5556
+✅ [V8-WORKER-31960] Systems online.
+[WS] Client connected to Universe Socket
+[WS] Client connected to Universe Socket
+[WS] Client connected to Universe Socket
+[WS] Client connected to Universe Socket
+[WS] Client connected to Universe Socket
+[WS] Client connected to Universe Socket
+[WS] Client connected to Universe Socket
+[WS] Client connected to Universe Socket
+[WS] Client connected to Universe Socket
+[WS] Client connected to Universe Socket
+[WS] Client connected to Universe Socket
+[WS] Client connected to Universe Socket
+[WS] Client connected to Universe Socket
+[WS] Client connected to Universe Socket
+[WS] Client connected to Universe Socket
+[WS] Client connected to Universe Socket
+[OS-Kernel] Executing Message: NETWORK_TRANSFORM_UPDATE
+[WS] Client disconnected from Universe Socket
+[WS] Client disconnected from Universe Socket
+[WS] Client disconnected from Universe Socket
+[WS] Client disconnected from Universe Socket
+[WS] Client disconnected from Universe Socket
+[WS] Client disconnected from Universe Socket
+[WS] Client disconnected from Universe Socket
+[WS] Client disconnected from Universe Socket
+[WS] Client disconnected from Universe Socket
+[WS] Client disconnected from Universe Socket
+[WS] Client disconnected from Universe Socket
+[WS] Client disconnected from Universe Socket
+[WS] Client disconnected from Universe Socket
+[WS] Client disconnected from Universe Socket
+[WS] Client disconnected from Universe Socket
+[WS] Client disconnected from Universe Socket

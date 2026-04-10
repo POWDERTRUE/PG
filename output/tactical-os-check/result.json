@@ -1,0 +1,211 @@
+{
+  "targetInfo": {
+    "target": {
+      "name": "Planet_Hologram",
+      "uuid": "512f36af-739b-4415-b604-9e20cf5b3d63",
+      "deterministicKey": "observer-system/planet/hologram",
+      "screenX": 896,
+      "screenY": 234,
+      "ndcX": 0.4000000000000002,
+      "ndcY": 0.3500000000000002
+    },
+    "candidates": [
+      {
+        "name": "Planet_Hologram",
+        "uuid": "512f36af-739b-4415-b604-9e20cf5b3d63",
+        "deterministicKey": "observer-system/planet/hologram",
+        "screenX": 896,
+        "screenY": 234,
+        "ndcX": 0.4000000000000002,
+        "ndcY": 0.3500000000000002
+      },
+      {
+        "name": "Planet_Hologram",
+        "uuid": "512f36af-739b-4415-b604-9e20cf5b3d63",
+        "deterministicKey": "observer-system/planet/hologram",
+        "screenX": 928,
+        "screenY": 252,
+        "ndcX": 0.4500000000000002,
+        "ndcY": 0.3000000000000002
+      },
+      {
+        "name": "Planet_Hologram",
+        "uuid": "512f36af-739b-4415-b604-9e20cf5b3d63",
+        "deterministicKey": "observer-system/planet/hologram",
+        "screenX": 896,
+        "screenY": 216,
+        "ndcX": 0.4000000000000002,
+        "ndcY": 0.4000000000000002
+      },
+      {
+        "name": "Planet_Hologram",
+        "uuid": "512f36af-739b-4415-b604-9e20cf5b3d63",
+        "deterministicKey": "observer-system/planet/hologram",
+        "screenX": 928,
+        "screenY": 234,
+        "ndcX": 0.4500000000000002,
+        "ndcY": 0.3500000000000002
+      },
+      {
+        "name": "Planet_Hologram",
+        "uuid": "512f36af-739b-4415-b604-9e20cf5b3d63",
+        "deterministicKey": "observer-system/planet/hologram",
+        "screenX": 960,
+        "screenY": 252,
+        "ndcX": 0.5000000000000002,
+        "ndcY": 0.3000000000000002
+      },
+      {
+        "name": "Planet_Hologram",
+        "uuid": "512f36af-739b-4415-b604-9e20cf5b3d63",
+        "deterministicKey": "observer-system/planet/hologram",
+        "screenX": 960,
+        "screenY": 234,
+        "ndcX": 0.5000000000000002,
+        "ndcY": 0.3500000000000002
+      },
+      {
+        "name": "Planet_Hologram",
+        "uuid": "512f36af-739b-4415-b604-9e20cf5b3d63",
+        "deterministicKey": "observer-system/planet/hologram",
+        "screenX": 928,
+        "screenY": 198,
+        "ndcX": 0.4500000000000002,
+        "ndcY": 0.4500000000000002
+      },
+      {
+        "name": "Planet_Settings",
+        "uuid": "06514e9c-e1d1-4f7a-b22a-d79087498c52",
+        "deterministicKey": "observer-system/planet/settings",
+        "screenX": 960,
+        "screenY": 216,
+        "ndcX": 0.5000000000000002,
+        "ndcY": 0.4000000000000002
+      },
+      {
+        "name": "Planet_Hologram",
+        "uuid": "512f36af-739b-4415-b604-9e20cf5b3d63",
+        "deterministicKey": "observer-system/planet/hologram",
+        "screenX": 992,
+        "screenY": 234,
+        "ndcX": 0.5500000000000003,
+        "ndcY": 0.3500000000000002
+      },
+      {
+        "name": "Planet_Settings",
+        "uuid": "06514e9c-e1d1-4f7a-b22a-d79087498c52",
+        "deterministicKey": "observer-system/planet/settings",
+        "screenX": 960,
+        "screenY": 198,
+        "ndcX": 0.5000000000000002,
+        "ndcY": 0.4500000000000002
+      },
+      {
+        "name": "Planet_Hologram",
+        "uuid": "512f36af-739b-4415-b604-9e20cf5b3d63",
+        "deterministicKey": "observer-system/planet/hologram",
+        "screenX": 928,
+        "screenY": 180,
+        "ndcX": 0.4500000000000002,
+        "ndcY": 0.5000000000000002
+      },
+      {
+        "name": "Planet_Hologram",
+        "uuid": "512f36af-739b-4415-b604-9e20cf5b3d63",
+        "deterministicKey": "observer-system/planet/hologram",
+        "screenX": 992,
+        "screenY": 216,
+        "ndcX": 0.5500000000000003,
+        "ndcY": 0.4000000000000002
+      }
+    ]
+  },
+  "immersiveStart": {
+    "navigationState": "FREE_FLIGHT",
+    "inputContext": "IMMERSIVE_FLIGHT",
+    "pointerLocked": true
+  },
+  "tacticalStart": {
+    "navigationState": "FREE_FLIGHT",
+    "inputContext": "TACTICAL_OS",
+    "pointerLocked": false,
+    "autoBrakeActive": true
+  },
+  "readoutState": {
+    "visible": false,
+    "targetId": null,
+    "deterministicKey": null,
+    "name": "Sin objetivo"
+  },
+  "payloadState": {
+    "activeTypes": [
+      "IMAGE"
+    ],
+    "lockedTypes": [],
+    "image": {
+      "url": "/assets/images/payload-thermal-vein.svg",
+      "label": "Thermal Vein",
+      "source": "tactical-os-check",
+      "galleryId": null,
+      "isLocked": false
+    }
+  },
+  "contextMenuOpen": {
+    "open": true,
+    "targetId": "512f36af-739b-4415-b604-9e20cf5b3d63",
+    "deterministicKey": "observer-system/planet/hologram",
+    "label": "HOLOGRAM",
+    "canInject": true
+  },
+  "afterInject": {
+    "projector": {
+      "active": true,
+      "phase": "DOCKING",
+      "host": "Planet_Hologram",
+      "particleCount": 4096,
+      "dockedCount": 0,
+      "dockedRatio": 0,
+      "transmutationTriggered": false,
+      "overrideTargetId": "512f36af-739b-4415-b604-9e20cf5b3d63",
+      "payloadLabel": "Thermal Vein",
+      "payloadUrl": "/assets/images/payload-thermal-vein.svg"
+    },
+    "activePayload": {
+      "activeTypes": [
+        "IMAGE"
+      ],
+      "lockedTypes": [],
+      "image": {
+        "url": "/assets/images/payload-thermal-vein.svg",
+        "label": "Thermal Vein",
+        "source": "tactical-os-check",
+        "galleryId": null,
+        "isLocked": false
+      }
+    },
+    "tacticalContextMenu": {
+      "open": false,
+      "targetId": null,
+      "deterministicKey": null,
+      "label": "HOLOGRAM",
+      "canInject": true
+    }
+  },
+  "scanState": {
+    "wrapOpen": true,
+    "wrapText": "⬡\nLULU // ASTRO LOG\nADAPTIVE MODE\n22:12\n⬡ [SISTEMA] :: Contexto TAC\n📍\n🪐\n🔍\n📊\n›"
+  },
+  "afterWarp": {
+    "navigationState": "WARP",
+    "focusTarget": "Planet_Hologram",
+    "autoBrakeActive": true,
+    "tacticalReadout": {
+      "visible": false,
+      "targetId": null,
+      "deterministicKey": null,
+      "name": "Sin objetivo"
+    }
+  },
+  "consoleErrors": [],
+  "pageErrors": []
+}

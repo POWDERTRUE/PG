@@ -1,0 +1,6 @@
+- generic [active] [ref=e1]:
+  - generic: MODO HUD · TAB
+  - generic [ref=e5]:
+    - heading "Powder Galaxy Boot Error" [level=1] [ref=e6]
+    - paragraph [ref=e7]: "Uncaught ReferenceError: SharedArrayBuffer is not defined at http://127.0.0.1:4173/src/engine/core/EntityManager.js:96:51"
+    - generic [ref=e8]: "ReferenceError: SharedArrayBuffer is not defined"

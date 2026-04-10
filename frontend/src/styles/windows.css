@@ -1,0 +1,131 @@
+/* windows.css - V15 INDUSTRIAL GLASS */
+
+.os-window, .modular-window {
+    position: absolute;
+    background: rgba(10, 20, 30, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(0, 242, 255, 0.3);
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 242, 255, 0.1);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-width: 320px;
+    min-height: 220px;
+    max-width: calc(100vw - 32px);
+    max-height: calc(100vh - 32px);
+}
+
+.modular-window-normalized {
+    box-sizing: border-box;
+}
+
+.os-window-header, .modular-window-header {
+    height: 40px;
+    background: rgba(0, 242, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 242, 255, 0.2);
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    cursor: grab;
+    user-select: none;
+}
+
+.os-window-title, .modular-window-title {
+    flex-grow: 1;
+    font-size: 14px;
+    font-weight: 600;
+    color: #00f2ff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.os-window-content, .modular-window-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow: auto;
+    min-height: 160px;
+    max-height: calc(100vh - 140px);
+    box-sizing: border-box;
+}
+
+.os-window-controls, .modular-window-controls {
+    display: flex;
+    gap: 10px;
+}
+
+#messenger-layer {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+}
+
+.messenger-token {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(0, 233, 255, 0.94);
+    box-shadow: 0 0 16px rgba(0, 233, 255, 0.7), 0 0 6px rgba(14, 86, 121, 0.6);
+    transform: translate(-50%, -50%);
+}
+
+
+.os-window-header {
+    height: 40px;
+    background: rgba(0, 242, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 242, 255, 0.2);
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    cursor: grab;
+    user-select: none;
+}
+
+.os-window-header:active {
+    cursor: grabbing;
+}
+
+.os-window-title {
+    flex-grow: 1;
+    font-size: 14px;
+    font-weight: 600;
+    color: #00f2ff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.os-window-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow: auto;
+}
+
+.os-window-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.os-window-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.os-window-btn.close { background: #ff5555; }
+.os-window-btn.minimize { background: #ffcc00; }
+.os-window-btn.maximize { background: #00ffcc; }
+
+#tarjet-ui-overlay {
+    pointer-events: auto;
+}
+
+.tarjet-projection-canvas {
+    object-fit: contain;
+    image-rendering: optimizeSpeed;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 204, 0.35));
+}
+

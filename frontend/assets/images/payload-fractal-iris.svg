@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="48%" r="56%">
+      <stop offset="0%" stop-color="#27125f"/>
+      <stop offset="46%" stop-color="#12173c"/>
+      <stop offset="100%" stop-color="#030611"/>
+    </radialGradient>
+  </defs>
+  <rect width="640" height="640" fill="url(#bg)"/>
+  <g transform="translate(320 320)">
+    <circle r="164" fill="none" stroke="#8ef0ff" stroke-width="2" opacity=".28"/>
+    <circle r="112" fill="none" stroke="#b8ffdd" stroke-width="2" opacity=".34"/>
+    <circle r="62" fill="#02040a"/>
+    <circle r="42" fill="#c8fff4"/>
+    <circle r="18" fill="#02040a"/>
+    <g fill="none" stroke="#8ef0ff" stroke-width="4" opacity=".9">
+      <path d="M0-182 0-76"/>
+      <path d="M0 182 0 76"/>
+      <path d="M-182 0 -76 0"/>
+      <path d="M182 0 76 0"/>
+      <path d="M129-129 54-54"/>
+      <path d="M-129 129 -54 54"/>
+      <path d="M-129-129 -54-54"/>
+      <path d="M129 129 54 54"/>
+    </g>
+  </g>
+  <text x="56" y="560" fill="#eaf9ff" font-size="38" font-family="Arial, sans-serif" letter-spacing="6">FRACTAL IRIS</text>
+  <text x="58" y="598" fill="#acc8ff" font-size="16" font-family="Arial, sans-serif" letter-spacing="5">PAYLOAD / IMAGE / SIGNAL</text>
+</svg>

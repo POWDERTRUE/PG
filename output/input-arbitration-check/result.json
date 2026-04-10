@@ -1,0 +1,180 @@
+{
+  "initialState": {
+    "inputContext": "TACTICAL_OS",
+    "hudMode": true,
+    "pointerLocked": false
+  },
+  "scenarioA": {
+    "name": "ui-window-drag",
+    "windowMovedPx": {
+      "x": 0,
+      "y": -2
+    },
+    "counters": {
+      "leftClicks": 0,
+      "rightClicks": 0,
+      "dragStarts": 0,
+      "dragging": 0,
+      "dragEnds": 0,
+      "emitted": []
+    },
+    "inputArbitration": {
+      "context": "TACTICAL_OS",
+      "hudMode": true,
+      "pointerLocked": false,
+      "leftDown": false,
+      "rightDown": false,
+      "dragThresholdPx": 4,
+      "tacticalGestureActive": false,
+      "tacticalGestureButton": -1,
+      "tacticalGestureDragging": false,
+      "tacticalGestureStartedOverUi": false,
+      "lastSignal": "NONE",
+      "lastIntent": "TACTICAL_LEFT_UI_BLOCKED",
+      "overUi": true,
+      "wasDragging": false,
+      "dragDistance": 0,
+      "tacticalLeftClicks": 0,
+      "tacticalRightClicks": 0,
+      "dragStarts": 0,
+      "dragEnds": 0
+    },
+    "tacticalReadout": {
+      "visible": false,
+      "targetId": null,
+      "deterministicKey": null,
+      "name": "Sin objetivo"
+    },
+    "tacticalContextMenu": {
+      "open": false,
+      "targetId": null,
+      "deterministicKey": null,
+      "label": "SIN OBJETIVO",
+      "canInject": false
+    }
+  },
+  "scenarioB": {
+    "name": "background-drag",
+    "point": {
+      "screenX": 256,
+      "screenY": 90,
+      "ndcX": -0.5999999999999999,
+      "ndcY": 0.75
+    },
+    "counters": {
+      "leftClicks": 0,
+      "rightClicks": 0,
+      "dragStarts": 1,
+      "dragging": 5,
+      "dragEnds": 1,
+      "emitted": [
+        "PG:INPUT:TACTICAL_DRAG_START",
+        "PG:INPUT:TACTICAL_DRAG_END"
+      ]
+    },
+    "inputArbitration": {
+      "context": "TACTICAL_OS",
+      "hudMode": true,
+      "pointerLocked": false,
+      "leftDown": false,
+      "rightDown": false,
+      "dragThresholdPx": 4,
+      "tacticalGestureActive": false,
+      "tacticalGestureButton": -1,
+      "tacticalGestureDragging": false,
+      "tacticalGestureStartedOverUi": false,
+      "lastSignal": "PG:INPUT:TACTICAL_DRAG_END",
+      "lastIntent": "TACTICAL_DRAG_RESOLVED",
+      "overUi": false,
+      "wasDragging": true,
+      "dragDistance": 14.14,
+      "tacticalLeftClicks": 0,
+      "tacticalRightClicks": 0,
+      "dragStarts": 1,
+      "dragEnds": 1
+    },
+    "tacticalReadout": {
+      "visible": false,
+      "targetId": null,
+      "deterministicKey": null,
+      "name": "Sin objetivo"
+    },
+    "tacticalContextMenu": {
+      "open": false,
+      "targetId": null,
+      "deterministicKey": null,
+      "label": "SIN OBJETIVO",
+      "canInject": false
+    }
+  },
+  "scenarioC": {
+    "name": "precision-click",
+    "point": {
+      "name": "Planet_Hologram",
+      "uuid": "09ce9f06-60ce-4c17-82f0-9171f787e37e",
+      "deterministicKey": "observer-system/planet/hologram",
+      "screenX": 928,
+      "screenY": 216,
+      "ndcX": 0.4500000000000002,
+      "ndcY": 0.4000000000000002
+    },
+    "counters": {
+      "leftClicks": 1,
+      "rightClicks": 0,
+      "dragStarts": 0,
+      "dragging": 0,
+      "dragEnds": 0,
+      "emitted": [
+        "PG:INPUT:TACTICAL_LEFT_CLICK"
+      ]
+    },
+    "inputArbitration": {
+      "context": "TACTICAL_OS",
+      "hudMode": true,
+      "pointerLocked": false,
+      "leftDown": false,
+      "rightDown": false,
+      "dragThresholdPx": 4,
+      "tacticalGestureActive": false,
+      "tacticalGestureButton": -1,
+      "tacticalGestureDragging": false,
+      "tacticalGestureStartedOverUi": false,
+      "lastSignal": "PG:INPUT:TACTICAL_LEFT_CLICK",
+      "lastIntent": "TACTICAL_LEFT_CLICK",
+      "overUi": false,
+      "wasDragging": false,
+      "dragDistance": 2.24,
+      "tacticalLeftClicks": 1,
+      "tacticalRightClicks": 0,
+      "dragStarts": 1,
+      "dragEnds": 1
+    },
+    "tacticalReadout": {
+      "visible": true,
+      "targetId": "09ce9f06-60ce-4c17-82f0-9171f787e37e",
+      "deterministicKey": "observer-system/planet/hologram",
+      "name": "HOLOGRAM"
+    },
+    "tacticalContextMenu": {
+      "open": false,
+      "targetId": null,
+      "deterministicKey": null,
+      "label": "SIN OBJETIVO",
+      "canInject": false
+    },
+    "targetTracker": {
+      "active": true,
+      "visible": true,
+      "targetId": "09ce9f06-60ce-4c17-82f0-9171f787e37e",
+      "deterministicKey": "observer-system/planet/hologram",
+      "label": "Hologram",
+      "offscreen": false,
+      "behindCamera": false,
+      "screenX": 973,
+      "screenY": 163,
+      "bearingAngleDeg": 0
+    }
+  },
+  "consoleErrors": [],
+  "pageErrors": []
+}

@@ -1,0 +1,128 @@
+{
+  "snapshots": [
+    {
+      "step": "pointer-initial-final",
+      "name": "Powder Galaxy OMEGA V30",
+      "pointerState": "ui-visible",
+      "pointerWinner": "initial-menu",
+      "bodyClasses": [
+        "init-mode-active",
+        "pg-pointer-ui-visible",
+        "pg-reticle-primary-hidden"
+      ],
+      "bodyCursor": "default",
+      "pointerLocked": false,
+      "helperVisible": false,
+      "helperText": null,
+      "helperHidden": true,
+      "passwordVisible": false,
+      "passwordCursor": "text",
+      "reticleOpacity": "0"
+    },
+    {
+      "step": "pointer-password-open-final",
+      "name": "Powder Galaxy OMEGA V30",
+      "pointerState": "text-visible",
+      "pointerWinner": "initial-menu-password",
+      "bodyClasses": [
+        "init-mode-active",
+        "pg-pointer-text-visible",
+        "pg-reticle-primary-hidden"
+      ],
+      "bodyCursor": "text",
+      "pointerLocked": false,
+      "helperVisible": false,
+      "helperText": null,
+      "helperHidden": true,
+      "passwordVisible": true,
+      "passwordCursor": "text",
+      "reticleOpacity": "0"
+    },
+    {
+      "step": "pointer-password-closed-final",
+      "name": "Powder Galaxy OMEGA V30",
+      "pointerState": "ui-visible",
+      "pointerWinner": "initial-menu",
+      "bodyClasses": [
+        "init-mode-active",
+        "pg-pointer-ui-visible",
+        "pg-reticle-primary-hidden"
+      ],
+      "bodyCursor": "default",
+      "pointerLocked": false,
+      "helperVisible": false,
+      "helperText": null,
+      "helperHidden": true,
+      "passwordVisible": false,
+      "passwordCursor": "text",
+      "reticleOpacity": "0"
+    },
+    {
+      "step": "pointer-flight-entry-final",
+      "name": "Powder Galaxy OMEGA V30",
+      "pointerState": "flight-locked",
+      "pointerWinner": "nav-free-flight",
+      "bodyClasses": [
+        "pg-pointer-flight-locked",
+        "pg-reticle-primary-active"
+      ],
+      "bodyCursor": "none",
+      "pointerLocked": true,
+      "helperVisible": false,
+      "helperText": null,
+      "helperHidden": true,
+      "passwordVisible": false,
+      "passwordCursor": null,
+      "reticleOpacity": "0.92"
+    },
+    {
+      "step": "pointer-hud-mode-final",
+      "name": "Powder Galaxy OMEGA V30",
+      "pointerState": "ui-visible",
+      "pointerWinner": "hud-mode",
+      "bodyClasses": [
+        "pg-hud-mode",
+        "pg-tab-layout",
+        "pg-tab-has-target",
+        "pg-pointer-ui-visible",
+        "pg-reticle-primary-hidden"
+      ],
+      "bodyCursor": "default",
+      "pointerLocked": false,
+      "helperVisible": false,
+      "helperText": null,
+      "helperHidden": true,
+      "passwordVisible": false,
+      "passwordCursor": null,
+      "reticleOpacity": "0"
+    },
+    {
+      "step": "pointer-pause-menu-final",
+      "name": "Powder Galaxy OMEGA V30",
+      "pointerState": "ui-visible",
+      "pointerWinner": "game-menu",
+      "bodyClasses": [
+        "pg-hud-mode",
+        "pg-tab-layout",
+        "pg-tab-has-target",
+        "pg-game-paused",
+        "pg-pointer-ui-visible",
+        "pg-reticle-primary-hidden"
+      ],
+      "bodyCursor": "default",
+      "pointerLocked": false,
+      "helperVisible": false,
+      "helperText": null,
+      "helperHidden": true,
+      "passwordVisible": false,
+      "passwordCursor": null,
+      "reticleOpacity": "0"
+    }
+  ],
+  "errors": [
+    {
+      "type": "error",
+      "text": "%c[Kernel] GalaxyGenerator FAILED — engine in fallback mode: color:#ff4444;font-weight:bold ReferenceError: planetColor is not defined\n    at GalaxyGenerator.createHierarchicalSolarSystem (http://localhost:5555/src/engine/universe/GalaxyGenerator.js:265:52)\n    at GalaxyGenerator.buildAsync (http://localhost:5555/src/engine/universe/GalaxyGenerator.js:43:14)\n    at async UniverseKernel.boot (http://localhost:5555/src/engine/UniverseKernel.js:347:13)\n    at async http://localhost:5555/src/main.js:63:9"
+    }
+  ]
+}

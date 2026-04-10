@@ -1,0 +1,47 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "🌌 OMEGA: Boot Backend (Watch Mode)",
+            "type": "shell",
+            "command": "npx nodemon backend/server.js",
+            "isBackground": true,
+            "problemMatcher": ["$node-tsc"],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "powder-galaxy"
+            }
+        },
+        {
+            "label": "🖥️ OMEGA: Boot Frontend (HTTP Server)",
+            "type": "shell",
+            "command": "npx http-server frontend -p 3000 -c-1",
+            "isBackground": true,
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "powder-galaxy"
+            }
+        },
+        {
+            "label": "🚀 START POWDER GALAXY (Full Stack)",
+            "dependsOn": [
+                "🌌 OMEGA: Boot Backend (Watch Mode)",
+                "🖥️ OMEGA: Boot Frontend (HTTP Server)"
+            ],
+            "dependsOrder": "parallel",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "never"
+            }
+        }
+    ]
+}

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMEGA V31 - TACTICAL TOOL WHEEL</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap');
+
+        :root {
+            --ui-blue: #00e5ff;
+            --ui-dark: #050a0f;
+            --ui-accent: rgba(0, 229, 255, 0.2);
+            --angle: 0deg;
+            --radius-base: -80px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--ui-dark);
+            color: #fff;
+            font-family: 'Roboto Mono', monospace;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* Tactical Grid Background */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                linear-gradient(rgba(0, 229, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 229, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: center;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .visor-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Center Reticle */
+        .reticle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 2px;
+            height: 2px;
+            background-color: var(--ui-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--ui-blue), 0 0 20px var(--ui-blue);
+            pointer-events: none;
+            transition: transform 0.2s ease-out;
+        }
+
+        .reticle::before, .reticle::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            border-radius: 50%;
+        }
+
+        .reticle::before { width: 60px; height: 60px; }
+        .reticle::after { 
+            width: 120px; 
+            height: 120px; 
+            border: 1px dashed rgba(0, 229, 255, 0.15);
+            animation: spin-slow 30s linear infinite;
+        }
+
+        @keyframes spin-slow {
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Pure CSS Radial Positioning */
+        .radial-node {
+            position: absolute;
+            top: 50%; left: 50%;
+            --radius: var(--radius-base);
+            /* Rotate the axis, push out on that axis, and undo the rotation for straight text */
+            transform: translate(-50%, -50%) rotate(var(--angle)) translateY(var(--radius)) rotate(calc(var(--angle) * -1));
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        color 0.2s, text-shadow 0.2s, border-color 0.2s, background 0.2s;
+            
+            /* Glassmorphism Tactical Styling */
+            padding: 8px 16px;
+            background: rgba(5, 10, 15, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+            border-radius: 2px;
+            
+            /* Typography */
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            cursor: crosshair;
+            pointer-events: none; /* Let pointermove handle logic globally */
+            white-space: nowrap;
+        }
+
+        .radial-node::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -10px;
+            width: 4px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-50%);
+            transition: background 0.2s, width 0.2s, left 0.2s;
+        }
+
+        /* Active State - Orbit Extension */
+        .radial-node.is-active {
+            --radius: -150px; /* Dynamic orbital extension */
+            color: var(--ui-blue);
+            text-shadow: 0 0 12px rgba(0, 229, 255, 0.6);
+            border-color: rgba(0, 229, 255, 0.5);
+            background: rgba(0, 30, 40, 0.8);
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.1) inset, 0 0 15px rgba(0, 229, 255, 0.2);
+            z-index: 10;
+        }
+
+        .radial-node.is-active::before {
+            background: var(--ui-blue);
+            box-shadow: 0 0 8px var(--ui-blue);
+            width: 8px;
+            left: -14px;
+        }
+
+        /* Tracker line from center to cursor */
+        .cursor-line {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 2px;
+            height: 0;
+            background: linear-gradient(to top, transparent, rgba(0, 229, 255, 0.4));
+            transform-origin: bottom center;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .debug-console {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 10px;
+            color: rgba(0, 229, 255, 0.6);
+            padding: 10px;
+            border-left: 2px solid var(--ui-blue);
+            background: rgba(0, 10, 15, 0.8);
+            pointer-events: none;
+            text-shadow: 0 0 5px rgba(0, 229, 255, 0.3);
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HUD Overlay Data -->
+    <div class="debug-console" id="debug">
+        SYS_STATUS: ONLINE<br>
+        POLAR_COORD: AWAITING INPUT<br>
+        ACTIVE_NODE: NULL
+    </div>
+
+    <div class="visor-container" id="visor">
+        <div class="cursor-line" id="cursor-tracker"></div>
+        <div class="reticle" id="reticle"></div>
+        <!-- Tool nodes injected mapped by JS -->
+    </div>
+
+    <script>
+        const visor = document.getElementById('visor');
+        const debug = document.getElementById('debug');
+        const tracker = document.getElementById('cursor-tracker');
+        
+        let centerX = window.innerWidth / 2;
+        let centerY = window.innerHeight / 2;
+
+        window.addEventListener('resize', () => {
+            centerX = window.innerWidth / 2;
+            centerY = window.innerHeight / 2;
+        });
+
+        const tacticalNodes = [
+            { id: 'nav', label: 'NAVIGATION' },
+            { id: 'scan', label: 'TACTICAL SCAN' },
+            { id: 'comms', label: 'COMMUNICATIONS' },
+            { id: 'eng', label: 'ENGINEERING' },
+            { id: 'sys', label: 'SYSTEM DIAGNOSTICS' },
+            { id: 'cargo', label: 'CARGO OPS' },
+            { id: 'weap', label: 'DEFENSE GRID' },
+            { id: 'hud', label: 'HUD MODES' },
+        ];
+
+        const nodeElements = [];
+        const angleStep = 360 / tacticalNodes.length;
+
+        // Populate Nodes on the mathematical circle
+        tacticalNodes.forEach((node, index) => {
+            const el = document.createElement('div');
+            el.className = 'radial-node';
+            el.textContent = node.label;
+            
+            // Assign polar angle to CSS variable. 
+            // 0deg implies top (Y-negative due to our translateY in CSS)
+            const angle = index * angleStep;
+            el.style.setProperty('--angle', `${angle}deg`);
+            
+            visor.appendChild(el);
+            nodeElements.push({ el, angle, label: node.label });
+        });
+
+        const RAD_TO_DEG = 180 / Math.PI;
+
+        document.addEventListener('pointermove', (e) => {
+            const dx = e.clientX - centerX;
+            const dy = e.clientY - centerY;
+            
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            
+            // Deadzone (nucleus) to prevent erratic selection at center
+            if (dist < 40) {
+                nodeElements.forEach(n => n.el.classList.remove('is-active'));
+                tracker.style.opacity = '0';
+                debug.innerHTML = `SYS_STATUS: STANDBY<br>POLAR_COORD: DEADZONE<br>ACTIVE_NODE: NULL`;
+                return;
+            }
+
+            // Calculate raw angle
+            // Atan2 gives 0 at right, PI/2 bottom, PI left, -PI/2 top.
+            let rawAngle = Math.atan2(dy, dx) * RAD_TO_DEG;
+            
+            // Shift angle to match CSS transforms. 
+            // CSS 0deg is visually pointing up. In CSS math, translateY(-radius) goes up.
+            // When dx=0, dy<0 (up), atan2 is -90. If we add 90, we get 0.
+            let cssAngle = (rawAngle + 90 + 360) % 360;
+
+            // Visual Tracker updates
+            tracker.style.opacity = '1';
+            tracker.style.height = `${Math.min(dist, 100)}px`;
+            tracker.style.transform = `translate(-50%, 0) rotate(${cssAngle}deg)`;
+
+            // Snap to closest Node based on delta angle
+            let closestNode = null;
+            let minDiff = Infinity;
+
+            nodeElements.forEach(n => {
+                let diff = Math.abs(cssAngle - n.angle);
+                if (diff > 180) diff = 360 - diff; // Path wrap around
+                
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    closestNode = n;
+                }
+            });
+
+            // State application
+            nodeElements.forEach(n => {
+                if (n === closestNode) {
+                    // Activate but avoid re-triggering classList if already active
+                    if (!n.el.classList.contains('is-active')) {
+                        n.el.classList.add('is-active');
+                    }
+                } else {
+                    if (n.el.classList.contains('is-active')) {
+                        n.el.classList.remove('is-active');
+                    }
+                }
+            });
+
+            // Update telemetry
+            debug.innerHTML = `SYS_STATUS: ENGAGED<br>POLAR_ANGLE: ${cssAngle.toFixed(2)}°<br>ACTIVE_NODE: > ${closestNode.label} <`;
+        });
+    </script>
+</body>
+</html>

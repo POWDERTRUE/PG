@@ -1,0 +1,10 @@
+{
+  "before": "matrix(1, 0, 0, 1, 0, 0)",
+  "after": {
+    "transform": "matrix(1, 0, 0, 1, 0, 0)",
+    "cursor": {
+      "x": 0,
+      "y": 0
+    }
+  }
+}

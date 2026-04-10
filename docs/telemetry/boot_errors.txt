@@ -1,0 +1,39 @@
+[log] %c[PowderGalaxy] Starting OMEGA V30 Bootstrap... color:#00ffcc;font-weight:bold
+[log] %c🚀 [Kernel] Executing Boot Sequence OMEGA V30 color:#00ffcc;font-weight:bold;font-size:13px
+[log] [ServiceRegistry] Todos los sistemas han sido liberados.
+[log] [ServiceRegistry] Sistema anclado exitosamente: kernel
+[log] [ServiceRegistry] Sistema anclado exitosamente: registry
+[log] [ServiceRegistry] Sistema anclado exitosamente: events
+[log] [ServiceRegistry] Sistema anclado exitosamente: EntityManager
+[log] [ServiceRegistry] Sistema anclado exitosamente: CelestialRegistry
+[log] [ServiceRegistry] Sistema anclado exitosamente: AnimationEngine
+[log] [ServiceRegistry] Sistema anclado exitosamente: scheduler
+[log] [ServiceRegistry] Sistema anclado exitosamente: bootGraph
+[log] [ServiceRegistry] Sistema anclado exitosamente: camera
+[log] [ServiceRegistry] Sistema anclado exitosamente: cameraRig
+[log] [CameraRig] Authoritative rig online.
+[startGroupCollapsed] 🚀 [OMEGA ENGINE] Boot Sequence
+[log] %c✔ CORE %c| Camera %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ CORE %c| CameraRig %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ SCENE %c| SceneGraph %c(0.10ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ SPATIAL %c| SpatialIndex %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] 🌌 [UniverseStreamer] Initialized. Awaiting camera movement...
+[log] %c✔ SIMULATION %c| UniverseStreamer %c(0.20ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ RENDER %c| RenderPipeline %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ RENDER %c| FrameGraph %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[endGroup] console.groupEnd
+[info] %c[BootGraph] ✅ 7 systems online color:#00ffaa;font-weight:bold
+[log] 🚀 [OMEGA ENGINE] Kernel Master Loop Started.
+[log] [FrameScheduler] ✔ AimRaySystem → input
+[log] [FrameScheduler] ✔ PawnOrientationSystem → simulation
+[log] [FrameScheduler] ✔ ThirdPersonCameraSystem → navigation
+[log] [FrameScheduler] ✔ CelestialPhysicsSystem → physics
+[log] [FrameScheduler] ✔ HandInteractionSystem → render
+[log] %c[Camera FSM] Transición: NONE -> FREE_FLIGHT color:#ffaa00
+[log] [FreeFlightState] God View Online.
+[ERR] [PowderGalaxy] Critical Boot Failure: Error: [ServiceRegistry] Falla Crítica: El subsistema 'SpatialInputSystem' no existe en el registro.
+[ERR] Failed to load resource: the server responded with a status of 404 (Not Found)
+[ERR] [object ProgressEvent]
+[ERR] Failed to load resource: the server responded with a status of 404 (Not Found)
+[ERR] [object ProgressEvent]
+[ERR] Failed to load resource: the server responded with a status of 404 (Not Found)

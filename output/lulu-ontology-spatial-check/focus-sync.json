@@ -1,0 +1,13 @@
+{
+  "focused": [
+    "lulu-brain"
+  ],
+  "ontologyMap": {
+    "isOpen": true,
+    "rootCount": 4,
+    "wisdomDisciplines": 15,
+    "services": 54,
+    "spatialNodeCount": 15,
+    "focusedNode": "lulu-brain"
+  }
+}

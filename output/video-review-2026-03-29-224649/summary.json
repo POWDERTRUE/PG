@@ -1,0 +1,60 @@
+{
+  "video": "C:\\Users\\miger\\Videos\\Grabaciones de pantalla\\Grabación de pantalla 2026-03-29 224649.mp4",
+  "fps": 30.0,
+  "duration": 256.63,
+  "size": [
+    1024,
+    768
+  ],
+  "frame_estimate": 7699,
+  "frames": [
+    {
+      "path": "C:\\xampp\\htdocs\\Powder_Galaxy\\output\\video-review-2026-03-29-224649\\frame-00.png",
+      "ratio": 0.05,
+      "frame": 384,
+      "time": 12.8
+    },
+    {
+      "path": "C:\\xampp\\htdocs\\Powder_Galaxy\\output\\video-review-2026-03-29-224649\\frame-01.png",
+      "ratio": 0.18,
+      "frame": 1385,
+      "time": 46.17
+    },
+    {
+      "path": "C:\\xampp\\htdocs\\Powder_Galaxy\\output\\video-review-2026-03-29-224649\\frame-02.png",
+      "ratio": 0.32,
+      "frame": 2463,
+      "time": 82.1
+    },
+    {
+      "path": "C:\\xampp\\htdocs\\Powder_Galaxy\\output\\video-review-2026-03-29-224649\\frame-03.png",
+      "ratio": 0.46,
+      "frame": 3541,
+      "time": 118.03
+    },
+    {
+      "path": "C:\\xampp\\htdocs\\Powder_Galaxy\\output\\video-review-2026-03-29-224649\\frame-04.png",
+      "ratio": 0.6,
+      "frame": 4619,
+      "time": 153.97
+    },
+    {
+      "path": "C:\\xampp\\htdocs\\Powder_Galaxy\\output\\video-review-2026-03-29-224649\\frame-05.png",
+      "ratio": 0.74,
+      "frame": 5697,
+      "time": 189.9
+    },
+    {
+      "path": "C:\\xampp\\htdocs\\Powder_Galaxy\\output\\video-review-2026-03-29-224649\\frame-06.png",
+      "ratio": 0.88,
+      "frame": 6775,
+      "time": 225.83
+    },
+    {
+      "path": "C:\\xampp\\htdocs\\Powder_Galaxy\\output\\video-review-2026-03-29-224649\\frame-07.png",
+      "ratio": 0.96,
+      "frame": 7391,
+      "time": 246.37
+    }
+  ]
+}

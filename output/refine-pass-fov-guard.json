@@ -1,0 +1,38 @@
+[
+  {
+    "rigFov": 54.999009,
+    "camFov": 48.4995045,
+    "state": "MOUSE_UI",
+    "login": true
+  },
+  {
+    "rigFov": 54.998242,
+    "camFov": 48.499121,
+    "state": "MOUSE_UI",
+    "login": true
+  },
+  {
+    "rigFov": 54.997209,
+    "camFov": 48.4986045,
+    "state": "MOUSE_UI",
+    "login": true
+  },
+  {
+    "rigFov": 54.995821,
+    "camFov": 48.4979105,
+    "state": "MOUSE_UI",
+    "login": true
+  },
+  {
+    "rigFov": 54.754658,
+    "camFov": 48.377329,
+    "state": "MOUSE_UI",
+    "login": true
+  },
+  {
+    "rigFov": 54.688087,
+    "camFov": 48.3440435,
+    "state": "MOUSE_UI",
+    "login": true
+  }
+]

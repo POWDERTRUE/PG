@@ -1,0 +1,48 @@
+{
+  "state": {
+    "menuVisible": true,
+    "menuItems": [
+      {
+        "id": "powdertrue",
+        "opacity": "0.4172",
+        "visibility": "visible",
+        "display": "flex"
+      },
+      {
+        "id": "artistas",
+        "opacity": "0.052",
+        "visibility": "visible",
+        "display": "flex"
+      },
+      {
+        "id": "clientes",
+        "opacity": "0",
+        "visibility": "hidden",
+        "display": "flex"
+      },
+      {
+        "id": "publico",
+        "opacity": "0",
+        "visibility": "hidden",
+        "display": "flex"
+      },
+      {
+        "id": "wallpaper",
+        "opacity": "0",
+        "visibility": "hidden",
+        "display": "flex"
+      },
+      {
+        "id": "salir",
+        "opacity": "0",
+        "visibility": "hidden",
+        "display": "flex"
+      }
+    ],
+    "visibleDock": "0",
+    "visibleHud": "0",
+    "pointerLocked": false,
+    "navState": "MOUSE_UI"
+  },
+  "errors": []
+}

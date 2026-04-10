@@ -1,0 +1,10 @@
+[
+  {
+    "type": "console.error",
+    "text": "[BootGraph] ❌ Failed initializing [OrbitalMechanicsSystem] Error: [ServiceRegistry] Falla Crítica: El subsistema 'constants' no existe en el registro.\n    at ServiceRegistry.get (http://localhost:5555/src/engine/core/ServiceRegistry.js:50:19)\n    at OrbitalMechanicsSystem.init (http://localhost:5555/src/engine/physics/OrbitalMechanicsSystem.js:31:40)\n    at BootGraphDebugger._bootSystem (http://localhost:5555/src/engine/devtools/BootGraphDebugger.js:115:36)\n    at async BootGraphDebugger.resolveBootSequence (http://localhost:5555/src/engine/devtools/BootGraphDebugger.js:70:17)\n    at async UniverseKernel.boot (http://localhost:5555/src/engine/UniverseKernel.js:322:9)\n    at async http://localhost:5555/src/main.js:10:9"
+  },
+  {
+    "type": "console.error",
+    "text": "[PowderGalaxy] Critical Boot Failure: Error: [ServiceRegistry] Falla Crítica: El subsistema 'constants' no existe en el registro.\n    at ServiceRegistry.get (http://localhost:5555/src/engine/core/ServiceRegistry.js:50:19)\n    at OrbitalMechanicsSystem.init (http://localhost:5555/src/engine/physics/OrbitalMechanicsSystem.js:31:40)\n    at BootGraphDebugger._bootSystem (http://localhost:5555/src/engine/devtools/BootGraphDebugger.js:115:36)\n    at async BootGraphDebugger.resolveBootSequence (http://localhost:5555/src/engine/devtools/BootGraphDebugger.js:70:17)\n    at async UniverseKernel.boot (http://localhost:5555/src/engine/UniverseKernel.js:322:9)\n    at async http://localhost:5555/src/main.js:10:9"
+  }
+]

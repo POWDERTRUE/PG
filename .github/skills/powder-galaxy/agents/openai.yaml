@@ -1,0 +1,4 @@
+interface:
+  display_name: "Powder Galaxy Router"
+  short_description: "Repo router for core engine workflows"
+  default_prompt: "Use $powder-galaxy to route a Powder Galaxy task to the right canonical files and child skill."

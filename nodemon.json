@@ -1,0 +1,4 @@
+{
+  "ignore": ["frontend/*", "docs/*", "*.txt", "*.md"],
+  "watch": ["backend/*"]
+}

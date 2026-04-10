@@ -1,0 +1,340 @@
+[
+  {
+    "scenario": "desktop-open",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "minimize": null,
+    "visibleWindowCount": 2,
+    "stashedWindowCount": 1,
+    "overlapReport": {
+      "contextVsDock": false,
+      "contextVsShelf": false,
+      "visibleWindowPairs": [
+        {
+          "pair": [
+            "os-window-gallery",
+            "os-window-settings"
+          ],
+          "overlap": false
+        }
+      ],
+      "contextVsWindows": [
+        {
+          "id": "os-window-gallery",
+          "overlap": false
+        },
+        {
+          "id": "os-window-settings",
+          "overlap": false
+        }
+      ]
+    },
+    "summary": {
+      "hudMode": true,
+      "bodyClasses": "pg-hud-mode pg-tab-layout pg-tab-has-windows",
+      "contextBar": {
+        "display": "block",
+        "left": 286,
+        "top": 487,
+        "right": 604,
+        "bottom": 606,
+        "width": 318,
+        "height": 119
+      },
+      "dock": {
+        "display": "grid",
+        "left": 622,
+        "top": 566,
+        "right": 1262,
+        "bottom": 702,
+        "width": 640,
+        "height": 136
+      },
+      "shelf": {
+        "display": "flex",
+        "left": 18,
+        "top": 702,
+        "right": 238,
+        "bottom": 702,
+        "width": 220,
+        "height": 0
+      },
+      "windows": [
+        {
+          "id": "os-window-terminal",
+          "classes": "glass-window glass-ice is-hud-stashed",
+          "rect": {
+            "display": "none",
+            "width": 0,
+            "height": 0,
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "id": "os-window-gallery",
+          "classes": "glass-window glass-ice is-hud-docked is-hud-secondary",
+          "rect": {
+            "display": "flex",
+            "left": 18,
+            "top": 91.56196594238281,
+            "right": 269.3782043457031,
+            "bottom": 482.91212463378906,
+            "width": 251.37820434570312,
+            "height": 391.35015869140625
+          }
+        },
+        {
+          "id": "os-window-settings",
+          "classes": "glass-window glass-ice is-hud-docked is-hud-primary",
+          "rect": {
+            "display": "flex",
+            "left": 614,
+            "top": 91.56196594238281,
+            "right": 1231.019287109375,
+            "bottom": 482.91212463378906,
+            "width": 617.019287109375,
+            "height": 391.35015869140625
+          }
+        }
+      ],
+      "layoutVars": {
+        "leftLane": "256px",
+        "rightLane": "676px",
+        "bottomLeft": "286px",
+        "bottomRight": "676px",
+        "bottomReserve": "188px",
+        "topReserve": "130px"
+      },
+      "dockButtons": [
+        {
+          "appId": "terminal",
+          "hidden": false,
+          "active": true,
+          "minimized": false
+        },
+        {
+          "appId": "explorer",
+          "hidden": true,
+          "active": false,
+          "minimized": false
+        },
+        {
+          "appId": "gallery",
+          "hidden": false,
+          "active": true,
+          "minimized": false
+        },
+        {
+          "appId": "database",
+          "hidden": true,
+          "active": false,
+          "minimized": false
+        },
+        {
+          "appId": "hologram",
+          "hidden": true,
+          "active": false,
+          "minimized": false
+        },
+        {
+          "appId": "settings",
+          "hidden": false,
+          "active": true,
+          "minimized": false
+        }
+      ],
+      "storage": {
+        "os-window-terminal": {
+          "appId": "terminal",
+          "left": "336px",
+          "top": "113px",
+          "zIndex": "1201",
+          "isCollapsed": false
+        },
+        "os-window-gallery": {
+          "appId": "gallery",
+          "left": "336px",
+          "top": "119px",
+          "zIndex": "1202",
+          "isCollapsed": false
+        },
+        "os-window-settings": {
+          "appId": "settings",
+          "left": "336px",
+          "top": "114px",
+          "zIndex": "1203",
+          "isCollapsed": false
+        }
+      }
+    },
+    "screenshot": "C:\\xampp\\htdocs\\Powder_Galaxy\\output\\modular-layout-audit\\desktop-open.png"
+  },
+  {
+    "scenario": "narrow-shelf",
+    "viewport": {
+      "width": 980,
+      "height": 720
+    },
+    "minimize": "gallery",
+    "visibleWindowCount": 1,
+    "stashedWindowCount": 1,
+    "overlapReport": {
+      "contextVsDock": false,
+      "contextVsShelf": false,
+      "visibleWindowPairs": [],
+      "contextVsWindows": [
+        {
+          "id": "os-window-settings",
+          "overlap": false
+        }
+      ]
+    },
+    "summary": {
+      "hudMode": true,
+      "bodyClasses": "pg-hud-mode pg-tab-layout pg-tab-has-windows pg-tab-has-shelf",
+      "contextBar": {
+        "display": "block",
+        "left": 256,
+        "top": 224,
+        "right": 324,
+        "bottom": 623,
+        "width": 68,
+        "height": 399
+      },
+      "dock": {
+        "display": "grid",
+        "left": 342,
+        "top": 575,
+        "right": 962,
+        "bottom": 694,
+        "width": 620,
+        "height": 119
+      },
+      "shelf": {
+        "display": "flex",
+        "left": 18,
+        "top": 644,
+        "right": 238,
+        "bottom": 702,
+        "width": 220,
+        "height": 58
+      },
+      "windows": [
+        {
+          "id": "os-window-terminal",
+          "classes": "glass-window glass-ice is-hud-stashed",
+          "rect": {
+            "display": "none",
+            "width": 0,
+            "height": 0,
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "id": "os-window-gallery",
+          "classes": "glass-window glass-ice is-hud-docked is-hud-secondary is-minimized",
+          "rect": {
+            "display": "none",
+            "width": 0,
+            "height": 0,
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "id": "os-window-settings",
+          "classes": "glass-window glass-ice is-hud-docked is-hud-primary",
+          "rect": {
+            "display": "flex",
+            "left": 334,
+            "top": 253.9173583984375,
+            "right": 933.9994506835938,
+            "bottom": 559.6495361328125,
+            "width": 599.9994506835938,
+            "height": 305.732177734375
+          }
+        }
+      ],
+      "layoutVars": {
+        "leftLane": "256px",
+        "rightLane": "656px",
+        "bottomLeft": "256px",
+        "bottomRight": "656px",
+        "bottomReserve": "171px",
+        "topReserve": "255px"
+      },
+      "dockButtons": [
+        {
+          "appId": "terminal",
+          "hidden": false,
+          "active": true,
+          "minimized": false
+        },
+        {
+          "appId": "explorer",
+          "hidden": true,
+          "active": false,
+          "minimized": false
+        },
+        {
+          "appId": "gallery",
+          "hidden": false,
+          "active": false,
+          "minimized": true
+        },
+        {
+          "appId": "database",
+          "hidden": true,
+          "active": false,
+          "minimized": false
+        },
+        {
+          "appId": "hologram",
+          "hidden": true,
+          "active": false,
+          "minimized": false
+        },
+        {
+          "appId": "settings",
+          "hidden": false,
+          "active": true,
+          "minimized": false
+        }
+      ],
+      "storage": {
+        "os-window-terminal": {
+          "appId": "terminal",
+          "left": "40px",
+          "top": "113px",
+          "zIndex": "1201",
+          "isCollapsed": false
+        },
+        "os-window-gallery": {
+          "appId": "gallery",
+          "left": "40px",
+          "top": "119px",
+          "zIndex": "1202",
+          "isCollapsed": true
+        },
+        "os-window-settings": {
+          "appId": "settings",
+          "left": "40px",
+          "top": "114px",
+          "zIndex": "1203",
+          "isCollapsed": false
+        }
+      }
+    },
+    "screenshot": "C:\\xampp\\htdocs\\Powder_Galaxy\\output\\modular-layout-audit\\narrow-shelf.png"
+  }
+]

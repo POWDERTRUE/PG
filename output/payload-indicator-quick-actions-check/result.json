@@ -1,0 +1,282 @@
+{
+  "afterGallerySelect": {
+    "status": "READY",
+    "navigationState": "FREE_FLIGHT",
+    "paused": false,
+    "hudMode": true,
+    "pointerLocked": false,
+    "camera": {
+      "x": 511.42,
+      "y": 10805.35,
+      "z": 4482.04
+    },
+    "focusTarget": null,
+    "activeTarget": "Hitbox_Emission_Nebula_3",
+    "particleProjector": {
+      "active": false,
+      "phase": "IDLE",
+      "host": null,
+      "particleCount": 4096,
+      "dockedCount": 0,
+      "dockedRatio": 0,
+      "transmutationTriggered": false,
+      "payloadLabel": "Thermal Vein",
+      "payloadUrl": "/assets/images/payload-thermal-vein.svg"
+    },
+    "stellarLod": {
+      "registeredSystems": 120,
+      "detailedCount": 0,
+      "proxyVisibleCount": 120
+    },
+    "ontologyMap": {
+      "isOpen": false,
+      "rootCount": 0,
+      "wisdomDisciplines": 0,
+      "services": 0,
+      "spatialNodeCount": 0,
+      "focusedNode": null
+    },
+    "activePayload": {
+      "activeTypes": [
+        "IMAGE"
+      ],
+      "image": {
+        "url": "/assets/images/payload-thermal-vein.svg",
+        "label": "Thermal Vein",
+        "source": "gallery-app-window",
+        "galleryId": "thermal-vein"
+      }
+    },
+    "payloadIndicator": {
+      "visible": true,
+      "deployed": false,
+      "label": "THERMAL VEIN",
+      "src": "/assets/images/payload-thermal-vein.svg",
+      "currentIndex": 1
+    },
+    "render": {
+      "fpsTarget": null,
+      "drawCalls": 1
+    },
+    "galaxy": {
+      "mainStars": 120000,
+      "streamedSectors": 0,
+      "sceneOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  "afterNext": {
+    "status": "READY",
+    "navigationState": "FREE_FLIGHT",
+    "paused": false,
+    "hudMode": true,
+    "pointerLocked": false,
+    "camera": {
+      "x": 511.42,
+      "y": 10805.35,
+      "z": 4482.04
+    },
+    "focusTarget": null,
+    "activeTarget": "Hitbox_Emission_Nebula_3",
+    "particleProjector": {
+      "active": false,
+      "phase": "IDLE",
+      "host": null,
+      "particleCount": 4096,
+      "dockedCount": 0,
+      "dockedRatio": 0,
+      "transmutationTriggered": false,
+      "payloadLabel": "Fractal Iris",
+      "payloadUrl": "/assets/images/payload-fractal-iris.svg"
+    },
+    "stellarLod": {
+      "registeredSystems": 120,
+      "detailedCount": 0,
+      "proxyVisibleCount": 120
+    },
+    "ontologyMap": {
+      "isOpen": false,
+      "rootCount": 0,
+      "wisdomDisciplines": 0,
+      "services": 0,
+      "spatialNodeCount": 0,
+      "focusedNode": null
+    },
+    "activePayload": {
+      "activeTypes": [
+        "IMAGE"
+      ],
+      "image": {
+        "url": "/assets/images/payload-fractal-iris.svg",
+        "label": "Fractal Iris",
+        "source": "payload-indicator",
+        "galleryId": "fractal-iris"
+      }
+    },
+    "payloadIndicator": {
+      "visible": true,
+      "deployed": false,
+      "label": "FRACTAL IRIS",
+      "src": "/assets/images/payload-fractal-iris.svg",
+      "currentIndex": 2
+    },
+    "render": {
+      "fpsTarget": null,
+      "drawCalls": 1
+    },
+    "galaxy": {
+      "mainStars": 120000,
+      "streamedSectors": 0,
+      "sceneOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  "afterPrev": {
+    "status": "READY",
+    "navigationState": "FREE_FLIGHT",
+    "paused": false,
+    "hudMode": true,
+    "pointerLocked": false,
+    "camera": {
+      "x": 511.42,
+      "y": 10805.35,
+      "z": 4482.04
+    },
+    "focusTarget": null,
+    "activeTarget": "Hitbox_Emission_Nebula_3",
+    "particleProjector": {
+      "active": false,
+      "phase": "IDLE",
+      "host": null,
+      "particleCount": 4096,
+      "dockedCount": 0,
+      "dockedRatio": 0,
+      "transmutationTriggered": false,
+      "payloadLabel": "Thermal Vein",
+      "payloadUrl": "/assets/images/payload-thermal-vein.svg"
+    },
+    "stellarLod": {
+      "registeredSystems": 120,
+      "detailedCount": 0,
+      "proxyVisibleCount": 120
+    },
+    "ontologyMap": {
+      "isOpen": false,
+      "rootCount": 0,
+      "wisdomDisciplines": 0,
+      "services": 0,
+      "spatialNodeCount": 0,
+      "focusedNode": null
+    },
+    "activePayload": {
+      "activeTypes": [
+        "IMAGE"
+      ],
+      "image": {
+        "url": "/assets/images/payload-thermal-vein.svg",
+        "label": "Thermal Vein",
+        "source": "payload-indicator",
+        "galleryId": "thermal-vein"
+      }
+    },
+    "payloadIndicator": {
+      "visible": true,
+      "deployed": false,
+      "label": "THERMAL VEIN",
+      "src": "/assets/images/payload-thermal-vein.svg",
+      "currentIndex": 1
+    },
+    "render": {
+      "fpsTarget": null,
+      "drawCalls": 1
+    },
+    "galaxy": {
+      "mainStars": 120000,
+      "streamedSectors": 0,
+      "sceneOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  "duringPulse": {
+    "className": "payload-indicator active deployed",
+    "deployed": true
+  },
+  "afterPulse": {
+    "className": "payload-indicator active",
+    "deployed": false
+  },
+  "galleryReopened": true,
+  "afterClear": {
+    "status": "READY",
+    "navigationState": "FREE_FLIGHT",
+    "paused": false,
+    "hudMode": true,
+    "pointerLocked": false,
+    "camera": {
+      "x": 520,
+      "y": 10800,
+      "z": 4600
+    },
+    "focusTarget": null,
+    "activeTarget": null,
+    "particleProjector": {
+      "active": false,
+      "phase": "IDLE",
+      "host": null,
+      "particleCount": 4096,
+      "dockedCount": 0,
+      "dockedRatio": 0,
+      "transmutationTriggered": false,
+      "payloadLabel": null,
+      "payloadUrl": null
+    },
+    "stellarLod": {
+      "registeredSystems": 120,
+      "detailedCount": 0,
+      "proxyVisibleCount": 120
+    },
+    "ontologyMap": {
+      "isOpen": false,
+      "rootCount": 0,
+      "wisdomDisciplines": 0,
+      "services": 0,
+      "spatialNodeCount": 0,
+      "focusedNode": null
+    },
+    "activePayload": {
+      "activeTypes": [],
+      "image": null
+    },
+    "payloadIndicator": {
+      "visible": false,
+      "deployed": false,
+      "label": "NINGUNA",
+      "src": null,
+      "currentIndex": -1
+    },
+    "render": {
+      "fpsTarget": null,
+      "drawCalls": 1
+    },
+    "galaxy": {
+      "mainStars": 120000,
+      "streamedSectors": 0,
+      "sceneOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  "consoleErrors": [],
+  "pageErrors": []
+}

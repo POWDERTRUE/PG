@@ -1,0 +1,107 @@
+{
+  "baseline": {
+    "pauseMenuVisible": false,
+    "runtimeSnapshot": {
+      "loginActive": false,
+      "gamePaused": false,
+      "settings": {
+        "gameplay": {
+          "fieldOfView": 42,
+          "lookSensitivity": 1,
+          "invertY": false,
+          "targetFps": 60
+        },
+        "audio": {
+          "master": 100,
+          "ambience": 82,
+          "interface": 74,
+          "transmission": 86
+        },
+        "interface": {
+          "hudOpacity": 1,
+          "glassOpacity": 0.45,
+          "reticleGlow": 1,
+          "compactDock": false,
+          "reduceMotion": false,
+          "showNotifications": true
+        }
+      }
+    },
+    "hasRuntimeState": true,
+    "hasRuntimeSignals": true,
+    "globalsMirror": {
+      "loginActive": false,
+      "gamePaused": false,
+      "hasSettings": true
+    }
+  },
+  "afterTab": {
+    "hudMode": true,
+    "hudBodyClass": true,
+    "paused": false,
+    "globalsMirror": {
+      "loginActive": false,
+      "gamePaused": false
+    }
+  },
+  "afterPauseOpen": {
+    "paused": true,
+    "globalsMirror": {
+      "gamePaused": true
+    },
+    "pauseMenuVisible": true,
+    "pauseBodyClass": true,
+    "hudMode": true
+  },
+  "afterPauseClose": {
+    "paused": false,
+    "runtimeSnapshot": {
+      "loginActive": false,
+      "gamePaused": false,
+      "settings": {
+        "gameplay": {
+          "fieldOfView": 42,
+          "lookSensitivity": 1,
+          "invertY": false,
+          "targetFps": 60
+        },
+        "audio": {
+          "master": 100,
+          "ambience": 82,
+          "interface": 74,
+          "transmission": 86
+        },
+        "interface": {
+          "hudOpacity": 1,
+          "glassOpacity": 0.45,
+          "reticleGlow": 1,
+          "compactDock": false,
+          "reduceMotion": false,
+          "showNotifications": true
+        }
+      }
+    },
+    "globalsMirror": {
+      "gamePaused": false
+    },
+    "pauseMenuVisible": false,
+    "pauseBodyClass": false,
+    "hudMode": true
+  },
+  "afterWindow": {
+    "terminalVisible": true,
+    "terminalButtonActive": true,
+    "openWindowIds": [
+      "os-window-terminal"
+    ],
+    "hudWindowTelemetry": [
+      "terminal"
+    ],
+    "hasRuntimeState": true,
+    "hasRuntimeSignals": true
+  },
+  "consoleErrorCount": 0,
+  "pageErrorCount": 0,
+  "consoleErrors": [],
+  "pageErrors": []
+}

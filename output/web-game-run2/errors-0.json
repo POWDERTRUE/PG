@@ -1,0 +1,6 @@
+[
+  {
+    "type": "console.error",
+    "text": "[FrameScheduler] ❌ Error in phase \"simulation\" (OrbitalMechanicsSystem): TypeError: this.celestialRegistry.getDynamicBodies is not a function\n    at OrbitalMechanicsSystem.update (http://localhost:5555/src/engine/physics/OrbitalMechanicsSystem.js:52:49)\n    at FrameScheduler.update (http://localhost:5555/src/engine/core/FrameScheduler.js:65:29)\n    at UniverseKernel.engineLoop (http://localhost:5555/src/engine/UniverseKernel.js:615:28)\n    at <anonymous>:32:9"
+  }
+]

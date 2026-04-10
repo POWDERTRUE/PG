@@ -1,0 +1,122 @@
+{
+  "snapshots": [
+    {
+      "name": "pointer-initial",
+      "state": "ui-visible",
+      "winner": "initial-menu",
+      "bodyClasses": [
+        "init-mode-active",
+        "pg-pointer-ui-visible",
+        "pg-reticle-primary-hidden"
+      ],
+      "bodyCursor": "default",
+      "pointerLocked": false,
+      "helperVisible": false,
+      "helperText": null,
+      "helperHidden": true,
+      "passwordVisible": false,
+      "passwordCursor": "text",
+      "reticleOpacity": "0"
+    },
+    {
+      "name": "pointer-password-open",
+      "state": "text-visible",
+      "winner": "initial-menu-password",
+      "bodyClasses": [
+        "init-mode-active",
+        "pg-pointer-text-visible",
+        "pg-reticle-primary-hidden"
+      ],
+      "bodyCursor": "text",
+      "pointerLocked": false,
+      "helperVisible": false,
+      "helperText": null,
+      "helperHidden": true,
+      "passwordVisible": true,
+      "passwordCursor": "text",
+      "reticleOpacity": "0"
+    },
+    {
+      "name": "pointer-password-closed",
+      "state": "ui-visible",
+      "winner": "initial-menu",
+      "bodyClasses": [
+        "init-mode-active",
+        "pg-pointer-ui-visible",
+        "pg-reticle-primary-hidden"
+      ],
+      "bodyCursor": "default",
+      "pointerLocked": false,
+      "helperVisible": false,
+      "helperText": null,
+      "helperHidden": true,
+      "passwordVisible": false,
+      "passwordCursor": "text",
+      "reticleOpacity": "0"
+    },
+    {
+      "name": "pointer-flight-entry",
+      "state": "flight-locked",
+      "winner": "nav-free-flight",
+      "bodyClasses": [
+        "pg-pointer-flight-locked",
+        "pg-reticle-primary-active"
+      ],
+      "bodyCursor": "none",
+      "pointerLocked": true,
+      "helperVisible": false,
+      "helperText": null,
+      "helperHidden": true,
+      "passwordVisible": false,
+      "passwordCursor": null,
+      "reticleOpacity": "0.92"
+    },
+    {
+      "name": "pointer-hud-mode",
+      "state": "ui-visible",
+      "winner": "hud-mode",
+      "bodyClasses": [
+        "pg-hud-mode",
+        "pg-tab-layout",
+        "pg-tab-has-target",
+        "pg-pointer-ui-visible",
+        "pg-reticle-primary-hidden"
+      ],
+      "bodyCursor": "default",
+      "pointerLocked": false,
+      "helperVisible": false,
+      "helperText": null,
+      "helperHidden": true,
+      "passwordVisible": false,
+      "passwordCursor": null,
+      "reticleOpacity": "0.92"
+    },
+    {
+      "name": "pointer-pause-menu",
+      "state": "ui-visible",
+      "winner": "game-menu",
+      "bodyClasses": [
+        "pg-hud-mode",
+        "pg-tab-layout",
+        "pg-tab-has-target",
+        "pg-game-paused",
+        "pg-pointer-ui-visible",
+        "pg-reticle-primary-hidden"
+      ],
+      "bodyCursor": "default",
+      "pointerLocked": false,
+      "helperVisible": false,
+      "helperText": null,
+      "helperHidden": true,
+      "passwordVisible": false,
+      "passwordCursor": null,
+      "reticleOpacity": "0"
+    }
+  ],
+  "errors": [
+    {
+      "type": "error",
+      "text": "%c[Kernel] GalaxyGenerator FAILED — engine in fallback mode: color:#ff4444;font-weight:bold ReferenceError: planetColor is not defined\n    at GalaxyGenerator.createHierarchicalSolarSystem (http://localhost:5555/src/engine/universe/GalaxyGenerator.js:265:52)\n    at GalaxyGenerator.buildAsync (http://localhost:5555/src/engine/universe/GalaxyGenerator.js:43:14)\n    at async UniverseKernel.boot (http://localhost:5555/src/engine/UniverseKernel.js:347:13)\n    at async http://localhost:5555/src/main.js:63:9"
+    }
+  ]
+}

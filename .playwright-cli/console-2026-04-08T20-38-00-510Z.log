@@ -1,0 +1,259 @@
+[    1153ms] [LOG] %c[ECS/DOD] TypedArrayPools online — 2304.0 KB × 3 | SharedArrayBuffer: true color:#00f2ff;font-weight:bold @ http://127.0.0.1:5555/src/engine/core/EntityManager.js:114
+[    1154ms] [LOG] %c[ResourceManager] V31 VRAM Ref-Counting online. color:#a78bfa;font-weight:bold @ http://127.0.0.1:5555/src/core/ResourceManager.js:43
+[    1161ms] [LOG] %c[PowderGalaxy] Starting OMEGA V31 Bootstrap... color:#00ffcc;font-weight:bold @ http://127.0.0.1:5555/src/main.js:60
+[    1166ms] [WARNING] THREE.THREE.Clock: This module has been deprecated. Please use THREE.Timer instead. @ https://unpkg.com/three@0.183.2/build/three.core.js:2000
+[    1167ms] [LOG] %c🚀 [Kernel] Executing Boot Sequence OMEGA V30 color:#00ffcc;font-weight:bold;font-size:13px @ http://127.0.0.1:5555/src/engine/UniverseKernel.js:116
+[    1167ms] [LOG] [ServiceRegistry] Todos los sistemas han sido liberados. @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:69
+[    1167ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: kernel @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1167ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: registry @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1167ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: events @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1168ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: EntityManager @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1168ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: celestialRegistry @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1168ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: CelestialRegistry @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1168ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: AnimationEngine @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1168ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: constants @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1168ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: physicsConstants @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1168ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: universeSpec @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1168ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: RuntimeState @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1168ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: runtimeState @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1168ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: RuntimeSignals @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1168ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: runtimeSignals @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1169ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: scheduler @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1169ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: bootGraph @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1220ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: camera @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1220ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: cameraRig @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1220ms] [LOG] [CameraRig] Authoritative rig online. @ http://127.0.0.1:5555/src/engine/navigation/CameraRig.js:38
+[    1222ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: SceneGraph @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1222ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: scene @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1223ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: RenderPipeline @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1224ms] [WARNING] [DOMOcclusionSystem] WEBGL_depth_texture not available — using Raycaster fallback. @ http://127.0.0.1:5555/src/engine/interaction/DOMOcclusionSystem.js:54
+[    1224ms] [LOG] %c[DOMOcclusionSystem] V31 Holographic Depth online color:#aa88ff;font-weight:bold @ http://127.0.0.1:5555/src/engine/interaction/DOMOcclusionSystem.js:44
+[    1224ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: DOMOcclusionSystem @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1229ms] [LOG] [PostProcessPass V2] Cinematic pipeline: Bloom + FilmGrain + ChromAb + Vignette online. @ http://127.0.0.1:5555/src/engine/rendering/passes/PostProcessPass.js:139
+[    1229ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: FrameGraph @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1230ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: PointerPresentationController @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1230ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: pointerPresentation @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1230ms] [LOG] [FrameScheduler] ✔ InputStateSystem → input @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    1231ms] [LOG] [CelestialRegistry] OMEGA V28 Registry Online. @ http://127.0.0.1:5555/src/core/CelestialRegistry.js:47
+[    1231ms] [LOG] %c✔ CORE %c| CelestialRegistry %c(0.31ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    1231ms] [LOG] %c✔ CORE %c| Camera %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    1231ms] [LOG] %c✔ CORE %c| CameraRig %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    1232ms] [LOG] %c✔ SCENE %c| SceneGraph %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    1232ms] [LOG] %c✔ SPATIAL %c| SpatialIndex %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    1232ms] [LOG] 🌌 [UniverseStreamer] Initialized. Awaiting camera movement... @ http://127.0.0.1:5555/src/engine/universe/UniverseStreamer.js:19
+[    1232ms] [LOG] %c✔ SIMULATION %c| UniverseStreamer %c(0.26ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    1234ms] [LOG] %c✔ INPUT %c| PointerPresentationController %c(2.27ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    1235ms] [LOG] [InputStateSystem] HAL + State Store online. Manifest routing active. @ http://127.0.0.1:5555/src/engine/input/InputStateSystem.js:104
+[    1235ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: InputStateSystem @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1235ms] [LOG] %c✔ INPUT %c| InputStateSystem %c(0.55ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    1235ms] [LOG] %c✔ RENDER %c| RenderPipeline %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    1236ms] [LOG] %c✔ RENDER %c| FrameGraph %c(0.11ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    1236ms] [LOG] %c✔ RENDER %c| DOMOcclusionSystem %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    1236ms] [INFO] %c[BootGraph] ✅ 11 systems online color:#00ffaa;font-weight:bold @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:75
+[    1237ms] [LOG] %c[RenderPipeline] PostProcessing online — FrameGraph + UnrealBloom color:#00ffcc;font-weight:bold @ http://127.0.0.1:5555/src/engine/rendering/RenderPipeline.js:119
+[    1506ms] [LOG] 🚀 [OMEGA ENGINE] Kernel Master Loop Started. @ http://127.0.0.1:5555/src/engine/UniverseKernel.js:670
+[    1506ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: aimRay @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1506ms] [LOG] [FrameScheduler] ✔ AimRaySystem → input @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    1507ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: pawnController @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1507ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: pawnOrientation @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1507ms] [LOG] [FrameScheduler] ✔ PawnOrientationSystem → simulation @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    1507ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: thirdPersonCamera @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1507ms] [LOG] [FrameScheduler] ✔ ThirdPersonCameraSystem → navigation @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    1507ms] [LOG] %c[CelestialPhysics] RK4 buffers pre-allocated â€” zero-GC orbital mode active color:#ffaa00;font-weight:bold @ http://127.0.0.1:5555/src/engine/physics/CelestialPhysicsSystem.js:355
+[    1507ms] [LOG] [DI] CelestialPhysicsSystem dependencies resolved: [events, EntityManager] @ http://127.0.0.1:5555/src/engine/physics/CelestialPhysicsSystem.js:28
+[    1508ms] [LOG] [FrameScheduler] ✔ CelestialPhysicsSystem → physics @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    1508ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: orbitalMechanics @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1508ms] [LOG] [OrbitalMechanicsSystem] Online and Registered. N-Body Euler Integration active. @ http://127.0.0.1:5555/src/engine/physics/OrbitalMechanicsSystem.js:38
+[    1508ms] [LOG] [FrameScheduler] ✔ OrbitalMechanicsSystem → simulation @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    1511ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: HandInteractionSystem @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1511ms] [LOG] [FrameScheduler] ✔ HandInteractionSystem → render @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    1511ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: handSystem @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1514ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: shipRigSystem @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1514ms] [LOG] %c[CameraFSM] BOOT → FREE_FLIGHT color:#ffaa00;font-weight:bold @ http://127.0.0.1:5555/src/engine/navigation/CameraStateMachine.js:99
+[    1515ms] [LOG] %c[DRONE GOD] ✦ Drone feed from the universe — ONLINE color:#00ffcc;font-weight:bold @ http://127.0.0.1:5555/src/engine/navigation/states/FreeFlightState.js:72
+[    1516ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: navigationSystem @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1516ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: UniverseNavigationSystem @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1516ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: NavigationSystem @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1516ms] [LOG] [FrameScheduler] ✔ UniverseNavigationSystem → navigation @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    1516ms] [LOG] [LandingSystem] Proximity sensors online. @ http://127.0.0.1:5555/src/engine/navigation/LandingSystem.js:28
+[    1516ms] [LOG] [FrameScheduler] ✔ LandingSystem → navigation @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    1532ms] [LOG] 🌌 [DeepSpaceHDRI V2] Cinematic deep space background online — twinkle, dust lanes, nebulae active. @ http://127.0.0.1:5555/src/engine/galaxy/DeepSpaceHDRI.js:216
+[    1533ms] [LOG] ðŸŒŒ [GalaxyGenerationSystem] Weaving 120000 deterministic stars... @ http://127.0.0.1:5555/src/engine/galaxy/GalaxyGenerationSystem.js:106
+[    1646ms] [LOG]    Stars: 120.000 (core/bulge/bar/inter-arm/halo/arms) @ http://127.0.0.1:5555/src/engine/galaxy/GalaxyGenerationSystem.js:272
+[    1661ms] [LOG] [SupraconsciousnessMass] ✦ Singularidad primordial anclada en el origen del universo. @ http://127.0.0.1:5555/src/engine/galaxy/SupraconsciousnessMass.js:35
+[    1662ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: SupraconsciousnessMass @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1695ms] [LOG] ✅ [PhysicalStarSystem] Applied blackbody colors to 120.000 stars. @ http://127.0.0.1:5555/src/engine/galaxy/PhysicalStarSystem.js:155
+[    1754ms] [LOG] âœ… [GalaxyGenerationSystem] Deterministic galaxy assembled. @ http://127.0.0.1:5555/src/engine/galaxy/GalaxyGenerationSystem.js:102
+[    1754ms] [LOG] [FrameScheduler] ✔ GalaxyGenerationSystem → simulation @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    1754ms] [LOG] 🌌 [FloatingOriginSystem] Precision guard ONLINE. Threshold: 25000 @ http://127.0.0.1:5555/src/engine/core/spatial/FloatingOriginSystem.js:43
+[    1754ms] [LOG] [FrameScheduler] ✔ FloatingOriginSystem → navigation @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    1757ms] [LOG] %c[SupraFisica] SolarSystem_Core vinculado a Supraconciencia | r=800.0u | v=11.1803 u/s color:#bb88ff;font-weight:bold;font-size:12px @ http://127.0.0.1:5555/src/engine/physics/CelestialPhysicsSystem.js:113
+[    1776ms] [LOG] [SunCoronaSystem V2] Cinematic solar simulation online — plasma loops, flares, lens sprites. @ http://127.0.0.1:5555/src/engine/galaxy/SunCoronaSystem.js:38
+[    1792ms] [LOG] %c[MaterialRegistry] ✅ Compiled: hitbox-invisible:default color:#88ffcc;font-size:11px @ http://127.0.0.1:5555/src/engine/rendering/MaterialRegistry.js:477
+[    1800ms] [LOG] %c[TerminalPlanet] ✅ LEY 15 — Planet_Terminal construido como CelestialBody. color:#ff7744;font-weight:bold;font-size:11px @ http://127.0.0.1:5555/src/engine/physics/planets/TerminalPlanet.js:184
+[    1800ms] [LOG] %c   Clase: volcanic | isMass:true | celestialBodyInstance: true color:#aaaaaa;font-size:10px @ http://127.0.0.1:5555/src/engine/physics/planets/TerminalPlanet.js:188
+[    1804ms] [LOG] %c[MaterialRegistry] ✅ Compiled: standard-emissive:{"color":13404228,"emissiveIntensity":0.05,"metalness":0.08,"roughness":0.82} color:#88ffcc;font-size:11px @ http://127.0.0.1:5555/src/engine/rendering/MaterialRegistry.js:477
+[    1807ms] [LOG] %c[MaterialRegistry] ✅ Compiled: cloud-shader:{"cloudColor":16768426,"coverage":0.25,"opacity":0.7} color:#88ffcc;font-size:11px @ http://127.0.0.1:5555/src/engine/rendering/MaterialRegistry.js:477
+[    1814ms] [LOG] %c[MaterialRegistry] ✅ Compiled: moon-surface:{"color":13404262,"metalness":0.02,"roughness":0.9} color:#88ffcc;font-size:11px @ http://127.0.0.1:5555/src/engine/rendering/MaterialRegistry.js:477
+[    1815ms] [LOG] %c[MaterialRegistry] ✅ Compiled: moon-surface:{"color":12088402,"metalness":0.02,"roughness":0.9} color:#88ffcc;font-size:11px @ http://127.0.0.1:5555/src/engine/rendering/MaterialRegistry.js:477
+[    1818ms] [LOG] %c[MaterialRegistry] ✅ Compiled: standard-emissive:{"color":3377407,"emissiveIntensity":0.02,"metalness":0.05,"roughness":0.14} color:#88ffcc;font-size:11px @ http://127.0.0.1:5555/src/engine/rendering/MaterialRegistry.js:477
+[    1820ms] [LOG] %c[MaterialRegistry] ✅ Compiled: cloud-shader:{"cloudColor":16120063,"coverage":0.6,"opacity":0.72} color:#88ffcc;font-size:11px @ http://127.0.0.1:5555/src/engine/rendering/MaterialRegistry.js:477
+[    1837ms] [LOG] %c[MaterialRegistry] ✅ Compiled: city-lights-shader:{"cityColor":16772778,"intensity":0.58,"registryKey":"gallery","textureId":"city-lights-mask","transitionWidth":0.2} color:#88ffcc;font-size:11px @ http://127.0.0.1:5555/src/engine/rendering/MaterialRegistry.js:477
+[    1839ms] [LOG] %c[MaterialRegistry] ✅ Compiled: moon-surface:{"color":12045282,"metalness":0.08,"roughness":0.32} color:#88ffcc;font-size:11px @ http://127.0.0.1:5555/src/engine/rendering/MaterialRegistry.js:477
+[    1840ms] [LOG] %c[MaterialRegistry] ✅ Compiled: moon-surface:{"color":9283783,"metalness":0.08,"roughness":0.32} color:#88ffcc;font-size:11px @ http://127.0.0.1:5555/src/engine/rendering/MaterialRegistry.js:477
+[    1842ms] [LOG] %c[MaterialRegistry] ✅ Compiled: cloud-shader:{"cloudColor":16777215,"coverage":0.45,"opacity":0.7} color:#88ffcc;font-size:11px @ http://127.0.0.1:5555/src/engine/rendering/MaterialRegistry.js:477
+[    1844ms] [LOG] %c[MaterialRegistry] ✅ Compiled: city-lights-shader:{"cityColor":11193599,"intensity":0.62,"registryKey":"Planet_Database","textureId":"city-lights-mask","transitionWidth":0.18} color:#88ffcc;font-size:11px @ http://127.0.0.1:5555/src/engine/rendering/MaterialRegistry.js:477
+[    1848ms] [LOG] %c[MaterialRegistry] ✅ Compiled: standard-emissive:{"color":16755285,"emissiveIntensity":0.04,"metalness":0.06,"roughness":0.44} color:#88ffcc;font-size:11px @ http://127.0.0.1:5555/src/engine/rendering/MaterialRegistry.js:477
+[    1851ms] [LOG] %c[MaterialRegistry] ✅ Compiled: cloud-shader:{"cloudColor":16772812,"coverage":0.82,"opacity":0.74} color:#88ffcc;font-size:11px @ http://127.0.0.1:5555/src/engine/rendering/MaterialRegistry.js:477
+[    1857ms] [LOG] %c[MaterialRegistry] ✅ Compiled: ring-material:{"color1":15060895,"color2":9398591,"color3":16774361} color:#88ffcc;font-size:11px @ http://127.0.0.1:5555/src/engine/rendering/MaterialRegistry.js:477
+[    1862ms] [LOG] %c[MaterialRegistry] ✅ Compiled: moon-surface:{"color":14140815,"metalness":0.08,"roughness":0.64} color:#88ffcc;font-size:11px @ http://127.0.0.1:5555/src/engine/rendering/MaterialRegistry.js:477
+[    1863ms] [LOG] %c[MaterialRegistry] ✅ Compiled: moon-surface:{"color":13481851,"metalness":0.08,"roughness":0.64} color:#88ffcc;font-size:11px @ http://127.0.0.1:5555/src/engine/rendering/MaterialRegistry.js:477
+[    1864ms] [LOG] %c[MaterialRegistry] ✅ Compiled: moon-surface:{"color":12428397,"metalness":0.08,"roughness":0.64} color:#88ffcc;font-size:11px @ http://127.0.0.1:5555/src/engine/rendering/MaterialRegistry.js:477
+[    1864ms] [LOG] %c[MaterialRegistry] ✅ Compiled: moon-surface:{"color":11111768,"metalness":0.08,"roughness":0.64} color:#88ffcc;font-size:11px @ http://127.0.0.1:5555/src/engine/rendering/MaterialRegistry.js:477
+[    1865ms] [LOG] %c[MaterialRegistry] ✅ Compiled: moon-surface:{"color":9401415,"metalness":0.08,"roughness":0.64} color:#88ffcc;font-size:11px @ http://127.0.0.1:5555/src/engine/rendering/MaterialRegistry.js:477
+[    1867ms] [LOG] %c[MaterialRegistry] ✅ Compiled: cloud-shader:{"cloudColor":15661294,"coverage":0.55,"opacity":0.7} color:#88ffcc;font-size:11px @ http://127.0.0.1:5555/src/engine/rendering/MaterialRegistry.js:477
+[    1870ms] [LOG] %c[MaterialRegistry] ✅ Compiled: city-lights-shader:{"cityColor":11206604,"intensity":0.5,"registryKey":"Planet_Settings","textureId":"city-lights-mask","transitionWidth":0.23} color:#88ffcc;font-size:11px @ http://127.0.0.1:5555/src/engine/rendering/MaterialRegistry.js:477
+[    1872ms] [LOG] [OrbitalRingSystem] 6 orbital rings created. @ http://127.0.0.1:5555/src/engine/galaxy/OrbitalRingSystem.js:37
+[    1879ms] [LOG] [AsteroidBeltRenderer] 2000 asteroids spawned via InstancedMesh. @ http://127.0.0.1:5555/src/engine/galaxy/AsteroidBeltRenderer.js:44
+[    1879ms] [LOG] [GalaxyGenerator] Solar System built: 6 planets, corona, orbital rings, asteroid belt. @ http://127.0.0.1:5555/src/engine/universe/GalaxyGenerator.js:387
+[    1880ms] [LOG] [FrameScheduler] ✔ GalaxyGenerator → simulation @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    1880ms] [LOG] %c[Kernel] Galaxy build complete. color:#00ffcc @ http://127.0.0.1:5555/src/engine/UniverseKernel.js:353
+[    1884ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: HUDManager @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1886ms] [LOG] %c[KernelBar] Dock tactico inicializado. color:#00ffcc;font-weight:bold @ http://127.0.0.1:5555/src/ui/KernelBarSystem.js:158
+[    1887ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: WindowManager @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1887ms] [LOG] %c[WindowManager] Listening for WARP_FLIGHT_COMPLETE. color:#00ffcc @ http://127.0.0.1:5555/src/windows/WindowManager.js:23
+[    1888ms] [LOG] %c[WindowBridge] DOM Occlusion Culling enabled — Z-buffer depth sampler ready. color:#00e5ff;font-weight:bold @ http://127.0.0.1:5555/src/engine/windows/systems/WindowBridgeSystem.js:59
+[    1889ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: WindowBridgeSystem @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1889ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: WindowDOMSystem @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1891ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: socket @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1899ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: ProjectParticlesSystem @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1899ms] [LOG] [FrameScheduler] ✔ ProjectParticlesSystem → render @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    1900ms] [LOG] [FrameScheduler] ✔ RaycastSelectionSystem → interaction @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    1900ms] [LOG] [FrameScheduler] ✔ HUDInteractionSystem → ui @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    1900ms] [LOG] [FrameScheduler] ✔ WebsocketBridgeSystem → network @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    1900ms] [LOG] [FrameScheduler] ✔ RemotePlayerSystem → simulation @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    1900ms] [LOG] 🌌 [UniverseStreamer] Sector streaming online. @ http://127.0.0.1:5555/src/engine/universe/UniverseStreamingSystem.js:48
+[    1900ms] [LOG] [FrameScheduler] ✔ UniverseStreamingSystem → streaming @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    1901ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: SectorStreamingSystem @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1901ms] [LOG] %c[CameraStabilization] ✦ Anti-jitter layer ONLINE color:#00ffcc @ http://127.0.0.1:5555/src/engine/navigation/CameraStabilizationSystem.js:74
+[    1901ms] [LOG] [FrameScheduler] ✔ CameraStabilizationSystem → post-navigation @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    1901ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: CameraStabilizationSystem @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    1902ms] [LOG] [FrameScheduler] ✔ NotificationDroneSystem → simulation @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    1902ms] [LOG] [FrameScheduler] ✔ Object → pre-simulation @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    1902ms] [LOG] [FrameScheduler] ✔ Object → post-navigation @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    1902ms] [LOG] [FrameScheduler] ✔ Object → post-navigation @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    2076ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: GameMenuSystem @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    2077ms] [LOG] [FrameScheduler] ✔ LULUControlPanel → ui @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    2078ms] [LOG] [FrameScheduler] ✔ LULUResponsePanel → ui @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    2079ms] [LOG] [FrameScheduler] ✔ Object → post-navigation @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    2079ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: luluSpawner @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    2079ms] [LOG] [LULU Spawner] Sistema de objetos espaciales inicializado @ http://127.0.0.1:5555/src/engine/ui/lulu/LULUSpatialObjectSpawnerSystem.js:32
+[    2081ms] [LOG] %c[LULU Spawner] V31 Rigid Body Physics — zero-GC buffers + SpatialHashGrid ready color:#88ffaa;font-weight:bold @ http://127.0.0.1:5555/src/engine/ui/lulu/LULUSpatialObjectSpawnerSystem.js:1020
+[    2082ms] [LOG] [FrameScheduler] ✔ Object → post-navigation @ http://127.0.0.1:5555/src/engine/core/FrameScheduler.js:50
+[    2082ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: LULUVoice @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    2083ms] [LOG] [LULUContextualHUD] Contextual awareness online. @ http://127.0.0.1:5555/src/engine/ui/lulu/LULUContextualHUD.js:22
+[    2083ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: LULUContextualHUD @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    2083ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: WorkspaceManager @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    2083ms] [LOG] [ServiceRegistry] Sistema anclado exitosamente: Orquestador @ http://127.0.0.1:5555/src/engine/core/ServiceRegistry.js:22
+[    2083ms] [LOG] %c[Orquestador] LULU-Kernel link online. color:#ff00ff; font-weight:bold; @ http://127.0.0.1:5555/src/engine/core/Orquestador.js:25
+[    2084ms] [LOG] %c[Kernel] UI Systems activated. color:#00ffcc;font-weight:bold @ http://127.0.0.1:5555/src/engine/UniverseKernel.js:662
+[    2084ms] [LOG] %c[LULU] Assistant online. Console bridge ready. color:#ff00ff;font-weight:bold;font-size:14px @ http://127.0.0.1:5555/src/engine/ui/LULUControlPanel.js:44
+[    2085ms] [LOG] %c✔ PHYSICS %c| CelestialPhysicsSystem %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2085ms] [LOG] %c✔ SIMULATION %c| PawnController %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2085ms] [LOG] %c✔ INPUT %c| AimRaySystem %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2085ms] [LOG] %c✔ SIMULATION %c| PawnOrientationSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2085ms] [LOG] [OrbitalMechanicsSystem] Online and Registered. N-Body Euler Integration active. @ http://127.0.0.1:5555/src/engine/physics/OrbitalMechanicsSystem.js:38
+[    2085ms] [LOG] %c✔ SIMULATION %c| OrbitalMechanicsSystem %c(0.08ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2089ms] [LOG] 🌌 [DeepSpaceHDRI V2] Cinematic deep space background online — twinkle, dust lanes, nebulae active. @ http://127.0.0.1:5555/src/engine/galaxy/DeepSpaceHDRI.js:216
+[    2090ms] [LOG] ðŸŒŒ [GalaxyGenerationSystem] Weaving 120000 deterministic stars... @ http://127.0.0.1:5555/src/engine/galaxy/GalaxyGenerationSystem.js:106
+[    2174ms] [LOG]    Stars: 120.000 (core/bulge/bar/inter-arm/halo/arms) @ http://127.0.0.1:5555/src/engine/galaxy/GalaxyGenerationSystem.js:272
+[    2205ms] [LOG] ✅ [PhysicalStarSystem] Applied blackbody colors to 120.000 stars. @ http://127.0.0.1:5555/src/engine/galaxy/PhysicalStarSystem.js:155
+[    2253ms] [LOG] âœ… [GalaxyGenerationSystem] Deterministic galaxy assembled. @ http://127.0.0.1:5555/src/engine/galaxy/GalaxyGenerationSystem.js:102
+[    2253ms] [LOG] %c✔ SIMULATION %c| GalaxyGenerationSystem %c(167.70ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2253ms] [LOG] %c✔ NAVIGATION %c| UniverseNavigationSystem %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2253ms] [LOG] %c✔ INTERACTION %c| RaycastSelectionSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2254ms] [LOG] %c✔ INTERACTION %c| InteractionEventSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2254ms] [LOG] %c✔ NAVIGATION %c| ThirdPersonCameraSystem %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2254ms] [LOG] [LandingSystem] Proximity sensors online. @ http://127.0.0.1:5555/src/engine/navigation/LandingSystem.js:28
+[    2254ms] [LOG] %c✔ NAVIGATION %c| LandingSystem %c(0.14ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2254ms] [LOG] 🌌 [FloatingOriginSystem] Precision guard ONLINE. Threshold: 25000 @ http://127.0.0.1:5555/src/engine/core/spatial/FloatingOriginSystem.js:43
+[    2254ms] [LOG] %c✔ NAVIGATION %c| FloatingOriginSystem %c(0.12ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2254ms] [LOG] %c✔ RENDER %c| HandInteractionSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2254ms] [LOG] %c✔ UNIVERSE %c| GalaxyGenerator %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2254ms] [LOG] %c✔ AI %c| NotificationDroneSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2255ms] [LOG] %c✔ UI %c| HUDManager %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2255ms] [LOG] %c✔ UI %c| KernelBarSystem %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2255ms] [LOG] %c✔ UI %c| WindowManager %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2255ms] [LOG] %c✔ UI %c| WindowBridgeSystem %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2255ms] [LOG] %c✔ UI %c| WindowDOMSystem %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2255ms] [LOG] %c✔ UI %c| HUDInteractionSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2256ms] [LOG] 📊 [EngineDebugPanel] Overlay initialized. @ http://127.0.0.1:5555/src/engine/ui/EngineDebugPanel.js:16
+[    2256ms] [LOG] %c✔ UI %c| EngineDebugPanel %c(0.65ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2256ms] [LOG] %c✔ UI %c| InitialMenu %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2256ms] [LOG] %c✔ NETWORK %c| WebsocketBridgeSystem %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2256ms] [LOG] %c✔ NETWORK %c| RemotePlayerSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555 @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:131
+[    2256ms] [INFO] %c[BootGraph] ✅ 36 systems online color:#00ffaa;font-weight:bold @ http://127.0.0.1:5555/src/engine/devtools/BootGraphDebugger.js:75
+[    2256ms] [LOG] %c✅ [Kernel] Boot Complete. Physics and UI online. color:#00ffcc;font-weight:bold;font-size:14px @ http://127.0.0.1:5555/src/engine/UniverseKernel.js:375
+[    2256ms] [LOG] %c[SystemHealthMonitor] Diagnostic Report: color: #00ffcc; font-size: 14px; font-weight: bold; background: #222; padding: 4px; @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:9
+[    2257ms] [LOG] %c■ kernel color: #aaa; UniverseKernel @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2257ms] [LOG] %c■ registry color: #aaa; BootGraphDebugger @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2257ms] [LOG] %c■ events color: #aaa; EventBus @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2257ms] [LOG] %c■ EntityManager color: #aaa; EntityManager @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2257ms] [LOG] %c■ celestialRegistry color: #aaa; CelestialRegistry @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2257ms] [LOG] %c■ CelestialRegistry color: #aaa; CelestialRegistry @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2257ms] [LOG] %c■ AnimationEngine color: #aaa; AnimationEngine @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2258ms] [LOG] %c■ constants color: #aaa; {G: 0.1, CULL_DISTANCE: 180, MAX_DT: 0.1} @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2258ms] [LOG] %c■ physicsConstants color: #aaa; {G: 0.1, CULL_DISTANCE: 180, MAX_DT: 0.1} @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2258ms] [LOG] %c■ universeSpec color: #aaa; {seed: 30031993, unitScale: 1, coreRadius: 280, coreHeight: 40, bulgeRadius: 1200} @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2258ms] [LOG] %c■ RuntimeState color: #aaa; RuntimeState @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2258ms] [LOG] %c■ runtimeState color: #aaa; RuntimeState @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2259ms] [LOG] %c■ RuntimeSignals color: #aaa; RuntimeSignals @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2259ms] [LOG] %c■ runtimeSignals color: #aaa; RuntimeSignals @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2259ms] [LOG] %c■ scheduler color: #aaa; FrameScheduler @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2259ms] [LOG] %c■ bootGraph color: #aaa; BootGraphVisualizer @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2259ms] [LOG] %c■ camera color: #aaa; PerspectiveCamera @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2259ms] [LOG] %c■ cameraRig color: #aaa; CameraRig @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2260ms] [LOG] %c■ SceneGraph color: #aaa; SceneGraph @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2260ms] [LOG] %c■ scene color: #aaa; Scene @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2260ms] [LOG] %c■ RenderPipeline color: #aaa; RenderPipeline @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2260ms] [LOG] %c■ DOMOcclusionSystem color: #aaa; DOMOcclusionSystem @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2260ms] [LOG] %c■ FrameGraph color: #aaa; FrameGraph @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2260ms] [LOG] %c■ PointerPresentationController color: #aaa; PointerPresentationController @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2261ms] [LOG] %c■ pointerPresentation color: #aaa; PointerPresentationController @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2261ms] [LOG] %c■ InputStateSystem color: #aaa; InputStateSystem @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2261ms] [LOG] %c■ aimRay color: #aaa; AimRaySystem @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2261ms] [LOG] %c■ pawnController color: #aaa; PawnController @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2261ms] [LOG] %c■ pawnOrientation color: #aaa; PawnOrientationSystem @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2261ms] [LOG] %c■ thirdPersonCamera color: #aaa; ThirdPersonCameraSystem @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2262ms] [LOG] %c■ orbitalMechanics color: #aaa; OrbitalMechanicsSystem @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2262ms] [LOG] %c■ HandInteractionSystem color: #aaa; HandInteractionSystem @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2262ms] [LOG] %c■ handSystem color: #aaa; HandInteractionSystem @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2262ms] [LOG] %c■ shipRigSystem color: #aaa; ShipRigSystem @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2262ms] [LOG] %c■ navigationSystem color: #aaa; UniverseNavigationSystem @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2263ms] [LOG] %c■ UniverseNavigationSystem color: #aaa; UniverseNavigationSystem @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2263ms] [LOG] %c■ NavigationSystem color: #aaa; UniverseNavigationSystem @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2263ms] [LOG] %c■ SupraconsciousnessMass color: #aaa; SupraconsciousnessMass @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2263ms] [LOG] %c■ HUDManager color: #aaa; HUDManager @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2263ms] [LOG] %c■ WindowManager color: #aaa; WindowManager @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2263ms] [LOG] %c■ WindowBridgeSystem color: #aaa; WindowBridgeSystem @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2263ms] [LOG] %c■ WindowDOMSystem color: #aaa; WindowDOMSystem @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2264ms] [LOG] %c■ socket color: #aaa; UniverseSocketClient @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2264ms] [LOG] %c■ ProjectParticlesSystem color: #aaa; ProjectParticlesSystem @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2264ms] [LOG] %c■ SectorStreamingSystem color: #aaa; UniverseStreamingSystem @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2264ms] [LOG] %c■ CameraStabilizationSystem color: #aaa; CameraStabilizationSystem @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2264ms] [LOG] %c■ GameMenuSystem color: #aaa; GameMenuSystem @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2264ms] [LOG] %c■ luluSpawner color: #aaa; LULUSpatialObjectSpawnerSystem @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2265ms] [LOG] %c■ LULUVoice color: #aaa; LULUVoiceEngine @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2265ms] [LOG] %c■ LULUContextualHUD color: #aaa; LULUContextualHUD @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2265ms] [LOG] %c■ WorkspaceManager color: #aaa; WorkspaceManager @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2265ms] [LOG] %c■ Orquestador color: #aaa; Orquestador @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:16
+[    2265ms] [LOG] %c---------------------------------------- color: #555; @ http://127.0.0.1:5555/src/engine/devtools/SystemHealthMonitor.js:25
+[    2266ms] [LOG] %c[PowderGalaxy] Engine Online. color:#00ffcc;font-weight:bold @ http://127.0.0.1:5555/src/main.js:65
+[    2267ms] [LOG] [ScreensaverSystem] Idle watcher started. @ http://127.0.0.1:5555/src/ui/ScreensaverSystem.js:34
+[    2323ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://127.0.0.1:5555/:0
+[    2344ms] [LOG] [EventBus] PG:HUD_TARGET_CONTEXT {hudMode: false, appId: null, label: null, isLocked: false, hasTarget: false} @ http://127.0.0.1:5555/src/core/EventBus.js:85
+[    6840ms] [LOG] [LULUVoice] TTS ready. Voice: default @ http://127.0.0.1:5555/src/engine/ui/lulu/LULUVoiceEngine.js:27
+[    6921ms] [LOG] [UniverseSocketClient] Connected to Universe Socket @ http://127.0.0.1:5555/src/network/UniverseSocketClient.js:21
+[    6944ms] [LOG] [MMO] Spawned remote pilot: cmd-kom5inb @ http://127.0.0.1:5555/src/network/RemotePlayerSystem.js:54
+[    6948ms] [LOG] [MMO] Spawned remote pilot: cmd-mpj1wzx @ http://127.0.0.1:5555/src/network/RemotePlayerSystem.js:54
+[    7007ms] [LOG] [RenderPipeline] Stats.js ready. Press Alt+F3 to toggle. @ http://127.0.0.1:5555/src/engine/rendering/RenderPipeline.js:56

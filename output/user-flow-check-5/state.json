@@ -1,0 +1,38 @@
+{
+  "afterLogin": {
+    "menuVisible": false,
+    "navState": "FREE_FLIGHT",
+    "hudMode": false,
+    "pointerLocked": false,
+    "bodyClass": "",
+    "dockOpacity": "1"
+  },
+  "hudModeState": {
+    "hudMode": true,
+    "pointerLocked": false,
+    "bodyClass": "pg-hud-mode",
+    "dockOpacity": "1"
+  },
+  "targetPoint": {
+    "appId": "terminal",
+    "name": "Planet_Terminal",
+    "x": 731.7029038512147,
+    "y": 481.2159413924102,
+    "inView": true
+  },
+  "afterSingle": {
+    "focusTarget": null,
+    "navState": "FREE_FLIGHT",
+    "windowCount": 0,
+    "hudMode": true,
+    "cardTitle": "Sin objetivo"
+  },
+  "afterDouble": null,
+  "afterSpaceRelease": {
+    "hudMode": false,
+    "pointerLocked": true,
+    "bodyClass": "",
+    "dockOpacity": "1"
+  },
+  "errors": []
+}

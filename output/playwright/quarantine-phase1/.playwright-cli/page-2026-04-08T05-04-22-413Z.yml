@@ -1,0 +1,70 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e4]:
+      - generic:
+        - generic:
+          - generic: ESPACIO INFINITO
+          - generic: SECTOR OBSERVADO
+      - generic:
+        - generic: TRACE
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - generic: ⬡
+            - generic: LULU // ASTRO LOG
+          - generic:
+            - generic: ADAPTIVE MODE
+        - generic:
+          - generic:
+            - button "📍"
+            - button "🪐"
+            - button "🔍"
+            - button "📊"
+          - generic:
+            - generic: ›
+            - textbox "Escribe un comando..."
+            - button "Comando de voz":
+              - img
+    - generic [ref=e5]:
+      - generic [ref=e7]:
+        - generic [ref=e8]:
+          - heading "Seleccionar Perfil" [level=1] [ref=e9]
+          - generic [ref=e10]: Entrar al universo
+        - generic:
+          - button "Entrada como Dios POWDERTRUE Entrada como Dios 🔐":
+            - generic:
+              - generic: Entrada como Dios
+              - generic: POWDERTRUE
+              - generic: Entrada como Dios 🔐
+          - button "ARTISTAS Sesion creativa":
+            - generic:
+              - generic: ARTISTAS
+              - generic: Sesion creativa
+          - button "CLIENTES Acceso guiado":
+            - generic:
+              - generic: CLIENTES
+              - generic: Acceso guiado
+          - button "PUBLICO Modo exploracion":
+            - generic:
+              - generic: PUBLICO
+              - generic: Modo exploracion
+          - button "FONDO VIVO Visual inmersivo":
+            - generic:
+              - generic: FONDO VIVO
+              - generic: Visual inmersivo
+          - button "SALIR Cerrar portal":
+            - generic:
+              - generic: SALIR
+              - generic: Cerrar portal
+      - generic [ref=e38]:
+        - generic [ref=e39]: ACCESO RESTRINGIDO
+        - generic [ref=e40]: POWDERTRUE
+        - textbox "Contraseña" [active] [ref=e41]
+        - generic [ref=e43]:
+          - button "Cancelar" [ref=e44] [cursor=pointer]
+          - button "ENTRAR →" [ref=e45] [cursor=pointer]
+  - generic: MODO HUD · TAB
+  - img
+  - generic:
+    - generic: PowderGalaxy

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#090d18"/>
+      <stop offset="50%" stop-color="#142c56"/>
+      <stop offset="100%" stop-color="#0e7a76"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="640" fill="url(#bg)"/>
+  <g fill="none" stroke-width="3" opacity=".65">
+    <path d="M34 170C138 112 224 112 312 172C414 244 498 248 606 194" stroke="#9ce8ff"/>
+    <path d="M34 238C122 188 226 193 306 250C395 314 501 322 606 270" stroke="#88ffd5"/>
+    <path d="M34 308C118 276 210 291 298 346C396 406 496 413 606 368" stroke="#ffe6a1"/>
+    <path d="M34 382C118 356 214 370 294 420C384 476 500 492 606 438" stroke="#91b9ff"/>
+  </g>
+  <g fill="#e9fdff">
+    <circle cx="124" cy="168" r="6"/>
+    <circle cx="244" cy="208" r="5"/>
+    <circle cx="340" cy="346" r="7"/>
+    <circle cx="496" cy="436" r="6"/>
+  </g>
+  <rect x="70" y="104" width="500" height="388" rx="34" fill="none" stroke="#d6fbff" stroke-opacity=".18"/>
+  <text x="56" y="560" fill="#effcff" font-size="38" font-family="Arial, sans-serif" letter-spacing="6">ORBITAL FABRIC</text>
+  <text x="58" y="598" fill="#b3e7d8" font-size="16" font-family="Arial, sans-serif" letter-spacing="5">PAYLOAD / IMAGE / GRID</text>
+</svg>

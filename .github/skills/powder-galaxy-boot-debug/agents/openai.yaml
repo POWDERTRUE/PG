@@ -1,0 +1,4 @@
+interface:
+  display_name: "Powder Galaxy Boot Debug"
+  short_description: "Boot-order and kernel startup diagnostics"
+  default_prompt: "Use $powder-galaxy-boot-debug to diagnose or fix a Powder Galaxy boot failure without introducing race-condition patches."

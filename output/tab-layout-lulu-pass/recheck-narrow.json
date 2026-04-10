@@ -1,0 +1,56 @@
+{
+  "tab": true,
+  "visibleButtons": [
+    "terminal",
+    "gallery",
+    "settings"
+  ],
+  "galleryRect": {
+    "left": 402,
+    "top": 109.50948333740234,
+    "right": 942.9931030273438,
+    "bottom": 450.48751068115234,
+    "width": 540.9931030273438,
+    "height": 340.97802734375
+  },
+  "targetRect": {
+    "left": 612,
+    "top": 92,
+    "right": 942,
+    "bottom": 464.390625,
+    "width": 330,
+    "height": 372.390625
+  },
+  "intelRect": {
+    "left": 18,
+    "top": 92,
+    "right": 226,
+    "bottom": 532,
+    "width": 208,
+    "height": 440
+  },
+  "luluRect": {
+    "left": 18,
+    "top": 663,
+    "right": 226,
+    "bottom": 702,
+    "width": 208,
+    "height": 39
+  },
+  "dockRect": {
+    "left": 382,
+    "top": 562,
+    "right": 942,
+    "bottom": 694,
+    "width": 560,
+    "height": 132
+  },
+  "contextRect": {
+    "left": 18,
+    "top": 463,
+    "right": 942,
+    "bottom": 518,
+    "width": 924,
+    "height": 55
+  }
+}

@@ -1,0 +1,1140 @@
+{
+  "info": {
+    "title": "Powder Galaxy OMEGA V30",
+    "bodyClasses": [
+      "init-mode-active",
+      "pg-pointer-ui-visible",
+      "pg-reticle-primary-hidden"
+    ],
+    "pointerState": "ui-visible",
+    "pointerWinner": "initial-menu",
+    "helperText": null,
+    "bodyCursor": "default",
+    "buttons": [
+      {
+        "text": "Cerrar",
+        "id": null,
+        "className": "transmission-close",
+        "hidden": false
+      },
+      {
+        "text": "Modo estelaryiSelecciona una masa",
+        "id": null,
+        "className": "stelaryi-launcher",
+        "hidden": false
+      },
+      {
+        "text": "Modo sistema solarOrdena masas del sistema local",
+        "id": null,
+        "className": "stelaryi-launcher solar-launcher",
+        "hidden": false
+      },
+      {
+        "text": "📍",
+        "id": null,
+        "className": "lulu-mini-chip",
+        "hidden": false
+      },
+      {
+        "text": "🪐",
+        "id": null,
+        "className": "lulu-mini-chip",
+        "hidden": false
+      },
+      {
+        "text": "🔍",
+        "id": null,
+        "className": "lulu-mini-chip",
+        "hidden": false
+      },
+      {
+        "text": "📊",
+        "id": null,
+        "className": "lulu-mini-chip",
+        "hidden": false
+      },
+      {
+        "text": "",
+        "id": "lulu-unified-mic",
+        "className": "",
+        "hidden": false
+      },
+      {
+        "text": "Terminal\n                    Control",
+        "id": null,
+        "className": "kernel-btn",
+        "hidden": false
+      },
+      {
+        "text": "Explorador\n                    Cartografia",
+        "id": null,
+        "className": "kernel-btn",
+        "hidden": false
+      },
+      {
+        "text": "Galeria\n                    Registro",
+        "id": null,
+        "className": "kernel-btn",
+        "hidden": false
+      },
+      {
+        "text": "Base de datos\n                    Canon",
+        "id": null,
+        "className": "kernel-btn",
+        "hidden": false
+      },
+      {
+        "text": "Holograma\n                    Proyeccion",
+        "id": null,
+        "className": "kernel-btn",
+        "hidden": false
+      },
+      {
+        "text": "Ajustes\n                    Sistema",
+        "id": null,
+        "className": "kernel-btn",
+        "hidden": false
+      },
+      {
+        "text": "Entrada como Dios\n                    POWDERTRUE\n                    Entrada como Dios 🔐",
+        "id": null,
+        "className": "menu-item-glass menu-item-powdertrue featured",
+        "hidden": false
+      },
+      {
+        "text": "ARTISTAS\n                    Sesion creativa",
+        "id": null,
+        "className": "menu-item-glass menu-item-artistas ",
+        "hidden": false
+      },
+      {
+        "text": "CLIENTES\n                    Acceso guiado",
+        "id": null,
+        "className": "menu-item-glass menu-item-clientes ",
+        "hidden": false
+      },
+      {
+        "text": "PUBLICO\n                    Modo exploracion",
+        "id": null,
+        "className": "menu-item-glass menu-item-publico ",
+        "hidden": false
+      },
+      {
+        "text": "FONDO VIVO\n                    Visual inmersivo",
+        "id": null,
+        "className": "menu-item-glass menu-item-wallpaper ",
+        "hidden": false
+      },
+      {
+        "text": "SALIR\n                    Cerrar portal",
+        "id": null,
+        "className": "menu-item-glass menu-item-salir ",
+        "hidden": false
+      },
+      {
+        "text": "Cancelar",
+        "id": "pg-pass-cancel",
+        "className": "",
+        "hidden": false
+      },
+      {
+        "text": "ENTRAR →",
+        "id": "pg-pass-ok",
+        "className": "",
+        "hidden": false
+      }
+    ],
+    "textSnippets": [
+      "ModoMOUSE_UI\n            PunteroFLOAT\n            TrazaIDLE 14%\n            Paneles0 LIVE\n            Sectores0 ACT\n            Estrellas120K\n            \n                \n                    LULU // ASTRO TRACE\n                    22:44:14\n                \n                VISOR INTERNO OMEGA\n            CascoNOMINALVelocidad0 u/sRumboAZ 225 / EL -89FPS1Sectores0Masas51Paneles0/0\n        \n            Astro matematicaSin objetivo\n            F = G M / r^2\n            \n                g proxy0.0 m/s2\n                Temp0 K\n                v escape0 km/s\n                Densidad0 g/cm3\n                PeriodoN/D\n                Masa refN/D\n            \n            CanonEl visor solo llena esta banda cuando una masa entra en lectura activa.InteraccionTAB alterna el cursor libre para operar el visor sin perder el encuadre.TAB = visor libre | Click = fijar masa | Doble click = abrir modulo\n            Canal tacticoCerrar\n            Sin trafico\n            Esperando un enlace de dron o satelite.\n            Standby--:--ESPACIO INFINITOSECTOR OBSERVADOTRACE\n            Sin lecturaSin objetivoSCAN\n            El visor espera una masa, satelite o dron trazable.\n            \n                Distancia0 u\n                TrazaAZ 000 / EL +00\n                FirmaVACIO\n                Track0%\n                ClaseEsperando vector\n            \n            ReposoSin enlace activoModo estelaryiSelecciona una masaModo estelaryiAlineacion orbitalMasa anclaSin masaSelecciona una masa para organizar el universo.Orbita 01Sin masas en este nivelOrbita 02Sin masas en este nivelOrbita 03Sin masas en este nivelModo sistema solarOrdena masas del sistema localModo sistema solarReordenador localCentroSin masaSelecciona una masa y activa el modo para reorganizar el sistema.SeleccionModo inactivo\n        \n            \n                ⬡\n                LULU // ASTRO LOG\n            \n            \n                \n                ADAPTIVE MODE\n            \n        \n            \n                📍\n                🪐\n                🔍\n                📊\n            \n            \n                ›\n                \n                \n                    \n                        \n                        \n                        \n                    \n                \n            \n        \nLULU ENGINE PANEL\nFPS: 1000\nSystems: 51\nEntities: 29\nMemory: 32 MB\n\n        \n            \n                OMEGA FLIGHT DECK\n                Visor contextual para raton libre y vuelo\n            \n            \n                \n                \n            \n                \n                \n                \n            \n        \n                \n                    Terminal\n                    Control\n                \n            \n                \n                \n            \n                \n                \n            \n        \n                \n                    Explorador\n                    Cartografia\n                \n            \n                \n                \n            \n                \n                \n                \n            \n        \n                \n                    Galeria\n                    Registro\n                \n            \n                \n                \n            \n                \n                \n                \n            \n        \n                \n                    Base de datos\n                    Canon\n                \n            \n                \n                \n            \n                \n                \n                \n            \n        \n                \n                    Holograma\n                    Proyeccion\n                \n            \n                \n                \n            \n                \n                \n            \n        \n                \n                    Ajustes\n                    Sistema\n                \n            \n        \n    \n            \n                \n                    \n                        Seleccionar Perfil\n                        Entrar al universo\n                    \n                    \n                        \n            \n                \n                    Entrada como Dios\n                    POWDERTRUE\n                    Entrada como Dios 🔐\n                \n            \n        \n            \n                \n                    \n                    ARTISTAS\n                    Sesion creativa\n                \n            \n        \n            \n                \n                    \n                    CLIENTES\n                    Acceso guiado\n                \n            \n        \n            \n                \n                    \n                    PUBLICO\n                    Modo exploracion\n                \n            \n        \n            \n                \n                    \n                    FONDO VIVO\n                    Visual inmersivo\n                \n            \n        \n            \n                \n                    \n                    SALIR\n                    Cerrar portal\n                \n            \n        \n                    \n                \n            \n\n            \n            \n                \n                    ACCESO RESTRINGIDO\n                    POWDERTRUE\n                    \n                    \n                    \n                        \n                            Cancelar\n                        \n                        \n                            ENTRAR →",
+      "ModoMOUSE_UI\n            PunteroFLOAT\n            TrazaIDLE 14%\n            Paneles0 LIVE\n            Sectores0 ACT\n            Estrellas120K\n            \n                \n                    LULU // ASTRO TRACE\n                    22:44:14\n                \n                VISOR INTERNO OMEGA\n            CascoNOMINALVelocidad0 u/sRumboAZ 225 / EL -89FPS1Sectores0Masas51Paneles0/0\n        \n            Astro matematicaSin objetivo\n            F = G M / r^2\n            \n                g proxy0.0 m/s2\n                Temp0 K\n                v escape0 km/s\n                Densidad0 g/cm3\n                PeriodoN/D\n                Masa refN/D\n            \n            CanonEl visor solo llena esta banda cuando una masa entra en lectura activa.InteraccionTAB alterna el cursor libre para operar el visor sin perder el encuadre.TAB = visor libre | Click = fijar masa | Doble click = abrir modulo\n            Canal tacticoCerrar\n            Sin trafico\n            Esperando un enlace de dron o satelite.\n            Standby--:--ESPACIO INFINITOSECTOR OBSERVADOTRACE\n            Sin lecturaSin objetivoSCAN\n            El visor espera una masa, satelite o dron trazable.\n            \n                Distancia0 u\n                TrazaAZ 000 / EL +00\n                FirmaVACIO\n                Track0%\n                ClaseEsperando vector\n            \n            ReposoSin enlace activoModo estelaryiSelecciona una masaModo estelaryiAlineacion orbitalMasa anclaSin masaSelecciona una masa para organizar el universo.Orbita 01Sin masas en este nivelOrbita 02Sin masas en este nivelOrbita 03Sin masas en este nivelModo sistema solarOrdena masas del sistema localModo sistema solarReordenador localCentroSin masaSelecciona una masa y activa el modo para reorganizar el sistema.SeleccionModo inactivo",
+      "ModoMOUSE_UI\n            PunteroFLOAT\n            TrazaIDLE 14%\n            Paneles0 LIVE\n            Sectores0 ACT\n            Estrellas120K",
+      "ModoMOUSE_UI",
+      "Modo",
+      "MOUSE_UI",
+      "PunteroFLOAT",
+      "Puntero",
+      "FLOAT",
+      "TrazaIDLE 14%",
+      "Traza",
+      "IDLE 14%",
+      "Paneles0 LIVE",
+      "Paneles",
+      "0 LIVE",
+      "Sectores0 ACT",
+      "Sectores",
+      "0 ACT",
+      "Estrellas120K",
+      "Estrellas",
+      "120K",
+      "LULU // ASTRO TRACE\n                    22:44:14\n                \n                VISOR INTERNO OMEGA\n            CascoNOMINALVelocidad0 u/sRumboAZ 225 / EL -89FPS1Sectores0Masas51Paneles0/0",
+      "LULU // ASTRO TRACE\n                    22:44:14\n                \n                VISOR INTERNO OMEGA\n            CascoNOMINALVelocidad0 u/sRumboAZ 225 / EL -89FPS1Sectores0Masas51Paneles0/0",
+      "LULU // ASTRO TRACE\n                    22:44:14",
+      "LULU // ASTRO TRACE",
+      "22:44:14",
+      "VISOR INTERNO OMEGA",
+      "CascoNOMINAL",
+      "Casco",
+      "NOMINAL",
+      "Velocidad0 u/s",
+      "Velocidad",
+      "0 u/s",
+      "RumboAZ 225 / EL -89",
+      "Rumbo",
+      "AZ 225 / EL -89",
+      "FPS1",
+      "FPS",
+      "1",
+      "Sectores0"
+    ]
+  },
+  "messages": [
+    {
+      "type": "log",
+      "text": "%c[ECS/DOD] TypedArrayPools online — 2304.0 KB × 3 | SharedArrayBuffer: true color:#00f2ff;font-weight:bold"
+    },
+    {
+      "type": "log",
+      "text": "%c[PowderGalaxy] Starting OMEGA V30 Bootstrap... color:#00ffcc;font-weight:bold"
+    },
+    {
+      "type": "log",
+      "text": "%c🚀 [Kernel] Executing Boot Sequence OMEGA V30 color:#00ffcc;font-weight:bold;font-size:13px"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Todos los sistemas han sido liberados."
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: kernel"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: registry"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: events"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: EntityManager"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: celestialRegistry"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: CelestialRegistry"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: AnimationEngine"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: constants"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: physicsConstants"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: universeSpec"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: RuntimeState"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: runtimeState"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: RuntimeSignals"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: runtimeSignals"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: scheduler"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: bootGraph"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: camera"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: cameraRig"
+    },
+    {
+      "type": "log",
+      "text": "[CameraRig] Authoritative rig online."
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: SceneGraph"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: scene"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: RenderPipeline"
+    },
+    {
+      "type": "warning",
+      "text": "[DOMOcclusionSystem] WEBGL_depth_texture not available — using Raycaster fallback."
+    },
+    {
+      "type": "log",
+      "text": "%c[DOMOcclusionSystem] V31 Holographic Depth online color:#aa88ff;font-weight:bold"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: DOMOcclusionSystem"
+    },
+    {
+      "type": "log",
+      "text": "[PostProcessPass V2] Cinematic pipeline: Bloom + FilmGrain + ChromAb + Vignette online."
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: FrameGraph"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: PointerPresentationController"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: pointerPresentation"
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ InputStateSystem → input"
+    },
+    {
+      "type": "startGroupCollapsed",
+      "text": "🚀 [OMEGA ENGINE] Boot Sequence"
+    },
+    {
+      "type": "log",
+      "text": "[CelestialRegistry] OMEGA V28 Registry Online."
+    },
+    {
+      "type": "log",
+      "text": "%c✔ CORE %c| CelestialRegistry %c(0.21ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ CORE %c| Camera %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ CORE %c| CameraRig %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ SCENE %c| SceneGraph %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ SPATIAL %c| SpatialIndex %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "🌌 [UniverseStreamer] Initialized. Awaiting camera movement..."
+    },
+    {
+      "type": "log",
+      "text": "%c✔ SIMULATION %c| UniverseStreamer %c(0.15ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ INPUT %c| PointerPresentationController %c(7.45ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "[InputStateSystem] HAL + State Store Online. Dynamic Binding Active."
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: InputStateSystem"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ INPUT %c| InputStateSystem %c(0.51ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ RENDER %c| RenderPipeline %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ RENDER %c| FrameGraph %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ RENDER %c| DOMOcclusionSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "endGroup",
+      "text": "console.groupEnd"
+    },
+    {
+      "type": "info",
+      "text": "%c[BootGraph] ✅ 11 systems online color:#00ffaa;font-weight:bold"
+    },
+    {
+      "type": "log",
+      "text": "%c[RenderPipeline] PostProcessing online — FrameGraph + UnrealBloom color:#00ffcc;font-weight:bold"
+    },
+    {
+      "type": "log",
+      "text": "🚀 [OMEGA ENGINE] Kernel Master Loop Started."
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: aimRay"
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ AimRaySystem → input"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: pawnController"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: pawnOrientation"
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ PawnOrientationSystem → simulation"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: thirdPersonCamera"
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ ThirdPersonCameraSystem → navigation"
+    },
+    {
+      "type": "log",
+      "text": "%c[CelestialPhysics] RK4 buffers pre-allocated â€” zero-GC orbital mode active color:#ffaa00;font-weight:bold"
+    },
+    {
+      "type": "log",
+      "text": "[DI] CelestialPhysicsSystem dependencies resolved: [events, EntityManager]"
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ CelestialPhysicsSystem → physics"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: orbitalMechanics"
+    },
+    {
+      "type": "log",
+      "text": "[OrbitalMechanicsSystem] Online and Registered. N-Body Euler Integration active."
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ OrbitalMechanicsSystem → simulation"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: HandInteractionSystem"
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ HandInteractionSystem → render"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: handSystem"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: shipRigSystem"
+    },
+    {
+      "type": "log",
+      "text": "%c[CameraFSM] BOOT → FREE_FLIGHT color:#ffaa00;font-weight:bold"
+    },
+    {
+      "type": "log",
+      "text": "%c[DRONE GOD] ✦ Drone feed from the universe — ONLINE color:#00ffcc;font-weight:bold"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: navigationSystem"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: UniverseNavigationSystem"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: NavigationSystem"
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ UniverseNavigationSystem → navigation"
+    },
+    {
+      "type": "log",
+      "text": "[LandingSystem] Proximity sensors online."
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ LandingSystem → navigation"
+    },
+    {
+      "type": "log",
+      "text": "🌌 [DeepSpaceHDRI V2] Cinematic deep space background online — twinkle, dust lanes, nebulae active."
+    },
+    {
+      "type": "log",
+      "text": "ðŸŒŒ [GalaxyGenerationSystem] Weaving 120000 deterministic stars..."
+    },
+    {
+      "type": "log",
+      "text": "   Stars: 120.000 (core/bulge/bar/inter-arm/halo/arms)"
+    },
+    {
+      "type": "log",
+      "text": "[SupraconsciousnessMass] ✦ Singularidad primordial anclada en el origen del universo."
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: SupraconsciousnessMass"
+    },
+    {
+      "type": "log",
+      "text": "✅ [PhysicalStarSystem] Applied blackbody colors to 120.000 stars."
+    },
+    {
+      "type": "log",
+      "text": "âœ… [GalaxyGenerationSystem] Deterministic galaxy assembled."
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ GalaxyGenerationSystem → simulation"
+    },
+    {
+      "type": "log",
+      "text": "🌌 [FloatingOriginSystem] Precision guard ONLINE. Threshold: 25000"
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ FloatingOriginSystem → navigation"
+    },
+    {
+      "type": "log",
+      "text": "%c[SupraFisica] SolarSystem_Core vinculado a Supraconciencia | r=800.0u | v=11.1803 u/s color:#bb88ff;font-weight:bold;font-size:12px"
+    },
+    {
+      "type": "log",
+      "text": "[SunCoronaSystem V2] Cinematic solar simulation online — plasma loops, flares, lens sprites."
+    },
+    {
+      "type": "log",
+      "text": "%c[MaterialRegistry] ✅ Compiled: hitbox-invisible:default color:#88ffcc;font-size:11px"
+    },
+    {
+      "type": "log",
+      "text": "%c[TerminalPlanet] ✅ LEY 15 — Planet_Terminal construido como CelestialBody. color:#ff7744;font-weight:bold;font-size:11px"
+    },
+    {
+      "type": "log",
+      "text": "%c   Clase: volcanic | isMass:true | celestialBodyInstance: true color:#aaaaaa;font-size:10px"
+    },
+    {
+      "type": "error",
+      "text": "%c[Kernel] GalaxyGenerator FAILED — engine in fallback mode: color:#ff4444;font-weight:bold ReferenceError: planetColor is not defined\n    at GalaxyGenerator.createHierarchicalSolarSystem (http://localhost:5555/src/engine/universe/GalaxyGenerator.js:265:52)\n    at GalaxyGenerator.buildAsync (http://localhost:5555/src/engine/universe/GalaxyGenerator.js:43:14)\n    at async UniverseKernel.boot (http://localhost:5555/src/engine/UniverseKernel.js:347:13)\n    at async http://localhost:5555/src/main.js:63:9"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: HUDManager"
+    },
+    {
+      "type": "log",
+      "text": "%c[KernelBar] Dock tactico inicializado. color:#00ffcc;font-weight:bold"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: WindowManager"
+    },
+    {
+      "type": "log",
+      "text": "%c[WindowManager] Listening for WARP_FLIGHT_COMPLETE. color:#00ffcc"
+    },
+    {
+      "type": "log",
+      "text": "%c[WindowBridge] DOM Occlusion Culling enabled — Z-buffer depth sampler ready. color:#00e5ff;font-weight:bold"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: WindowBridgeSystem"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: WindowDOMSystem"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: socket"
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ RaycastSelectionSystem → interaction"
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ HUDInteractionSystem → ui"
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ WebsocketBridgeSystem → network"
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ RemotePlayerSystem → simulation"
+    },
+    {
+      "type": "log",
+      "text": "🌌 [UniverseStreamer] Sector streaming online."
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ UniverseStreamingSystem → streaming"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: SectorStreamingSystem"
+    },
+    {
+      "type": "log",
+      "text": "%c[CameraStabilization] ✦ Anti-jitter layer ONLINE color:#00ffcc"
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ CameraStabilizationSystem → post-navigation"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: CameraStabilizationSystem"
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ NotificationDroneSystem → simulation"
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ Object → pre-simulation"
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ Object → post-navigation"
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ Object → post-navigation"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: GameMenuSystem"
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ LULUControlPanel → ui"
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ LULUResponsePanel → ui"
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ Object → post-navigation"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: luluSpawner"
+    },
+    {
+      "type": "log",
+      "text": "[LULU Spawner] Sistema de objetos espaciales inicializado"
+    },
+    {
+      "type": "log",
+      "text": "%c[LULU Spawner] V31 Rigid Body Physics — zero-GC buffers + SpatialHashGrid ready color:#88ffaa;font-weight:bold"
+    },
+    {
+      "type": "log",
+      "text": "[FrameScheduler] ✔ Object → post-navigation"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: LULUVoice"
+    },
+    {
+      "type": "log",
+      "text": "[LULUContextualHUD] Contextual awareness online."
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: LULUContextualHUD"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: WorkspaceManager"
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: Orquestador"
+    },
+    {
+      "type": "log",
+      "text": "%c[Orquestador] LULU-Kernel link online. color:#ff00ff; font-weight:bold;"
+    },
+    {
+      "type": "log",
+      "text": "%c[Kernel] UI Systems activated. color:#00ffcc;font-weight:bold"
+    },
+    {
+      "type": "log",
+      "text": "%c[LULU] Assistant online. Console bridge ready. color:#ff00ff;font-weight:bold;font-size:14px"
+    },
+    {
+      "type": "startGroupCollapsed",
+      "text": "🚀 [OMEGA ENGINE] Boot Sequence"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ PHYSICS %c| CelestialPhysicsSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ SIMULATION %c| PawnController %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ INPUT %c| AimRaySystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ SIMULATION %c| PawnOrientationSystem %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "[OrbitalMechanicsSystem] Online and Registered. N-Body Euler Integration active."
+    },
+    {
+      "type": "log",
+      "text": "%c✔ SIMULATION %c| OrbitalMechanicsSystem %c(0.07ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "🌌 [DeepSpaceHDRI V2] Cinematic deep space background online — twinkle, dust lanes, nebulae active."
+    },
+    {
+      "type": "log",
+      "text": "ðŸŒŒ [GalaxyGenerationSystem] Weaving 120000 deterministic stars..."
+    },
+    {
+      "type": "log",
+      "text": "   Stars: 120.000 (core/bulge/bar/inter-arm/halo/arms)"
+    },
+    {
+      "type": "log",
+      "text": "[SupraconsciousnessMass] ✦ Singularidad primordial anclada en el origen del universo."
+    },
+    {
+      "type": "warning",
+      "text": "[ServiceRegistry] Alerta Espacial: El servicio 'SupraconsciousnessMass' ya está registrado. Sobrescribiendo..."
+    },
+    {
+      "type": "log",
+      "text": "[ServiceRegistry] Sistema anclado exitosamente: SupraconsciousnessMass"
+    },
+    {
+      "type": "log",
+      "text": "✅ [PhysicalStarSystem] Applied blackbody colors to 120.000 stars."
+    },
+    {
+      "type": "log",
+      "text": "âœ… [GalaxyGenerationSystem] Deterministic galaxy assembled."
+    },
+    {
+      "type": "log",
+      "text": "%c✔ SIMULATION %c| GalaxyGenerationSystem %c(147.36ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ NAVIGATION %c| UniverseNavigationSystem %c(0.02ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ INTERACTION %c| RaycastSelectionSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ INTERACTION %c| InteractionEventSystem %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ NAVIGATION %c| ThirdPersonCameraSystem %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "[LandingSystem] Proximity sensors online."
+    },
+    {
+      "type": "log",
+      "text": "%c✔ NAVIGATION %c| LandingSystem %c(0.10ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "🌌 [FloatingOriginSystem] Precision guard ONLINE. Threshold: 25000"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ NAVIGATION %c| FloatingOriginSystem %c(0.08ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ RENDER %c| HandInteractionSystem %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ UNIVERSE %c| GalaxyGenerator %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ AI %c| NotificationDroneSystem %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ UI %c| HUDManager %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ UI %c| KernelBarSystem %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ UI %c| WindowManager %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ UI %c| WindowBridgeSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ UI %c| WindowDOMSystem %c(0.01ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ UI %c| HUDInteractionSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "📊 [EngineDebugPanel] Overlay initialized."
+    },
+    {
+      "type": "log",
+      "text": "%c✔ UI %c| EngineDebugPanel %c(0.40ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ UI %c| InitialMenu %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ NETWORK %c| WebsocketBridgeSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "log",
+      "text": "%c✔ NETWORK %c| RemotePlayerSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555"
+    },
+    {
+      "type": "endGroup",
+      "text": "console.groupEnd"
+    },
+    {
+      "type": "info",
+      "text": "%c[BootGraph] ✅ 36 systems online color:#00ffaa;font-weight:bold"
+    },
+    {
+      "type": "log",
+      "text": "%c✅ [Kernel] Boot Complete. Physics and UI online. color:#00ffcc;font-weight:bold;font-size:14px"
+    },
+    {
+      "type": "log",
+      "text": "%c[SystemHealthMonitor] Diagnostic Report: color: #00ffcc; font-size: 14px; font-weight: bold; background: #222; padding: 4px;"
+    },
+    {
+      "type": "log",
+      "text": "%c■ kernel color: #aaa; UniverseKernel"
+    },
+    {
+      "type": "log",
+      "text": "%c■ registry color: #aaa; BootGraphDebugger"
+    },
+    {
+      "type": "log",
+      "text": "%c■ events color: #aaa; EventBus"
+    },
+    {
+      "type": "log",
+      "text": "%c■ EntityManager color: #aaa; EntityManager"
+    },
+    {
+      "type": "log",
+      "text": "%c■ celestialRegistry color: #aaa; CelestialRegistry"
+    },
+    {
+      "type": "log",
+      "text": "%c■ CelestialRegistry color: #aaa; CelestialRegistry"
+    },
+    {
+      "type": "log",
+      "text": "%c■ AnimationEngine color: #aaa; AnimationEngine"
+    },
+    {
+      "type": "log",
+      "text": "%c■ constants color: #aaa; {G: 0.1, CULL_DISTANCE: 180, MAX_DT: 0.1}"
+    },
+    {
+      "type": "log",
+      "text": "%c■ physicsConstants color: #aaa; {G: 0.1, CULL_DISTANCE: 180, MAX_DT: 0.1}"
+    },
+    {
+      "type": "log",
+      "text": "%c■ universeSpec color: #aaa; {seed: 30031993, unitScale: 1, coreRadius: 280, coreHeight: 40, bulgeRadius: 1200}"
+    },
+    {
+      "type": "log",
+      "text": "%c■ RuntimeState color: #aaa; RuntimeState"
+    },
+    {
+      "type": "log",
+      "text": "%c■ runtimeState color: #aaa; RuntimeState"
+    },
+    {
+      "type": "log",
+      "text": "%c■ RuntimeSignals color: #aaa; RuntimeSignals"
+    },
+    {
+      "type": "log",
+      "text": "%c■ runtimeSignals color: #aaa; RuntimeSignals"
+    },
+    {
+      "type": "log",
+      "text": "%c■ scheduler color: #aaa; FrameScheduler"
+    },
+    {
+      "type": "log",
+      "text": "%c■ bootGraph color: #aaa; BootGraphVisualizer"
+    },
+    {
+      "type": "log",
+      "text": "%c■ camera color: #aaa; PerspectiveCamera"
+    },
+    {
+      "type": "log",
+      "text": "%c■ cameraRig color: #aaa; CameraRig"
+    },
+    {
+      "type": "log",
+      "text": "%c■ SceneGraph color: #aaa; SceneGraph"
+    },
+    {
+      "type": "log",
+      "text": "%c■ scene color: #aaa; Scene"
+    },
+    {
+      "type": "log",
+      "text": "%c■ RenderPipeline color: #aaa; RenderPipeline"
+    },
+    {
+      "type": "log",
+      "text": "%c■ DOMOcclusionSystem color: #aaa; DOMOcclusionSystem"
+    },
+    {
+      "type": "log",
+      "text": "%c■ FrameGraph color: #aaa; FrameGraph"
+    },
+    {
+      "type": "log",
+      "text": "%c■ PointerPresentationController color: #aaa; PointerPresentationController"
+    },
+    {
+      "type": "log",
+      "text": "%c■ pointerPresentation color: #aaa; PointerPresentationController"
+    },
+    {
+      "type": "log",
+      "text": "%c■ InputStateSystem color: #aaa; InputStateSystem"
+    },
+    {
+      "type": "log",
+      "text": "%c■ aimRay color: #aaa; AimRaySystem"
+    },
+    {
+      "type": "log",
+      "text": "%c■ pawnController color: #aaa; PawnController"
+    },
+    {
+      "type": "log",
+      "text": "%c■ pawnOrientation color: #aaa; PawnOrientationSystem"
+    },
+    {
+      "type": "log",
+      "text": "%c■ thirdPersonCamera color: #aaa; ThirdPersonCameraSystem"
+    },
+    {
+      "type": "log",
+      "text": "%c■ orbitalMechanics color: #aaa; OrbitalMechanicsSystem"
+    },
+    {
+      "type": "log",
+      "text": "%c■ HandInteractionSystem color: #aaa; HandInteractionSystem"
+    },
+    {
+      "type": "log",
+      "text": "%c■ handSystem color: #aaa; HandInteractionSystem"
+    },
+    {
+      "type": "log",
+      "text": "%c■ shipRigSystem color: #aaa; ShipRigSystem"
+    },
+    {
+      "type": "log",
+      "text": "%c■ navigationSystem color: #aaa; UniverseNavigationSystem"
+    },
+    {
+      "type": "log",
+      "text": "%c■ UniverseNavigationSystem color: #aaa; UniverseNavigationSystem"
+    },
+    {
+      "type": "log",
+      "text": "%c■ NavigationSystem color: #aaa; UniverseNavigationSystem"
+    },
+    {
+      "type": "log",
+      "text": "%c■ SupraconsciousnessMass color: #aaa; SupraconsciousnessMass"
+    },
+    {
+      "type": "log",
+      "text": "%c■ HUDManager color: #aaa; HUDManager"
+    },
+    {
+      "type": "log",
+      "text": "%c■ WindowManager color: #aaa; WindowManager"
+    },
+    {
+      "type": "log",
+      "text": "%c■ WindowBridgeSystem color: #aaa; WindowBridgeSystem"
+    },
+    {
+      "type": "log",
+      "text": "%c■ WindowDOMSystem color: #aaa; WindowDOMSystem"
+    },
+    {
+      "type": "log",
+      "text": "%c■ socket color: #aaa; UniverseSocketClient"
+    },
+    {
+      "type": "log",
+      "text": "%c■ SectorStreamingSystem color: #aaa; UniverseStreamingSystem"
+    },
+    {
+      "type": "log",
+      "text": "%c■ CameraStabilizationSystem color: #aaa; CameraStabilizationSystem"
+    },
+    {
+      "type": "log",
+      "text": "%c■ GameMenuSystem color: #aaa; GameMenuSystem"
+    },
+    {
+      "type": "log",
+      "text": "%c■ luluSpawner color: #aaa; LULUSpatialObjectSpawnerSystem"
+    },
+    {
+      "type": "log",
+      "text": "%c■ LULUVoice color: #aaa; LULUVoiceEngine"
+    },
+    {
+      "type": "log",
+      "text": "%c■ LULUContextualHUD color: #aaa; LULUContextualHUD"
+    },
+    {
+      "type": "log",
+      "text": "%c■ WorkspaceManager color: #aaa; WorkspaceManager"
+    },
+    {
+      "type": "log",
+      "text": "%c■ Orquestador color: #aaa; Orquestador"
+    },
+    {
+      "type": "log",
+      "text": "%c---------------------------------------- color: #555;"
+    },
+    {
+      "type": "log",
+      "text": "%c[PowderGalaxy] Engine Online. color:#00ffcc;font-weight:bold"
+    },
+    {
+      "type": "log",
+      "text": "[ScreensaverSystem] Idle watcher started."
+    },
+    {
+      "type": "log",
+      "text": "[EventBus] PG:HUD_TARGET_CONTEXT {hudMode: false, appId: null, label: null, isLocked: false, hasTarget: false}"
+    },
+    {
+      "type": "log",
+      "text": "[LULUVoice] TTS ready. Voice: default"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x715c006ee300]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "log",
+      "text": "[UniverseSocketClient] Connected to Universe Socket"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x715c006ee300]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "log",
+      "text": "[RenderPipeline] Stats.js ready. Press Alt+F3 to toggle."
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x715c006ee300]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x715c006ee300]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    }
+  ]
+}

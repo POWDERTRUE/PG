@@ -1,0 +1,18 @@
+{
+  "targetPoint": {
+    "appId": "terminal",
+    "name": "Planet_Terminal",
+    "x": 731.7029022205503,
+    "y": 481.21598444003877,
+    "inView": true
+  },
+  "afterSingle": {
+    "focusTarget": null,
+    "navState": "FREE_FLIGHT",
+    "windowCount": 0,
+    "hudMode": true,
+    "cardTitle": "Sin objetivo"
+  },
+  "afterDouble": null,
+  "errors": []
+}

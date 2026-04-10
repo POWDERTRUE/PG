@@ -1,0 +1,100 @@
+[
+  {
+    "scenario": "desktop-open",
+    "screenshot": "C:\\xampp\\htdocs\\Powder_Galaxy\\output\\modular-layout-audit-rerun\\desktop-open.png",
+    "bodyClasses": "pg-hud-mode pg-tab-layout pg-tab-has-windows",
+    "contextBar": {
+      "display": "block",
+      "left": 286,
+      "top": 487,
+      "right": 604,
+      "bottom": 606,
+      "width": 318,
+      "height": 119
+    },
+    "dock": {
+      "display": "grid",
+      "left": 622,
+      "top": 566,
+      "right": 1262,
+      "bottom": 702,
+      "width": 640,
+      "height": 136
+    },
+    "shelf": {
+      "display": "flex",
+      "left": 18,
+      "top": 702,
+      "right": 238,
+      "bottom": 702,
+      "width": 220,
+      "height": 0
+    },
+    "visibleWindowCount": 2,
+    "overlaps": {
+      "contextVsDock": false,
+      "contextVsShelf": false,
+      "contextVsWindows": [
+        {
+          "id": "os-window-gallery",
+          "overlap": false
+        },
+        {
+          "id": "os-window-settings",
+          "overlap": false
+        }
+      ]
+    },
+    "layoutVars": {
+      "centerLane": "318px",
+      "bottomReserve": "188px"
+    }
+  },
+  {
+    "scenario": "narrow-shelf",
+    "screenshot": "C:\\xampp\\htdocs\\Powder_Galaxy\\output\\modular-layout-audit-rerun\\narrow-shelf.png",
+    "bodyClasses": "pg-hud-mode pg-tab-layout pg-tab-has-windows pg-tab-tight-center pg-tab-has-shelf",
+    "contextBar": {
+      "display": "block",
+      "left": 18,
+      "top": 476,
+      "right": 962,
+      "bottom": 531,
+      "width": 944,
+      "height": 55
+    },
+    "dock": {
+      "display": "grid",
+      "left": 342,
+      "top": 575,
+      "right": 962,
+      "bottom": 694,
+      "width": 620,
+      "height": 119
+    },
+    "shelf": {
+      "display": "flex",
+      "left": 18,
+      "top": 644,
+      "right": 238,
+      "bottom": 702,
+      "width": 220,
+      "height": 58
+    },
+    "visibleWindowCount": 1,
+    "overlaps": {
+      "contextVsDock": false,
+      "contextVsShelf": false,
+      "contextVsWindows": [
+        {
+          "id": "os-window-settings",
+          "overlap": true
+        }
+      ]
+    },
+    "layoutVars": {
+      "centerLane": "68px",
+      "bottomReserve": "257px"
+    }
+  }
+]

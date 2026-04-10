@@ -1,0 +1,38 @@
+[warn] WARNING: Multiple instances of Three.js being imported.
+[log] %c[PowderGalaxy] Starting OMEGA V30 Bootstrap... color:#00ffcc;font-weight:bold
+[log] %c🚀 [Kernel] Executing Boot Sequence OMEGA V30 color:#00ffcc;font-weight:bold;font-size:13px
+[log] [ServiceRegistry] Todos los sistemas han sido liberados.
+[log] [ServiceRegistry] Sistema anclado exitosamente: kernel
+[log] [ServiceRegistry] Sistema anclado exitosamente: registry
+[log] [ServiceRegistry] Sistema anclado exitosamente: events
+[log] [ServiceRegistry] Sistema anclado exitosamente: EntityManager
+[log] [ServiceRegistry] Sistema anclado exitosamente: CelestialRegistry
+[log] [ServiceRegistry] Sistema anclado exitosamente: AnimationEngine
+[log] [ServiceRegistry] Sistema anclado exitosamente: scheduler
+[log] [ServiceRegistry] Sistema anclado exitosamente: bootGraph
+[log] [ServiceRegistry] Sistema anclado exitosamente: camera
+[startGroupCollapsed] 🚀 [OMEGA ENGINE] Boot Sequence
+[log] %c✔ Camera %c[CORE] %c(0.10ms) color:#00ffcc color:#ffaa00 color:#888
+[log] %c✔ SceneGraph %c[SCENE] %c(0.00ms) color:#00ffcc color:#ffaa00 color:#888
+[log] %c✔ SpatialIndex %c[SPATIAL] %c(0.00ms) color:#00ffcc color:#ffaa00 color:#888
+[log] 🌌 [UniverseStreamer] Initialized. Awaiting camera movement...
+[log] %c✔ UniverseStreamer %c[SIMULATION] %c(0.40ms) color:#00ffcc color:#ffaa00 color:#888
+[log] %c✔ RenderPipeline %c[RENDER] %c(0.00ms) color:#00ffcc color:#ffaa00 color:#888
+[log] %c✔ FrameGraph %c[RENDER] %c(0.00ms) color:#00ffcc color:#ffaa00 color:#888
+[endGroup] console.groupEnd
+[info] %c[BootGraph] Systems booted: 6 color:#00ffaa
+[log] 🚀 [OMEGA ENGINE] Kernel Master Loop Started.
+[log] [FrameScheduler] Registered: AimRaySystem -> Phase: input
+[log] [FrameScheduler] Registered: PawnOrientationSystem -> Phase: simulation
+[log] [FrameScheduler] Registered: ThirdPersonCameraSystem -> Phase: navigation
+[log] [FrameScheduler] Registered: CelestialPhysicsSystem -> Phase: physics
+[log] [FrameScheduler] Registered: HandInteractionSystem -> Phase: render
+[log] %c[Camera FSM] Transición: NONE -> FREE_FLIGHT color:#ffaa00
+[log] [FreeFlightState] OMEGA God View Active.
+[log] [FrameScheduler] Registered: UniverseNavigationSystem -> Phase: navigation
+[error] [PowderGalaxy] Critical Boot Failure: TypeError: Cannot read properties of undefined (reading 'world')
+[error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[error] [object ProgressEvent]
+[error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[error] [object ProgressEvent]
+[error] Failed to load resource: the server responded with a status of 404 (Not Found)

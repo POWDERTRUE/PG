@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Atmospheric Scattering Simulator - OMEGA</title>
+    <style>
+        body { margin: 0; background: #000; color: #00ffcc; font-family: monospace; overflow: hidden; }
+        canvas { display: block; }
+        #ui { position: absolute; top: 10px; left: 10px; background: rgba(0,20,30,0.85); padding: 15px; border: 1px solid #00ffcc; border-radius: 8px; width: 300px; }
+        h1 { margin: 0 0 10px 0; font-size: 16px; letter-spacing: 1px; color:#fff; }
+        label { display: block; margin-top: 10px; font-size: 12px; }
+        input[type=range] { width: 100%; margin-top: 5px; cursor: pointer; }
+        .val { float: right; color: #fff; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+
+<div id="ui">
+    <h1>OMEGA V31 - Atmosphere</h1>
+    
+    <label>Altura del Sol (Y)<span class="val" id="vSunY">0.0</span>
+        <input type="range" id="sunY" min="-1" max="1" step="0.01" value="0.0">
+    </label>
+    
+    <label>Rayleigh B (Azul)<span class="val" id="vRayB">22.4</span>
+        <input type="range" id="rayB" min="5" max="50" step="0.1" value="22.4">
+    </label>
+    <label>Rayleigh G (Verde)<span class="val" id="vRayG">13.0</span>
+        <input type="range" id="rayG" min="5" max="50" step="0.1" value="13.0">
+    </label>
+    <label>Rayleigh R (Rojo)<span class="val" id="vRayR">5.5</span>
+        <input type="range" id="rayR" min="1" max="20" step="0.1" value="5.5">
+    </label>
+
+    <label>Mie Scatter<span class="val" id="vMieB">21.0</span>
+        <input type="range" id="mieB" min="1" max="50" step="0.1" value="21.0">
+    </label>
+</div>
+
+<script>
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
+    camera.position.set(0, 0, 3000);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, logarithmicDepthBuffer: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+
+    // Shader Uniforms
+    const uniforms = {
+        uSunPosition: { value: new THREE.Vector3(1000, 0, 1000).normalize() },
+        uCameraPos: { value: camera.position },
+        uPlanetRadius: { value: 1000.0 },
+        uAtmoRadius: { value: 1050.0 },
+        uRayleighBeta: { value: new THREE.Vector3(5.5e-6, 13.0e-6, 22.4e-6) },
+        uMieBeta: { value: 21e-6 },
+        uRayleighScale: { value: 80.0 },
+        uMieScale: { value: 12.0 },
+        ug: { value: 0.76 }
+    };
+
+    const vertexShader = `
+        varying vec3 vWorldPosition;
+        varying vec3 vNormal;
+        void main() {
+            vec4 worldPosition = modelMatrix * vec4(position, 1.0);
+            vWorldPosition = worldPosition.xyz;
+            vNormal = normalize(mat3(modelMatrix) * normal);
+            gl_Position = projectionMatrix * viewMatrix * worldPosition;
+        }
+    `;
+
+    // Single-Pass Raymarching de Dispersión
+    const fragmentShader = `
+        uniform vec3 uSunPosition;
+        uniform vec3 uCameraPos;
+        uniform float uPlanetRadius;
+        uniform float uAtmoRadius;
+        uniform vec3 uRayleighBeta;
+        uniform float uMieBeta;
+        uniform float uRayleighScale;
+        uniform float uMieScale;
+        uniform float ug;
+
+        varying vec3 vWorldPosition;
+        varying vec3 vNormal;
+
+        #define STEPS 16
+        #define PI 3.14159265359
+
+        // Función para intersección con esfera
+        vec2 raySphereIntersect(vec3 r0, vec3 rd, float sr) {
+            float a = dot(rd, rd);
+            float b = 2.0 * dot(rd, r0);
+            float c = dot(r0, r0) - (sr * sr);
+            float d = (b*b) - 4.0*a*c;
+            if (d < 0.0) return vec2(1e5, -1e5);
+            return vec2((-b - sqrt(d))/(2.0*a), (-b + sqrt(d))/(2.0*a));
+        }
+
+        void main() {
+            vec3 rayDir = normalize(vWorldPosition - uCameraPos);
+            
+            // Intersección con la atmósfera
+            vec2 atmoHit = raySphereIntersect(uCameraPos, rayDir, uAtmoRadius);
+            // Intersección con el planeta
+            vec2 planetHit = raySphereIntersect(uCameraPos, rayDir, uPlanetRadius);
+
+            float tmin = max(0.0, atmoHit.x);
+            float tmax = min(atmoHit.y, atmoHit.y);
+            if (planetHit.x >= 0.0 && planetHit.x < 1e5) {
+                tmax = min(tmax, planetHit.x); // Detener rayo si toca el planeta
+            }
+
+            if(tmin >= tmax) {
+                discard;
+            }
+
+            // Longitud de cada paso
+            float stepSize = (tmax - tmin) / float(STEPS);
+            float stepSizeL = stepSize;
+            
+            vec3 rayPos = uCameraPos + rayDir * (tmin + stepSize * 0.5);
+
+            float rayleighDepth = 0.0;
+            float mieDepth = 0.0;
+            vec3 totalRayleigh = vec3(0.0);
+            vec3 totalMie = vec3(0.0);
+
+            // Fase (Angulo cámara-sol)
+            float cosTheta = dot(rayDir, uSunPosition);
+            float phaseR = 3.0 / (16.0 * PI) * (1.0 + cosTheta * cosTheta);
+            float g2 = ug * ug;
+            float phaseM = 1.0 / (4.0 * PI) * ((1.0 - g2) / pow(1.0 + g2 - 2.0 * ug * cosTheta, 1.5));
+
+            for(int i=0; i<STEPS; i++) {
+                float height = length(rayPos) - uPlanetRadius;
+                
+                // Exponencial de densidad
+                float hr = exp(-height / uRayleighScale) * stepSizeL;
+                float hm = exp(-height / uMieScale) * stepSizeL;
+                
+                rayleighDepth += hr;
+                mieDepth += hm;
+
+                // Optical depth al Sol
+                float lightStepSize = uAtmoRadius / float(8);
+                vec3 lightPos = rayPos;
+                float lightRayleighDepth = 0.0;
+                float lightMieDepth = 0.0;
+                
+                // Raymarching secundario hacia el sol (simplificado a 8 pasos)
+                vec2 sunAtmoHit = raySphereIntersect(rayPos, uSunPosition, uAtmoRadius);
+                float sunStepSize = sunAtmoHit.y / 8.0;
+                vec3 sunPos = rayPos;
+                for(int j=0; j<8; j++) {
+                    float sHeight = length(sunPos) - uPlanetRadius;
+                    if(sHeight < 0.0) break; // Sombra del planeta
+                    lightRayleighDepth += exp(-sHeight / uRayleighScale) * sunStepSize;
+                    lightMieDepth += exp(-sHeight / uMieScale) * sunStepSize;
+                    sunPos += uSunPosition * sunStepSize;
+                }
+
+                vec3 tau = uRayleighBeta * (rayleighDepth + lightRayleighDepth) + 
+                           vec3(uMieBeta) * 1.1 * (mieDepth + lightMieDepth);
+                vec3 attenuation = exp(-tau);
+
+                totalRayleigh += hr * attenuation;
+                totalMie += hm * attenuation;
+
+                rayPos += rayDir * stepSizeL;
+            }
+
+            vec3 color = (phaseR * uRayleighBeta * totalRayleigh) + (phaseM * uMieBeta * totalMie);
+
+            // HDR Tonemapping básico
+            color = 1.0 - exp(-1.0 * color);
+            
+            // Si golpeó el planeta, dibujar textura básica
+            if (planetHit.x >= 0.0 && planetHit.x < 1e5) {
+                // Sombra básica (dot normal)
+                vec3 pNormal = normalize((uCameraPos + rayDir * planetHit.x));
+                float NdotL = max(0.0, dot(pNormal, uSunPosition));
+                vec3 surfaceColor = vec3(0.05, 0.05, 0.05) * NdotL; // Planeta oscuro
+
+                // Añadir color de in-scattering sobre la superficie
+                color = surfaceColor * exp(-(uRayleighBeta * rayleighDepth + vec3(uMieBeta) * 1.1 * mieDepth)) + color;
+            }
+
+            gl_FragColor = vec4(color, 1.0);
+        }
+    `;
+
+    const material = new THREE.ShaderMaterial({
+        uniforms: uniforms,
+        vertexShader: vertexShader,
+        fragmentShader: fragmentShader,
+        side: THREE.BackSide,
+        transparent: true
+    });
+
+    const atmoMesh = new THREE.Mesh(new THREE.SphereGeometry(1050, 64, 64), material);
+    scene.add(atmoMesh);
+
+    // Esfera interna oscura solo para tapar
+    const pMat = new THREE.MeshBasicMaterial({ color: 0x000000, colorWrite: false }); // Oculta rayos
+    const pMesh = new THREE.Mesh(new THREE.SphereGeometry(1000, 64, 64), pMat);
+    // scene.add(pMesh);
+
+    // Helpers
+    const sunSphere = new THREE.Mesh(new THREE.SphereGeometry(50), new THREE.MeshBasicMaterial({color: 0xffffff}));
+    scene.add(sunSphere);
+
+    function updateSun() {
+        const y = parseFloat(document.getElementById('sunY').value);
+        const z = Math.sqrt(1.0 - y*y); // Mantener radio = 1 en XZ
+        uniforms.uSunPosition.value.set(0, y, z).normalize();
+        sunSphere.position.copy(uniforms.uSunPosition.value).multiplyScalar(1500);
+    }
+    updateSun();
+
+    // Eventos UI
+    document.getElementById('sunY').addEventListener('input', (e) => {
+        document.getElementById('vSunY').innerText = e.target.value;
+        updateSun();
+    });
+
+    const betas = ['R', 'G', 'B'];
+    betas.forEach(c => {
+        document.getElementById('ray'+c).addEventListener('input', (e) => {
+            document.getElementById('vRay'+c).innerText = e.target.value;
+            const r = parseFloat(document.getElementById('rayR').value) * 1e-6;
+            const g = parseFloat(document.getElementById('rayG').value) * 1e-6;
+            const b = parseFloat(document.getElementById('rayB').value) * 1e-6;
+            uniforms.uRayleighBeta.value.set(r, g, b);
+        });
+    });
+
+    document.getElementById('mieB').addEventListener('input', (e) => {
+        document.getElementById('vMieB').innerText = e.target.value;
+        uniforms.uMieBeta.value = parseFloat(e.target.value) * 1e-6;
+    });
+
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    function animate() {
+        requestAnimationFrame(animate);
+        uniforms.uCameraPos.value.copy(camera.position);
+        controls.update();
+        renderer.render(scene, camera);
+    }
+    animate();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Powder Galaxy Zero-GC Audit"
+  short_description: "Hot-path audit for Zero-GC and engine laws"
+  default_prompt: "Use $powder-galaxy-zero-gc-audit to audit or fix a Powder Galaxy hot path for REGLA 8, LEY 15, and REGLA 19."

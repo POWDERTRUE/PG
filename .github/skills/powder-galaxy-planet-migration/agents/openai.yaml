@@ -1,0 +1,4 @@
+interface:
+  display_name: "Powder Galaxy Planet Migration"
+  short_description: "CelestialBody and MaterialRegistry planet workflows"
+  default_prompt: "Use $powder-galaxy-planet-migration to migrate or add a Powder Galaxy planet, moon, cloud, or ring system under LEY 15, REGLA 8, and REGLA 19."

@@ -1,0 +1,219 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e46]:
+        - generic [ref=e47]:
+          - generic [ref=e48]: Modo
+          - generic [ref=e49]: RATON LIBRE
+        - generic [ref=e50]:
+          - generic [ref=e51]: Puntero
+          - generic [ref=e52]: VISIBLE
+        - generic [ref=e53]:
+          - generic [ref=e54]: Traza
+          - generic [ref=e55]: IDLE 40%
+        - generic [ref=e56]:
+          - generic [ref=e57]: Paneles
+          - generic [ref=e58]: 0 LIVE
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - generic [ref=e62]: LULU // ASTRO TRACE
+          - generic [ref=e63]: 12:07:09
+        - generic [ref=e64]: VISOR INTERNO OMEGA
+        - generic [ref=e65]:
+          - generic [ref=e66]: Casco
+          - generic [ref=e67]: TACTIL
+        - generic [ref=e68]:
+          - generic [ref=e69]: Velocidad
+          - generic [ref=e70]: 0 u/s
+        - generic [ref=e71]:
+          - generic [ref=e72]: Rumbo
+          - generic [ref=e73]: AZ 225 / EL -89
+        - generic [ref=e74]:
+          - generic [ref=e75]: FPS
+          - generic [ref=e76]: "27"
+        - generic [ref=e77]:
+          - generic [ref=e78]: Sectores
+          - generic [ref=e79]: "36"
+        - generic [ref=e80]:
+          - generic [ref=e81]: Masas
+          - generic [ref=e82]: "51"
+        - generic [ref=e83]:
+          - generic [ref=e84]: Paneles
+          - generic [ref=e85]: 0/0
+      - generic [ref=e86]:
+        - generic [ref=e87]: Interaccion
+        - generic [ref=e88]: Raton libre activo. Recorre masas, lanzadores y paneles del visor con el cursor.
+        - generic [ref=e89]: TAB activo | Cursor libre | Click en masa = fijar traza
+      - generic:
+        - generic:
+          - generic: VISOR INTERACTIVO
+          - generic: RATON LIBRE ACTIVO
+      - generic:
+        - generic: MASS
+      - generic:
+        - generic:
+          - generic:
+            - generic: Masa trazable
+            - generic: Emission Nebula 04
+          - generic: SCAN
+        - generic: "Traza viva. Firma VISUAL. Lectura atmosferica: Lectura limpia."
+        - generic:
+          - generic:
+            - generic: Distancia
+            - generic: 11.3 ku
+          - generic:
+            - generic: Traza
+            - generic: AZ 186 / EL -67
+          - generic:
+            - generic: Firma
+            - generic: VISUAL
+          - generic:
+            - generic: Track
+            - generic: 68%
+          - generic:
+            - generic: Clase
+            - generic: MASA ORBITAL / CANON LULU
+        - generic:
+          - generic: Vector adquirido
+          - generic: TAB libera el visor
+      - button "Modo estelaryi Selecciona una masa" [disabled]:
+        - generic:
+          - generic: Modo estelaryi
+          - generic: Selecciona una masa
+      - button "Modo sistema solar Ordena masas del sistema local" [disabled]:
+        - generic:
+          - generic: Modo sistema solar
+          - generic: Ordena masas del sistema local
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - generic: ⬡
+            - generic: LULU // ASTRO LOG
+          - generic:
+            - generic: ADAPTIVE MODE
+        - generic:
+          - generic:
+            - button "📍" [ref=e37] [cursor=pointer]
+            - button "🪐" [ref=e38] [cursor=pointer]
+            - button "🔍" [ref=e39] [cursor=pointer]
+            - button "📊" [ref=e40] [cursor=pointer]
+          - generic:
+            - generic: ›
+            - textbox "Escribe un comando..." [ref=e41]
+            - button "Comando de voz" [ref=e42] [cursor=pointer]:
+              - img [ref=e43]
+    - generic [ref=e90]:
+      - generic [ref=e91]:
+        - generic [ref=e92]: OMEGA FLIGHT DECK
+        - generic [ref=e93]: "TAB activo: selecciona una masa con modulo para desplegarla rapido"
+      - generic [ref=e94]:
+        - button "Terminal" [ref=e95] [cursor=pointer]:
+          - generic:
+            - img
+          - generic [ref=e97]:
+            - generic: Terminal
+            - generic [ref=e98]: Control
+        - button "Explorador" [ref=e99] [cursor=pointer]:
+          - generic:
+            - img
+          - generic [ref=e101]:
+            - generic: Explorador
+            - generic [ref=e102]: Cartografia
+        - button "Galeria" [ref=e103] [cursor=pointer]:
+          - generic:
+            - img
+          - generic [ref=e105]:
+            - generic: Galeria
+            - generic [ref=e106]: Registro
+        - button "Base de datos" [ref=e107] [cursor=pointer]:
+          - generic:
+            - img
+          - generic [ref=e109]:
+            - generic: Base de datos
+            - generic [ref=e110]: Canon
+        - button "Holograma" [ref=e111] [cursor=pointer]:
+          - generic:
+            - img
+          - generic [ref=e113]:
+            - generic: Holograma
+            - generic [ref=e114]: Proyeccion
+        - button "Ajustes" [ref=e115] [cursor=pointer]:
+          - generic:
+            - img
+          - generic [ref=e117]:
+            - generic: Ajustes
+            - generic [ref=e118]: Sistema
+  - generic: MODO HUD · TAB
+  - img
+  - generic:
+    - generic: PowderGalaxy
+  - generic [ref=e119]:
+    - generic [ref=e121]:
+      - complementary [ref=e122]:
+        - generic [ref=e123]: Pausa tactica
+        - heading "Omega Vista" [level=1] [ref=e124]
+        - paragraph [ref=e125]: "La pausa ahora responde como un juego AAA: detiene la accion, devuelve el cursor y concentra todas las opciones del simulador y del sistema operativo del universo."
+        - generic [ref=e126]:
+          - button "Juego" [ref=e127] [cursor=pointer]
+          - button "Audio" [ref=e128] [cursor=pointer]
+          - button "Interfaz OS" [ref=e129] [cursor=pointer]
+          - button "Controles" [active] [ref=e130] [cursor=pointer]
+          - button "Sistema" [ref=e131] [cursor=pointer]
+        - generic [ref=e132]:
+          - generic [ref=e133]:
+            - generic [ref=e134]: Camara
+            - generic [ref=e135]: FREE_FLIGHT
+          - generic [ref=e136]:
+            - generic [ref=e137]: Puntero
+            - generic [ref=e138]: CURSOR
+          - generic [ref=e139]:
+            - generic [ref=e140]: Objetivo
+            - generic [ref=e141]: Sin objetivo
+          - generic [ref=e142]:
+            - generic [ref=e143]: Paneles
+            - generic [ref=e144]: 0/0
+        - generic [ref=e145]:
+          - button "Reanudar" [ref=e146] [cursor=pointer]
+          - button "Preset cinematico" [ref=e147] [cursor=pointer]
+          - button "Preset preciso" [ref=e148] [cursor=pointer]
+          - button "Salir al selector" [ref=e149] [cursor=pointer]
+      - generic [ref=e182]:
+        - generic [ref=e183]:
+          - generic [ref=e184]:
+            - generic [ref=e185]: Controles
+            - heading "Mapa actual del teclado y raton" [level=2] [ref=e186]
+          - paragraph [ref=e187]: El visor contextual pasa a TAB por alternancia. ESC queda reservado para pausa y regreso de menus.
+        - generic [ref=e188]:
+          - generic [ref=e189]:
+            - generic [ref=e190]: Moverse
+            - strong [ref=e191]: W A S D
+          - generic [ref=e192]:
+            - generic [ref=e193]: Ascender / descender
+            - strong [ref=e194]: Q / E
+          - generic [ref=e195]:
+            - generic [ref=e196]: Boost
+            - strong [ref=e197]: Shift
+          - generic [ref=e198]:
+            - generic [ref=e199]: Visor contextual (alternar)
+            - strong [ref=e200]: Tab
+          - generic [ref=e201]:
+            - generic [ref=e202]: Chat con LULU
+            - strong [ref=e203]: "1"
+          - generic [ref=e204]:
+            - generic [ref=e205]: Pausa / volver
+            - strong [ref=e206]: Esc
+          - generic [ref=e207]:
+            - generic [ref=e208]: Mapa
+            - strong [ref=e209]: M
+          - generic [ref=e210]:
+            - generic [ref=e211]: Fijar / abrir
+            - strong [ref=e212]: Click / Doble click
+    - generic [ref=e174]:
+      - generic [ref=e175]:
+        - generic [ref=e176]: Borde de observacion
+        - generic [ref=e177]: "La pausa respeta la vista amplia: el mundo queda inmovil y el overlay trabaja como una baranda tactica, sin pelear con la escena."
+      - generic [ref=e178]:
+        - generic [ref=e179]: ESC cierra la pausa
+        - generic [ref=e180]: TAB alterna el visor libre
+        - generic [ref=e181]: M abre el mapa

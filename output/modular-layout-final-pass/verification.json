@@ -1,0 +1,182 @@
+[
+  {
+    "scenario": "desktop-open",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "screenshot": "C:\\xampp\\htdocs\\Powder_Galaxy\\output\\modular-layout-final-pass\\desktop-open.png",
+    "bodyClasses": "pg-hud-mode pg-tab-layout pg-tab-has-windows",
+    "visibleWindowCount": 2,
+    "stashedWindowCount": 1,
+    "overlaps": {
+      "contextVsDock": false,
+      "contextVsShelf": false,
+      "shellVsWindows": [
+        {
+          "id": "os-window-gallery",
+          "overlap": false
+        },
+        {
+          "id": "os-window-settings",
+          "overlap": false
+        }
+      ],
+      "luluVsShelf": false,
+      "luluVsDock": false,
+      "contextVsWindows": [
+        {
+          "id": "os-window-gallery",
+          "overlap": false
+        },
+        {
+          "id": "os-window-settings",
+          "overlap": false
+        }
+      ],
+      "windowPairs": [
+        {
+          "pair": [
+            "os-window-gallery",
+            "os-window-settings"
+          ],
+          "overlap": false
+        }
+      ]
+    },
+    "layoutVars": {
+      "leftLane": "244px",
+      "rightLane": "676px",
+      "centerLane": "318px",
+      "leftStart": "130px",
+      "rightStart": "130px",
+      "bottomReserve": "188px",
+      "topReserve": "130px"
+    },
+    "shell": {
+      "display": "none",
+      "opacity": "0.94",
+      "width": 0,
+      "height": 0,
+      "left": 0,
+      "top": 0,
+      "right": 0,
+      "bottom": 0
+    },
+    "luluInput": {
+      "display": "block",
+      "opacity": "0",
+      "width": 0,
+      "height": 0,
+      "left": 0,
+      "top": 0,
+      "right": 0,
+      "bottom": 0
+    },
+    "storage": {
+      "os-window-terminal": {
+        "appId": "terminal",
+        "left": "336px",
+        "top": "113px",
+        "zIndex": "1201",
+        "isCollapsed": false
+      },
+      "os-window-gallery": {
+        "appId": "gallery",
+        "left": "336px",
+        "top": "119px",
+        "zIndex": "1202",
+        "isCollapsed": false
+      },
+      "os-window-settings": {
+        "appId": "settings",
+        "left": "336px",
+        "top": "114px",
+        "zIndex": "1203",
+        "isCollapsed": false
+      }
+    }
+  },
+  {
+    "scenario": "narrow-shelf",
+    "viewport": {
+      "width": 980,
+      "height": 720
+    },
+    "screenshot": "C:\\xampp\\htdocs\\Powder_Galaxy\\output\\modular-layout-final-pass\\narrow-shelf.png",
+    "bodyClasses": "pg-hud-mode pg-tab-layout pg-tab-has-windows pg-tab-tight-center pg-tab-has-shelf",
+    "visibleWindowCount": 1,
+    "stashedWindowCount": 1,
+    "overlaps": {
+      "contextVsDock": false,
+      "contextVsShelf": false,
+      "shellVsWindows": [
+        {
+          "id": "os-window-settings",
+          "overlap": false
+        }
+      ],
+      "luluVsShelf": false,
+      "luluVsDock": false,
+      "contextVsWindows": [
+        {
+          "id": "os-window-settings",
+          "overlap": false
+        }
+      ],
+      "windowPairs": []
+    },
+    "layoutVars": {
+      "leftLane": "244px",
+      "rightLane": "656px",
+      "centerLane": "80px",
+      "leftStart": "92px",
+      "rightStart": "92px",
+      "bottomReserve": "257px",
+      "topReserve": "92px"
+    },
+    "shell": {
+      "display": "none",
+      "opacity": "0.94",
+      "width": 0,
+      "height": 0,
+      "left": 0,
+      "top": 0,
+      "right": 0,
+      "bottom": 0
+    },
+    "luluInput": {
+      "display": "block",
+      "opacity": "0",
+      "width": 0,
+      "height": 0,
+      "left": 0,
+      "top": 0,
+      "right": 0,
+      "bottom": 0
+    },
+    "storage": {
+      "os-window-terminal": {
+        "appId": "terminal",
+        "left": "40px",
+        "top": "113px",
+        "zIndex": "1201",
+        "isCollapsed": false
+      },
+      "os-window-gallery": {
+        "appId": "gallery",
+        "left": "40px",
+        "top": "119px",
+        "zIndex": "1202",
+        "isCollapsed": true
+      },
+      "os-window-settings": {
+        "appId": "settings",
+        "left": "40px",
+        "top": "114px",
+        "zIndex": "1203",
+        "isCollapsed": false
+      }
+    }
+  }
+]

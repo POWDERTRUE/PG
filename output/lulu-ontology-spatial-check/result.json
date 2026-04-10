@@ -1,0 +1,29 @@
+{
+  "result": {
+    "windowPresent": true,
+    "viewportPresent": true,
+    "universePresent": true,
+    "nodeCount": 15,
+    "connectorCount": 31,
+    "focused": [
+      "lulu-brain"
+    ],
+    "relatedCount": 5,
+    "activeLinkCount": 7,
+    "inspectorTitle": "LULU Brain",
+    "inspectorCopy": "Procesa lenguaje natural, rutas documentales y activacion de herramientas.",
+    "transform": "matrix3d(0.999934, -0.000769422, -0.0114932, 0, 0, 0.997767, -0.0667963, 0, 0.0115189, 0.0667919, 0.9977, 0, 0, 0, 0, 1)",
+    "ontologyState": {
+      "isOpen": true,
+      "rootCount": 4,
+      "wisdomDisciplines": 15,
+      "services": 54,
+      "spatialNodeCount": 15,
+      "focusedNode": "lulu-brain"
+    },
+    "hudMode": true,
+    "pointerLocked": false
+  },
+  "consoleErrors": [],
+  "pageErrors": []
+}

@@ -1,0 +1,144 @@
+[log] %c[PowderGalaxy] Starting OMEGA V30 Bootstrap... color:#00ffcc;font-weight:bold
+[log] %c🚀 [Kernel] Executing Boot Sequence OMEGA V30 color:#00ffcc;font-weight:bold;font-size:13px
+[log] [ServiceRegistry] Todos los sistemas han sido liberados.
+[log] [ServiceRegistry] Sistema anclado exitosamente: kernel
+[log] [ServiceRegistry] Sistema anclado exitosamente: registry
+[log] [ServiceRegistry] Sistema anclado exitosamente: events
+[log] [ServiceRegistry] Sistema anclado exitosamente: EntityManager
+[log] [ServiceRegistry] Sistema anclado exitosamente: CelestialRegistry
+[log] [ServiceRegistry] Sistema anclado exitosamente: AnimationEngine
+[log] [ServiceRegistry] Sistema anclado exitosamente: scheduler
+[log] [ServiceRegistry] Sistema anclado exitosamente: bootGraph
+[log] [ServiceRegistry] Sistema anclado exitosamente: camera
+[log] [ServiceRegistry] Sistema anclado exitosamente: cameraRig
+[log] [CameraRig] Authoritative rig online.
+[log] [FrameScheduler] ✔ InputStateSystem → input
+[startGroupCollapsed] 🚀 [OMEGA ENGINE] Boot Sequence
+[log] %c✔ CORE %c| Camera %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ CORE %c| CameraRig %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ SCENE %c| SceneGraph %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ SPATIAL %c| SpatialIndex %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] 🌌 [UniverseStreamer] Initialized. Awaiting camera movement...
+[log] %c✔ SIMULATION %c| UniverseStreamer %c(0.10ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] [InputStateSystem] HAL + State Store Online.
+[log] [ServiceRegistry] Sistema anclado exitosamente: InputStateSystem
+[log] %c✔ INPUT %c| InputStateSystem %c(0.40ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ RENDER %c| RenderPipeline %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ RENDER %c| FrameGraph %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[endGroup] console.groupEnd
+[info] %c[BootGraph] ✅ 8 systems online color:#00ffaa;font-weight:bold
+[log] 🚀 [OMEGA ENGINE] Kernel Master Loop Started.
+[log] [FrameScheduler] ✔ AimRaySystem → input
+[log] [FrameScheduler] ✔ PawnOrientationSystem → simulation
+[log] [FrameScheduler] ✔ ThirdPersonCameraSystem → navigation
+[log] [FrameScheduler] ✔ CelestialPhysicsSystem → physics
+[log] [FrameScheduler] ✔ HandInteractionSystem → render
+[log] %c[CameraFSM] BOOT → FREE_FLIGHT color:#ffaa00;font-weight:bold
+[log] [FreeFlightState] God View Online.
+[log] [FrameScheduler] ✔ UniverseNavigationSystem → navigation
+[log] 🌌 [GalaxyGenerationSystem] Weaving 150000 stars using Instanced Rendering...
+[log] ✅ [GalaxyGenerationSystem] Procedural Galaxy mounted.
+[log] [FrameScheduler] ✔ GalaxyGenerationSystem → simulation
+[log] 🛸 [FloatingOriginSystem] Infinite Scale Matrix initialized.
+[log] [FrameScheduler] ✔ FloatingOriginSystem → navigation
+[error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[error] [object ProgressEvent]
+[error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[error] [object ProgressEvent]
+[error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[log] %c[Kernel] Galaxy build complete. color:#00ffcc
+[log] [FrameScheduler] ✔ CelestialPhysicsSystem → simulation
+[log] [FrameScheduler] ✔ UniverseNavigationSystem → navigation
+[log] %c[HUDManager] Telemetry Online. color:#00ffcc
+[log] %c[KernelBar] OS Dock initialized — 5 apps mounted. color:#00ffcc;font-weight:bold
+[log] [ServiceRegistry] Sistema anclado exitosamente: WindowManager
+[log] %c[WindowManager] Listening for WARP_FLIGHT_COMPLETE. color:#00ffcc
+[log] [ServiceRegistry] Sistema anclado exitosamente: socket
+[log] [FrameScheduler] ✔ RaycastSelectionSystem → interaction
+[log] [FrameScheduler] ✔ HUDInteractionSystem → ui
+[log] [FrameScheduler] ✔ WebsocketBridgeSystem → network
+[log] [FrameScheduler] ✔ RemotePlayerSystem → simulation
+[log] [ServiceRegistry] Sistema anclado exitosamente: HandInteractionSystem
+[warn] [FrameScheduler] Unknown phase "post-navigation" — rerouting to "simulation".
+[log] [FrameScheduler] ✔ Object → post-navigation
+[log] [FrameScheduler] ✔ NotificationDroneSystem → simulation
+[warn] [FrameScheduler] Unknown phase "pre-simulation" — rerouting to "simulation".
+[log] [FrameScheduler] ✔ Object → pre-simulation
+[warn] [FrameScheduler] Unknown phase "post-navigation" — rerouting to "simulation".
+[log] [FrameScheduler] ✔ Object → post-navigation
+[warn] [FrameScheduler] Unknown phase "post-navigation" — rerouting to "simulation".
+[log] [FrameScheduler] ✔ Object → post-navigation
+[log] [ServiceRegistry] Sistema anclado exitosamente: GameMenuSystem
+[log] [FrameScheduler] ✔ LULUControlPanel → ui
+[log] [FrameScheduler] ✔ LULUResponsePanel → ui
+[warn] [FrameScheduler] Unknown phase "post-navigation" — rerouting to "simulation".
+[log] [FrameScheduler] ✔ Object → post-navigation
+[log] [ServiceRegistry] Sistema anclado exitosamente: luluSpawner
+[log] [LULU Spawner] Sistema de objetos espaciales inicializado
+[warn] [FrameScheduler] Unknown phase "post-navigation" — rerouting to "simulation".
+[log] [FrameScheduler] ✔ Object → post-navigation
+[log] [ServiceRegistry] Sistema anclado exitosamente: WorkspaceManager
+[log] [ServiceRegistry] Sistema anclado exitosamente: Orquestador
+[log] %c🧠 [Orquestador] Enlace Neuronal LULU-Kernel establecido. color:#ff00ff; font-weight:bold;
+[log] %c[Kernel] UI Systems activated. color:#00ffcc;font-weight:bold
+[log] %c🚀 [LULU] Asistente IA en línea. Usa la consola para comandos directos. color:#ff00ff;font-weight:bold;font-size:14px
+[startGroupCollapsed] 🚀 [OMEGA ENGINE] Boot Sequence
+[log] %c✔ PHYSICS %c| CelestialPhysicsSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ SIMULATION %c| PawnController %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ INPUT %c| AimRaySystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ SIMULATION %c| PawnOrientationSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] 🌌 [GalaxyGenerationSystem] Weaving 150000 stars using Instanced Rendering...
+[log] ✅ [GalaxyGenerationSystem] Procedural Galaxy mounted.
+[log] %c✔ SIMULATION %c| GalaxyGenerationSystem %c(48.90ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ NAVIGATION %c| UniverseNavigationSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ INTERACTION %c| RaycastSelectionSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ INTERACTION %c| InteractionEventSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ NAVIGATION %c| ThirdPersonCameraSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] 🛸 [FloatingOriginSystem] Infinite Scale Matrix initialized.
+[log] %c✔ NAVIGATION %c| FloatingOriginSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ RENDER %c| HandInteractionSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ UNIVERSE %c| GalaxyGenerator %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ AI %c| NotificationDroneSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ UI %c| HUDManager %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ UI %c| KernelBarSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c[WindowManager] Listening for WARP_FLIGHT_COMPLETE. color:#00ffcc
+[log] %c✔ UI %c| WindowManager %c(0.10ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ UI %c| WindowBridgeSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ UI %c| WindowDOMSystem %c(0.20ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ UI %c| HUDInteractionSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] 📊 [EngineDebugPanel] Overlay initialized.
+[log] %c✔ UI %c| EngineDebugPanel %c(0.40ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ UI %c| InitialMenu %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ NETWORK %c| WebsocketBridgeSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[log] %c✔ NETWORK %c| RemotePlayerSystem %c(0.00ms) color:#ffaa00;font-weight:bold color:#00ffcc color:#555
+[endGroup] console.groupEnd
+[info] %c[BootGraph] ✅ 31 systems online color:#00ffaa;font-weight:bold
+[log] %c✅ [Kernel] Boot Complete. Physics and UI online. color:#00ffcc;font-weight:bold;font-size:14px
+[log] %c[SystemHealthMonitor] Diagnostic Report: color: #00ffcc; font-size: 14px; font-weight: bold; background: #222; padding: 4px;
+[log] %c■ kernel color: #aaa; [object UniverseKernel]
+[log] %c■ registry color: #aaa; [object BootGraphDebugger]
+[log] %c■ events color: #aaa; [object EventBus]
+[log] %c■ EntityManager color: #aaa; [object EntityManager]
+[log] %c■ CelestialRegistry color: #aaa; [object CelestialRegistry]
+[log] %c■ AnimationEngine color: #aaa; [object AnimationEngine]
+[log] %c■ scheduler color: #aaa; [object FrameScheduler]
+[log] %c■ bootGraph color: #aaa; [object BootGraphVisualizer]
+[log] %c■ camera color: #aaa; [object PerspectiveCamera]
+[log] %c■ cameraRig color: #aaa; [object CameraRig]
+[log] %c■ InputStateSystem color: #aaa; [object InputStateSystem]
+[log] %c■ WindowManager color: #aaa; [object WindowManager]
+[log] %c■ socket color: #aaa; [object UniverseSocketClient]
+[log] %c■ HandInteractionSystem color: #aaa; [object HandInteractionSystem]
+[log] %c■ GameMenuSystem color: #aaa; [object GameMenuSystem]
+[log] %c■ luluSpawner color: #aaa; [object LULUSpatialObjectSpawnerSystem]
+[log] %c■ WorkspaceManager color: #aaa; [object WorkspaceManager]
+[log] %c■ Orquestador color: #aaa; [object Orquestador]
+[log] %c---------------------------------------- color: #555;
+[log] %c[PowderGalaxy] Engine Online. color:#00ffcc;font-weight:bold
+[log] [EventBus] INTERACTION:HOVER_START [object Object]
+[error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[error] [object ProgressEvent]
+[error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[error] [object ProgressEvent]
+[log] [EventBus] INTERACTION:HOVER_END [object Object]
+[log] [UniverseSocketClient] Connected to Universe Socket

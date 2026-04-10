@@ -1,0 +1,32 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e4]:
+      - generic:
+        - generic:
+          - generic: EMISSION NEBULA 04
+          - generic: MASA ADQUIRIBLE
+      - generic:
+        - generic: MASS
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - generic: ⬡
+            - generic: LULU // ASTRO LOG
+          - generic:
+            - generic: ADAPTIVE MODE
+        - generic:
+          - generic:
+            - button "📍"
+            - button "🪐"
+            - button "🔍"
+            - button "📊"
+          - generic:
+            - generic: ›
+            - textbox "Escribe un comando..."
+            - button "Comando de voz":
+              - img
+  - generic: MODO HUD · TAB
+  - img
+  - generic:
+    - generic: PowderGalaxy

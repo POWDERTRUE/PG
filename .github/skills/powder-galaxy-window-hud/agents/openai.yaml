@@ -1,0 +1,4 @@
+interface:
+  display_name: "Powder Galaxy Window HUD"
+  short_description: "Pointer, HUD, DOM, and window-stack contracts"
+  default_prompt: "Use $powder-galaxy-window-hud to fix a Powder Galaxy pointer, HUD, or window-stack issue without violating the DOM ownership contract."

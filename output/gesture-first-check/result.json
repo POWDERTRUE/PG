@@ -1,0 +1,975 @@
+{
+  "initialState": {
+    "status": "READY",
+    "navigationState": "FREE_FLIGHT",
+    "paused": false,
+    "hudMode": false,
+    "inputContext": "HELM",
+    "pointerLocked": true,
+    "autoBrakeActive": false,
+    "alignBowActive": false,
+    "camera": {
+      "x": 520,
+      "y": 10800,
+      "z": 4600
+    },
+    "focusTarget": null,
+    "activeTarget": null,
+    "particleProjector": {
+      "active": false,
+      "phase": "IDLE",
+      "host": null,
+      "particleCount": 4096,
+      "dockedCount": 0,
+      "dockedRatio": 0,
+      "transmutationTriggered": false,
+      "overrideTargetId": null,
+      "payloadLabel": null,
+      "payloadUrl": null
+    },
+    "stellarLod": {
+      "registeredSystems": 120,
+      "detailedCount": 0,
+      "proxyVisibleCount": 120
+    },
+    "ontologyMap": {
+      "isOpen": false,
+      "rootCount": 0,
+      "wisdomDisciplines": 0,
+      "services": 0,
+      "spatialNodeCount": 0,
+      "focusedNode": null
+    },
+    "activePayload": {
+      "activeTypes": [],
+      "lockedTypes": [],
+      "image": null
+    },
+    "payloadIndicator": {
+      "visible": false,
+      "deployed": false,
+      "label": "NINGUNA",
+      "src": null,
+      "currentIndex": -1,
+      "isLocked": false
+    },
+    "tacticalReadout": {
+      "visible": false,
+      "targetId": null,
+      "deterministicKey": null,
+      "name": "Sin objetivo"
+    },
+    "tacticalContextMenu": {
+      "open": false,
+      "targetId": null,
+      "deterministicKey": null,
+      "label": "SIN OBJETIVO",
+      "canInject": false
+    },
+    "targetTracker": {
+      "active": false,
+      "visible": false,
+      "targetId": null,
+      "deterministicKey": null,
+      "label": "OBJETIVO",
+      "offscreen": false,
+      "behindCamera": false,
+      "screenX": 0,
+      "screenY": 0,
+      "bearingAngleDeg": 0
+    },
+    "warpCinematic": {
+      "state": "IDLE",
+      "visible": false,
+      "stretch": 0,
+      "opacity": 0,
+      "travelSpeed": 0,
+      "fov": 42
+    },
+    "inputArbitration": {
+      "context": "HELM",
+      "hudMode": false,
+      "pointerLocked": true,
+      "leftDown": false,
+      "rightDown": false,
+      "dragThresholdPx": 4,
+      "longPressTimeMs": 500,
+      "doubleTapWindowMs": 650,
+      "tacticalGestureActive": false,
+      "tacticalGesturePointerType": "mouse",
+      "tacticalGestureDragging": false,
+      "tacticalGestureLongPress": false,
+      "tacticalGestureStartedOverUi": false,
+      "lastSignal": "NONE",
+      "lastIntent": "NONE",
+      "overUi": false,
+      "wasDragging": false,
+      "dragDistance": 0,
+      "taps": 0,
+      "doubleTaps": 0,
+      "longPresses": 0,
+      "dragStarts": 0,
+      "dragEnds": 0,
+      "scalarAdjusts": 0
+    },
+    "persistence": {
+      "scarCount": 0,
+      "scarKeys": [],
+      "latestScar": null
+    },
+    "render": {
+      "fpsTarget": null,
+      "drawCalls": 1
+    },
+    "galaxy": {
+      "mainStars": 120000,
+      "streamedSectors": 0,
+      "sceneOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  "target": {
+    "name": "Planet_Hologram",
+    "screenX": 971.9238951733952,
+    "screenY": 164.91869835348552,
+    "ndcX": 0.51863108620843,
+    "ndcY": 0.5418925045736513,
+    "ndcZ": 0.9999855865874947
+  },
+  "centered": true,
+  "afterOpsTap": {
+    "status": "READY",
+    "navigationState": "FREE_FLIGHT",
+    "paused": false,
+    "hudMode": true,
+    "inputContext": "OPS",
+    "pointerLocked": false,
+    "autoBrakeActive": true,
+    "alignBowActive": false,
+    "camera": {
+      "x": 520,
+      "y": 10800,
+      "z": 4600
+    },
+    "focusTarget": null,
+    "activeTarget": "Planet_Hologram",
+    "particleProjector": {
+      "active": false,
+      "phase": "IDLE",
+      "host": null,
+      "particleCount": 4096,
+      "dockedCount": 0,
+      "dockedRatio": 0,
+      "transmutationTriggered": false,
+      "overrideTargetId": null,
+      "payloadLabel": null,
+      "payloadUrl": null
+    },
+    "stellarLod": {
+      "registeredSystems": 120,
+      "detailedCount": 0,
+      "proxyVisibleCount": 120
+    },
+    "ontologyMap": {
+      "isOpen": false,
+      "rootCount": 0,
+      "wisdomDisciplines": 0,
+      "services": 0,
+      "spatialNodeCount": 0,
+      "focusedNode": null
+    },
+    "activePayload": {
+      "activeTypes": [],
+      "lockedTypes": [],
+      "image": null
+    },
+    "payloadIndicator": {
+      "visible": false,
+      "deployed": false,
+      "label": "NINGUNA",
+      "src": null,
+      "currentIndex": -1,
+      "isLocked": false
+    },
+    "tacticalReadout": {
+      "visible": true,
+      "targetId": "e714ada6-c589-4e63-9fc3-d2ec0a93edf9",
+      "deterministicKey": "observer-system/planet/hologram",
+      "name": "HOLOGRAM"
+    },
+    "tacticalContextMenu": {
+      "open": false,
+      "targetId": null,
+      "deterministicKey": null,
+      "label": "SIN OBJETIVO",
+      "canInject": false
+    },
+    "targetTracker": {
+      "active": true,
+      "visible": true,
+      "targetId": "e714ada6-c589-4e63-9fc3-d2ec0a93edf9",
+      "deterministicKey": "observer-system/planet/hologram",
+      "label": "Hologram",
+      "offscreen": false,
+      "behindCamera": false,
+      "screenX": 970,
+      "screenY": 168,
+      "bearingAngleDeg": 0
+    },
+    "warpCinematic": {
+      "state": "IDLE",
+      "visible": false,
+      "stretch": 0,
+      "opacity": 0,
+      "travelSpeed": 0,
+      "fov": 42
+    },
+    "inputArbitration": {
+      "context": "OPS",
+      "hudMode": true,
+      "pointerLocked": false,
+      "leftDown": false,
+      "rightDown": false,
+      "dragThresholdPx": 4,
+      "longPressTimeMs": 500,
+      "doubleTapWindowMs": 650,
+      "tacticalGestureActive": false,
+      "tacticalGesturePointerType": "mouse",
+      "tacticalGestureDragging": false,
+      "tacticalGestureLongPress": false,
+      "tacticalGestureStartedOverUi": false,
+      "lastSignal": "PG:INPUT:GESTURE_UP",
+      "lastIntent": "OPS_TAP",
+      "overUi": false,
+      "wasDragging": false,
+      "dragDistance": 0,
+      "taps": 1,
+      "doubleTaps": 0,
+      "longPresses": 0,
+      "dragStarts": 0,
+      "dragEnds": 0,
+      "scalarAdjusts": 0
+    },
+    "persistence": {
+      "scarCount": 0,
+      "scarKeys": [],
+      "latestScar": null
+    },
+    "render": {
+      "fpsTarget": null,
+      "drawCalls": 1
+    },
+    "galaxy": {
+      "mainStars": 120000,
+      "streamedSectors": 51,
+      "sceneOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  "duringOpsLongPress": {
+    "status": "READY",
+    "navigationState": "FREE_FLIGHT",
+    "paused": false,
+    "hudMode": true,
+    "inputContext": "OPS",
+    "pointerLocked": false,
+    "autoBrakeActive": true,
+    "alignBowActive": false,
+    "camera": {
+      "x": 520,
+      "y": 10800,
+      "z": 4600
+    },
+    "focusTarget": null,
+    "activeTarget": "Planet_Hologram",
+    "particleProjector": {
+      "active": false,
+      "phase": "IDLE",
+      "host": null,
+      "particleCount": 4096,
+      "dockedCount": 0,
+      "dockedRatio": 0,
+      "transmutationTriggered": false,
+      "overrideTargetId": null,
+      "payloadLabel": null,
+      "payloadUrl": null
+    },
+    "stellarLod": {
+      "registeredSystems": 120,
+      "detailedCount": 0,
+      "proxyVisibleCount": 120
+    },
+    "ontologyMap": {
+      "isOpen": false,
+      "rootCount": 0,
+      "wisdomDisciplines": 0,
+      "services": 0,
+      "spatialNodeCount": 0,
+      "focusedNode": null
+    },
+    "activePayload": {
+      "activeTypes": [],
+      "lockedTypes": [],
+      "image": null
+    },
+    "payloadIndicator": {
+      "visible": false,
+      "deployed": false,
+      "label": "NINGUNA",
+      "src": null,
+      "currentIndex": -1,
+      "isLocked": false
+    },
+    "tacticalReadout": {
+      "visible": true,
+      "targetId": "e714ada6-c589-4e63-9fc3-d2ec0a93edf9",
+      "deterministicKey": "observer-system/planet/hologram",
+      "name": "HOLOGRAM"
+    },
+    "tacticalContextMenu": {
+      "open": true,
+      "targetId": "e714ada6-c589-4e63-9fc3-d2ec0a93edf9",
+      "deterministicKey": "observer-system/planet/hologram",
+      "label": "HOLOGRAM",
+      "canInject": false
+    },
+    "targetTracker": {
+      "active": true,
+      "visible": true,
+      "targetId": "e714ada6-c589-4e63-9fc3-d2ec0a93edf9",
+      "deterministicKey": "observer-system/planet/hologram",
+      "label": "Hologram",
+      "offscreen": false,
+      "behindCamera": false,
+      "screenX": 969,
+      "screenY": 168,
+      "bearingAngleDeg": 0
+    },
+    "warpCinematic": {
+      "state": "IDLE",
+      "visible": false,
+      "stretch": 0,
+      "opacity": 0,
+      "travelSpeed": 0,
+      "fov": 42
+    },
+    "inputArbitration": {
+      "context": "OPS",
+      "hudMode": true,
+      "pointerLocked": false,
+      "leftDown": true,
+      "rightDown": false,
+      "dragThresholdPx": 4,
+      "longPressTimeMs": 500,
+      "doubleTapWindowMs": 650,
+      "tacticalGestureActive": true,
+      "tacticalGesturePointerType": "mouse",
+      "tacticalGestureDragging": false,
+      "tacticalGestureLongPress": true,
+      "tacticalGestureStartedOverUi": false,
+      "lastSignal": "PG:INPUT:GESTURE_LONG_PRESS",
+      "lastIntent": "OPS_LONG_PRESS",
+      "overUi": false,
+      "wasDragging": false,
+      "dragDistance": 0,
+      "taps": 1,
+      "doubleTaps": 0,
+      "longPresses": 1,
+      "dragStarts": 0,
+      "dragEnds": 0,
+      "scalarAdjusts": 0
+    },
+    "persistence": {
+      "scarCount": 0,
+      "scarKeys": [],
+      "latestScar": null
+    },
+    "render": {
+      "fpsTarget": null,
+      "drawCalls": 1
+    },
+    "galaxy": {
+      "mainStars": 120000,
+      "streamedSectors": 51,
+      "sceneOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  "afterOpsLongPress": {
+    "status": "READY",
+    "navigationState": "FREE_FLIGHT",
+    "paused": false,
+    "hudMode": true,
+    "inputContext": "OPS",
+    "pointerLocked": false,
+    "autoBrakeActive": true,
+    "alignBowActive": false,
+    "camera": {
+      "x": 520,
+      "y": 10800,
+      "z": 4600
+    },
+    "focusTarget": null,
+    "activeTarget": "Planet_Hologram",
+    "particleProjector": {
+      "active": false,
+      "phase": "IDLE",
+      "host": null,
+      "particleCount": 4096,
+      "dockedCount": 0,
+      "dockedRatio": 0,
+      "transmutationTriggered": false,
+      "overrideTargetId": null,
+      "payloadLabel": null,
+      "payloadUrl": null
+    },
+    "stellarLod": {
+      "registeredSystems": 120,
+      "detailedCount": 0,
+      "proxyVisibleCount": 120
+    },
+    "ontologyMap": {
+      "isOpen": false,
+      "rootCount": 0,
+      "wisdomDisciplines": 0,
+      "services": 0,
+      "spatialNodeCount": 0,
+      "focusedNode": null
+    },
+    "activePayload": {
+      "activeTypes": [],
+      "lockedTypes": [],
+      "image": null
+    },
+    "payloadIndicator": {
+      "visible": false,
+      "deployed": false,
+      "label": "NINGUNA",
+      "src": null,
+      "currentIndex": -1,
+      "isLocked": false
+    },
+    "tacticalReadout": {
+      "visible": true,
+      "targetId": "e714ada6-c589-4e63-9fc3-d2ec0a93edf9",
+      "deterministicKey": "observer-system/planet/hologram",
+      "name": "HOLOGRAM"
+    },
+    "tacticalContextMenu": {
+      "open": true,
+      "targetId": "e714ada6-c589-4e63-9fc3-d2ec0a93edf9",
+      "deterministicKey": "observer-system/planet/hologram",
+      "label": "HOLOGRAM",
+      "canInject": false
+    },
+    "targetTracker": {
+      "active": true,
+      "visible": true,
+      "targetId": "e714ada6-c589-4e63-9fc3-d2ec0a93edf9",
+      "deterministicKey": "observer-system/planet/hologram",
+      "label": "Hologram",
+      "offscreen": false,
+      "behindCamera": false,
+      "screenX": 968,
+      "screenY": 169,
+      "bearingAngleDeg": 0
+    },
+    "warpCinematic": {
+      "state": "IDLE",
+      "visible": false,
+      "stretch": 0,
+      "opacity": 0,
+      "travelSpeed": 0,
+      "fov": 42
+    },
+    "inputArbitration": {
+      "context": "OPS",
+      "hudMode": true,
+      "pointerLocked": false,
+      "leftDown": false,
+      "rightDown": false,
+      "dragThresholdPx": 4,
+      "longPressTimeMs": 500,
+      "doubleTapWindowMs": 650,
+      "tacticalGestureActive": false,
+      "tacticalGesturePointerType": "mouse",
+      "tacticalGestureDragging": false,
+      "tacticalGestureLongPress": false,
+      "tacticalGestureStartedOverUi": false,
+      "lastSignal": "PG:INPUT:GESTURE_UP",
+      "lastIntent": "OPS_LONG_PRESS_RELEASE",
+      "overUi": false,
+      "wasDragging": false,
+      "dragDistance": 0,
+      "taps": 1,
+      "doubleTaps": 0,
+      "longPresses": 1,
+      "dragStarts": 0,
+      "dragEnds": 0,
+      "scalarAdjusts": 0
+    },
+    "persistence": {
+      "scarCount": 0,
+      "scarKeys": [],
+      "latestScar": null
+    },
+    "render": {
+      "fpsTarget": null,
+      "drawCalls": 1
+    },
+    "galaxy": {
+      "mainStars": 120000,
+      "streamedSectors": 51,
+      "sceneOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  "duringHelmLongPress": {
+    "status": "READY",
+    "navigationState": "FREE_FLIGHT",
+    "paused": false,
+    "hudMode": false,
+    "inputContext": "HELM",
+    "pointerLocked": true,
+    "autoBrakeActive": false,
+    "alignBowActive": true,
+    "camera": {
+      "x": 520,
+      "y": 10800,
+      "z": 4600
+    },
+    "focusTarget": null,
+    "activeTarget": "Planet_Hologram",
+    "particleProjector": {
+      "active": false,
+      "phase": "IDLE",
+      "host": null,
+      "particleCount": 4096,
+      "dockedCount": 0,
+      "dockedRatio": 0,
+      "transmutationTriggered": false,
+      "overrideTargetId": null,
+      "payloadLabel": null,
+      "payloadUrl": null
+    },
+    "stellarLod": {
+      "registeredSystems": 120,
+      "detailedCount": 0,
+      "proxyVisibleCount": 120
+    },
+    "ontologyMap": {
+      "isOpen": false,
+      "rootCount": 0,
+      "wisdomDisciplines": 0,
+      "services": 0,
+      "spatialNodeCount": 0,
+      "focusedNode": null
+    },
+    "activePayload": {
+      "activeTypes": [],
+      "lockedTypes": [],
+      "image": null
+    },
+    "payloadIndicator": {
+      "visible": false,
+      "deployed": false,
+      "label": "NINGUNA",
+      "src": null,
+      "currentIndex": -1,
+      "isLocked": false
+    },
+    "tacticalReadout": {
+      "visible": false,
+      "targetId": null,
+      "deterministicKey": null,
+      "name": "HOLOGRAM"
+    },
+    "tacticalContextMenu": {
+      "open": false,
+      "targetId": null,
+      "deterministicKey": null,
+      "label": "HOLOGRAM",
+      "canInject": false
+    },
+    "targetTracker": {
+      "active": false,
+      "visible": false,
+      "targetId": null,
+      "deterministicKey": null,
+      "label": "OBJETIVO",
+      "offscreen": false,
+      "behindCamera": false,
+      "screenX": 0,
+      "screenY": 0,
+      "bearingAngleDeg": 0
+    },
+    "warpCinematic": {
+      "state": "IDLE",
+      "visible": false,
+      "stretch": 0,
+      "opacity": 0,
+      "travelSpeed": 0,
+      "fov": 42
+    },
+    "inputArbitration": {
+      "context": "HELM",
+      "hudMode": false,
+      "pointerLocked": true,
+      "leftDown": true,
+      "rightDown": false,
+      "dragThresholdPx": 4,
+      "longPressTimeMs": 500,
+      "doubleTapWindowMs": 650,
+      "tacticalGestureActive": true,
+      "tacticalGesturePointerType": "mouse",
+      "tacticalGestureDragging": false,
+      "tacticalGestureLongPress": true,
+      "tacticalGestureStartedOverUi": false,
+      "lastSignal": "PG:INPUT:GESTURE_LONG_PRESS",
+      "lastIntent": "HELM_LONG_PRESS",
+      "overUi": false,
+      "wasDragging": false,
+      "dragDistance": 0,
+      "taps": 1,
+      "doubleTaps": 0,
+      "longPresses": 2,
+      "dragStarts": 0,
+      "dragEnds": 0,
+      "scalarAdjusts": 0
+    },
+    "persistence": {
+      "scarCount": 0,
+      "scarKeys": [],
+      "latestScar": null
+    },
+    "render": {
+      "fpsTarget": null,
+      "drawCalls": 1
+    },
+    "galaxy": {
+      "mainStars": 120000,
+      "streamedSectors": 51,
+      "sceneOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  "afterHelmLongPress": {
+    "status": "READY",
+    "navigationState": "FREE_FLIGHT",
+    "paused": false,
+    "hudMode": false,
+    "inputContext": "HELM",
+    "pointerLocked": true,
+    "autoBrakeActive": false,
+    "alignBowActive": false,
+    "camera": {
+      "x": 520,
+      "y": 10800,
+      "z": 4600
+    },
+    "focusTarget": null,
+    "activeTarget": "Planet_Hologram",
+    "particleProjector": {
+      "active": false,
+      "phase": "IDLE",
+      "host": null,
+      "particleCount": 4096,
+      "dockedCount": 0,
+      "dockedRatio": 0,
+      "transmutationTriggered": false,
+      "overrideTargetId": null,
+      "payloadLabel": null,
+      "payloadUrl": null
+    },
+    "stellarLod": {
+      "registeredSystems": 120,
+      "detailedCount": 0,
+      "proxyVisibleCount": 120
+    },
+    "ontologyMap": {
+      "isOpen": false,
+      "rootCount": 0,
+      "wisdomDisciplines": 0,
+      "services": 0,
+      "spatialNodeCount": 0,
+      "focusedNode": null
+    },
+    "activePayload": {
+      "activeTypes": [],
+      "lockedTypes": [],
+      "image": null
+    },
+    "payloadIndicator": {
+      "visible": false,
+      "deployed": false,
+      "label": "NINGUNA",
+      "src": null,
+      "currentIndex": -1,
+      "isLocked": false
+    },
+    "tacticalReadout": {
+      "visible": false,
+      "targetId": null,
+      "deterministicKey": null,
+      "name": "HOLOGRAM"
+    },
+    "tacticalContextMenu": {
+      "open": false,
+      "targetId": null,
+      "deterministicKey": null,
+      "label": "HOLOGRAM",
+      "canInject": false
+    },
+    "targetTracker": {
+      "active": false,
+      "visible": false,
+      "targetId": null,
+      "deterministicKey": null,
+      "label": "OBJETIVO",
+      "offscreen": false,
+      "behindCamera": false,
+      "screenX": 0,
+      "screenY": 0,
+      "bearingAngleDeg": 0
+    },
+    "warpCinematic": {
+      "state": "IDLE",
+      "visible": false,
+      "stretch": 0,
+      "opacity": 0,
+      "travelSpeed": 0,
+      "fov": 42
+    },
+    "inputArbitration": {
+      "context": "HELM",
+      "hudMode": false,
+      "pointerLocked": true,
+      "leftDown": false,
+      "rightDown": false,
+      "dragThresholdPx": 4,
+      "longPressTimeMs": 500,
+      "doubleTapWindowMs": 650,
+      "tacticalGestureActive": false,
+      "tacticalGesturePointerType": "mouse",
+      "tacticalGestureDragging": false,
+      "tacticalGestureLongPress": false,
+      "tacticalGestureStartedOverUi": false,
+      "lastSignal": "PG:INPUT:GESTURE_UP",
+      "lastIntent": "HELM_LONG_PRESS_RELEASE",
+      "overUi": false,
+      "wasDragging": false,
+      "dragDistance": 0,
+      "taps": 1,
+      "doubleTaps": 0,
+      "longPresses": 2,
+      "dragStarts": 0,
+      "dragEnds": 0,
+      "scalarAdjusts": 0
+    },
+    "persistence": {
+      "scarCount": 0,
+      "scarKeys": [],
+      "latestScar": null
+    },
+    "render": {
+      "fpsTarget": null,
+      "drawCalls": 1
+    },
+    "galaxy": {
+      "mainStars": 120000,
+      "streamedSectors": 51,
+      "sceneOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  "afterHelmDoubleTap": {
+    "status": "READY",
+    "navigationState": "FREE_FLIGHT",
+    "paused": false,
+    "hudMode": false,
+    "inputContext": "HELM",
+    "pointerLocked": true,
+    "autoBrakeActive": false,
+    "alignBowActive": false,
+    "camera": {
+      "x": 520,
+      "y": 10800,
+      "z": 4600
+    },
+    "focusTarget": null,
+    "activeTarget": null,
+    "particleProjector": {
+      "active": false,
+      "phase": "IDLE",
+      "host": null,
+      "particleCount": 4096,
+      "dockedCount": 0,
+      "dockedRatio": 0,
+      "transmutationTriggered": false,
+      "overrideTargetId": null,
+      "payloadLabel": null,
+      "payloadUrl": null
+    },
+    "stellarLod": {
+      "registeredSystems": 120,
+      "detailedCount": 0,
+      "proxyVisibleCount": 120
+    },
+    "ontologyMap": {
+      "isOpen": false,
+      "rootCount": 0,
+      "wisdomDisciplines": 0,
+      "services": 0,
+      "spatialNodeCount": 0,
+      "focusedNode": null
+    },
+    "activePayload": {
+      "activeTypes": [],
+      "lockedTypes": [],
+      "image": null
+    },
+    "payloadIndicator": {
+      "visible": false,
+      "deployed": false,
+      "label": "NINGUNA",
+      "src": null,
+      "currentIndex": -1,
+      "isLocked": false
+    },
+    "tacticalReadout": {
+      "visible": false,
+      "targetId": null,
+      "deterministicKey": null,
+      "name": "HOLOGRAM"
+    },
+    "tacticalContextMenu": {
+      "open": false,
+      "targetId": null,
+      "deterministicKey": null,
+      "label": "HOLOGRAM",
+      "canInject": false
+    },
+    "targetTracker": {
+      "active": false,
+      "visible": false,
+      "targetId": null,
+      "deterministicKey": null,
+      "label": "OBJETIVO",
+      "offscreen": false,
+      "behindCamera": false,
+      "screenX": 0,
+      "screenY": 0,
+      "bearingAngleDeg": 0
+    },
+    "warpCinematic": {
+      "state": "IDLE",
+      "visible": false,
+      "stretch": 0,
+      "opacity": 0,
+      "travelSpeed": 0,
+      "fov": 42
+    },
+    "inputArbitration": {
+      "context": "HELM",
+      "hudMode": false,
+      "pointerLocked": true,
+      "leftDown": false,
+      "rightDown": false,
+      "dragThresholdPx": 4,
+      "longPressTimeMs": 500,
+      "doubleTapWindowMs": 650,
+      "tacticalGestureActive": false,
+      "tacticalGesturePointerType": "mouse",
+      "tacticalGestureDragging": false,
+      "tacticalGestureLongPress": false,
+      "tacticalGestureStartedOverUi": false,
+      "lastSignal": "PG:INPUT:GESTURE_UP",
+      "lastIntent": "HELM_TAP",
+      "overUi": false,
+      "wasDragging": false,
+      "dragDistance": 0,
+      "taps": 3,
+      "doubleTaps": 0,
+      "longPresses": 2,
+      "dragStarts": 0,
+      "dragEnds": 0,
+      "scalarAdjusts": 0
+    },
+    "persistence": {
+      "scarCount": 0,
+      "scarKeys": [],
+      "latestScar": null
+    },
+    "render": {
+      "fpsTarget": null,
+      "drawCalls": 1
+    },
+    "galaxy": {
+      "mainStars": 120000,
+      "streamedSectors": 51,
+      "sceneOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  "probe": {
+    "counts": {
+      "PG:POINTER_PRESENTATION_STATE": 5,
+      "PG:NAV:ENGAGE_AUTO_BRAKE": 1,
+      "PG:INPUT:CONTEXT_CHANGED": 2,
+      "PG:HUD_MODE": 2,
+      "PG:UI:PRINT_LULU": 2,
+      "PG:INPUT:REQUEST_CONTEXT_TOGGLE": 2,
+      "PG:INPUT_COMMAND": 2,
+      "PG:HUD_TARGET_CONTEXT": 4,
+      "PG:INPUT:GESTURE_DOWN": 5,
+      "PG:INPUT:GESTURE_TAP": 3,
+      "PG:OS:TACTICAL_READOUT_REQUESTED": 1,
+      "PG:OS:CLOSE_CONTEXT_MENU": 1,
+      "PG:INPUT:GESTURE_UP": 5,
+      "PG:INPUT:GESTURE_LONG_PRESS": 2,
+      "PG:OS:OPEN_CONTEXT_MENU": 1,
+      "PG:NAV:DISENGAGE_AUTO_BRAKE": 1,
+      "PG:NAV:REQUEST_CLEAR_SELECTION": 2
+    },
+    "last": {
+      "eventName": "PG:INPUT:GESTURE_UP",
+      "payload": {
+        "source": "input-state",
+        "context": "HELM",
+        "x": 971.9238891601562,
+        "y": 164.918701171875,
+        "ndc": {
+          "x": 0,
+          "y": 0
+        },
+        "durationMs": 581.5449999980628,
+        "pointerType": "mouse",
+        "longPress": false,
+        "target": "ref: <Node>"
+      }
+    }
+  },
+  "consoleErrors": [],
+  "pageErrors": []
+}

@@ -1,0 +1,62 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e4]:
+      - generic:
+        - generic:
+          - generic: ESPACIO INFINITO
+          - generic: SECTOR OBSERVADO
+      - generic:
+        - generic: TRACE
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - generic: ⬡
+            - generic: LULU // ASTRO LOG
+          - generic:
+            - generic: ADAPTIVE MODE
+        - generic:
+          - generic:
+            - button "📍"
+            - button "🪐"
+            - button "🔍"
+            - button "📊"
+          - generic:
+            - generic: ›
+            - textbox "Escribe un comando..."
+            - button "Comando de voz":
+              - img
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - heading "Seleccionar Perfil" [level=1] [ref=e9]
+        - generic [ref=e10]: Entrar al universo
+      - generic [ref=e11]:
+        - button "Entrada como Dios POWDERTRUE Entrada como Dios 🔐" [ref=e12] [cursor=pointer]:
+          - generic [ref=e13]:
+            - generic [ref=e14]: Entrada como Dios
+            - generic [ref=e15]: POWDERTRUE
+            - generic [ref=e16]: Entrada como Dios 🔐
+        - button "ARTISTAS Sesion creativa" [ref=e17] [cursor=pointer]:
+          - generic [ref=e18]:
+            - generic [ref=e19]: ARTISTAS
+            - generic [ref=e20]: Sesion creativa
+        - button "CLIENTES Acceso guiado" [ref=e21] [cursor=pointer]:
+          - generic [ref=e22]:
+            - generic [ref=e23]: CLIENTES
+            - generic [ref=e24]: Acceso guiado
+        - button "PUBLICO Modo exploracion" [ref=e25] [cursor=pointer]:
+          - generic [ref=e26]:
+            - generic [ref=e27]: PUBLICO
+            - generic [ref=e28]: Modo exploracion
+        - button "FONDO VIVO Visual inmersivo" [ref=e29] [cursor=pointer]:
+          - generic [ref=e30]:
+            - generic [ref=e31]: FONDO VIVO
+            - generic [ref=e32]: Visual inmersivo
+        - button "SALIR Cerrar portal" [ref=e33] [cursor=pointer]:
+          - generic [ref=e34]:
+            - generic [ref=e35]: SALIR
+            - generic [ref=e36]: Cerrar portal
+  - generic: MODO HUD · TAB
+  - img
+  - generic:
+    - generic: PowderGalaxy

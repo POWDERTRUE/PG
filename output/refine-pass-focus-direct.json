@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "selected": "MetamorphSatellite_Sol",
+  "focusTarget": "MetamorphSatellite_Sol",
+  "navState": "FOCUS",
+  "pawnMode": "focus-lock",
+  "pawnMatchesFocus": true,
+  "contract": "LULU_FOCUS",
+  "manipulable": true,
+  "sandboxReady": true,
+  "driveCamera": false
+}

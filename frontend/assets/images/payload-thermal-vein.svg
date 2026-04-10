@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#13070b"/>
+      <stop offset="50%" stop-color="#3f1124"/>
+      <stop offset="100%" stop-color="#ff8155"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="640" fill="url(#bg)"/>
+  <g fill="none" stroke-linecap="round">
+    <path d="M128 76C202 154 198 246 258 312C308 367 352 381 372 430C394 485 388 536 456 586" stroke="#ffd6b2" stroke-width="20" opacity=".9"/>
+    <path d="M244 34C276 130 340 169 376 228C418 297 410 354 470 410C518 455 548 476 596 566" stroke="#ffbf5f" stroke-width="14" opacity=".86"/>
+    <path d="M48 224C122 244 155 271 198 325C248 386 309 430 344 476C382 526 422 553 520 600" stroke="#ff5d4b" stroke-width="26" opacity=".75"/>
+  </g>
+  <circle cx="450" cy="136" r="90" fill="#ffebcf" opacity=".14"/>
+  <circle cx="450" cy="136" r="34" fill="#fff1dc" opacity=".68"/>
+  <text x="56" y="560" fill="#fff0e4" font-size="38" font-family="Arial, sans-serif" letter-spacing="6">THERMAL VEIN</text>
+  <text x="58" y="598" fill="#ffd0b6" font-size="16" font-family="Arial, sans-serif" letter-spacing="5">PAYLOAD / IMAGE / LAVA</text>
+</svg>

@@ -1,0 +1,41 @@
+{
+  "name": "powder-galaxy",
+  "version": "31.0.0",
+  "description": "Powder Galaxy OMEGA V31 — Universe OS Engine | Zero-GC Physics",
+  "type": "module",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js",
+    "test": "echo \"No tests specified\" && exit 0",
+    "test:gesture": "node tools/test-gesture-headless.js",
+    "lint:gc": "node tools/zero-gc-lint.js",
+    "lint:gc:strict": "node tools/zero-gc-lint.js --strict",
+    "lint:gc:report": "node tools/zero-gc-lint.js --fix-report"
+  },
+  "keywords": [
+    "universe-os",
+    "powder-galaxy",
+    "threejs",
+    "glass-silicon",
+    "astronomy-engine"
+  ],
+  "author": "Antigravity Engineering",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^4.22.1",
+    "gsap": "^3.14.2",
+    "helmet": "^8.1.0",
+    "lil-gui": "^0.21.0",
+    "postprocessing": "^6.39.0",
+    "socket.io": "^4.8.3",
+    "stats.js": "^0.17.0",
+    "three": "^0.183.2",
+    "ws": "^8.20.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4",
+    "playwright": "^1.58.2"
+  }
+}

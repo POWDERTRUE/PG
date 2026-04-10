@@ -1,0 +1,72 @@
+{
+  "baseline": {
+    "hudMode": true,
+    "bodyClasses": [
+      "pg-hud-mode",
+      "pg-tab-layout",
+      "pg-tab-has-windows"
+    ],
+    "visibleButtons": [
+      "terminal",
+      "gallery",
+      "settings"
+    ],
+    "hiddenButtons": [
+      "explorer",
+      "database",
+      "hologram"
+    ],
+    "dockStatus": "TAB activo: selecciona una masa con modulo para desplegarla rapido",
+    "windows": [
+      {
+        "appId": "terminal",
+        "left": 416,
+        "top": 202,
+        "width": 610,
+        "height": 495,
+        "docked": false,
+        "primary": false
+      },
+      {
+        "appId": "gallery",
+        "left": 416,
+        "top": 208,
+        "width": 610,
+        "height": 483,
+        "docked": false,
+        "primary": false
+      },
+      {
+        "appId": "settings",
+        "left": 416,
+        "top": 203,
+        "width": 610,
+        "height": 494,
+        "docked": false,
+        "primary": false
+      }
+    ]
+  },
+  "contextual": {
+    "visibleButtons": [
+      {
+        "appId": "terminal",
+        "contextual": false
+      },
+      {
+        "appId": "gallery",
+        "contextual": true
+      },
+      {
+        "appId": "settings",
+        "contextual": false
+      }
+    ],
+    "dockStatus": "PLANETARY NEBULA 02 · lock activo · click en la masa o en el dock para traer al frente",
+    "bodyClasses": [
+      "pg-hud-mode",
+      "pg-tab-layout",
+      "pg-tab-has-windows"
+    ]
+  }
+}

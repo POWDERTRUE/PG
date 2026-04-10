@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#031626"/>
+      <stop offset="55%" stop-color="#0b4262"/>
+      <stop offset="100%" stop-color="#8fe6ff"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="36%" r="50%">
+      <stop offset="0%" stop-color="#d8fbff" stop-opacity="0.92"/>
+      <stop offset="100%" stop-color="#d8fbff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="640" height="640" fill="url(#bg)"/>
+  <circle cx="334" cy="180" r="132" fill="url(#glow)"/>
+  <path d="M0 380C88 336 146 340 210 382C286 431 351 453 432 421C506 393 556 394 640 438V640H0Z" fill="#081a2e"/>
+  <path d="M0 340C73 286 152 288 226 337C304 388 373 408 448 381C523 355 579 360 640 394V640H0Z" fill="#0b2440" opacity=".88"/>
+  <path d="M0 282C91 228 156 238 232 292C304 343 372 359 454 333C524 310 579 316 640 352V640H0Z" fill="#48dfff" opacity=".28"/>
+  <circle cx="170" cy="132" r="12" fill="#e9f8ff"/>
+  <circle cx="212" cy="102" r="5" fill="#c4efff"/>
+  <circle cx="470" cy="138" r="8" fill="#e9f8ff"/>
+  <text x="56" y="560" fill="#effcff" font-size="38" font-family="Arial, sans-serif" letter-spacing="6">OCEAN MEMORY</text>
+  <text x="58" y="598" fill="#9dd7e8" font-size="16" font-family="Arial, sans-serif" letter-spacing="5">PAYLOAD / IMAGE / OCEAN</text>
+</svg>

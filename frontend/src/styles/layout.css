@@ -1,0 +1,227 @@
+#universe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: auto; /* Restored for selection raycasting */
+}
+
+/* Layer 1: GLASS WINDOWS */
+/* El contenedor principal de ventanas */
+#window-layer {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none; /* Deja pasar clics al 3D, las ventanas lo bloquean individualmente */
+    overflow: hidden;
+    z-index: 10;
+}
+
+/* Modo Modular: Pilas Laterales (Docks) */
+#window-layer.modular-mode {
+    display: grid;
+    grid-template-columns: 350px 1fr 350px; /* Dock Izquierdo, Espacio 3D, Dock Derecho */
+    grid-template-areas: "left-dock center-view right-dock";
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Windows themselves block clicks */
+.os-window,
+.glass-window {
+    pointer-events: auto !important; /* Ensure windows capture input */
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
+
+.os-window.modular-slot,
+.glass-window.modular-slot,
+#lulu-panel.modular-slot,
+#lulu-response-panel.modular-slot {
+    position: relative !important; /* Anulamos el Absolute */
+    width: 100% !important;
+    height: max-content !important;
+    max-height: 40vh; /* Para que quepan varias apiladas */
+    transform: none !important; /* GSAP limpiará esto */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Sombra más controlada */
+    pointer-events: auto !important;
+}
+
+/* La columna la decide JS de forma explicita, no el orden accidental del DOM */
+.modular-slot[data-modular-column="left"] {
+    grid-area: left-dock;
+}
+
+.modular-slot[data-modular-column="right"] {
+    grid-area: right-dock;
+}
+
+/* LULU Prioritario: Arriba a la derecha siempre */
+.lulu-priority {
+    grid-area: right-dock !important;
+    order: -1 !important; /* Lo fuerza a colocarse en la parte más alta del dock derecho */
+    align-self: start;
+}
+
+/* Layer 2: HUD */
+#hud-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 20;
+    pointer-events: none;
+}
+
+#notifications {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 320px;
+}
+
+/* Layer 3: SYSTEM BAR */
+#system-bar {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px); /* Initially hidden for login */
+    height: 72px;
+    padding: 0 32px;
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.system-bar-active {
+    transform: translateX(-50%) translateY(0) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+/* V36 GLASS SILICON PREMIUM DESIGN SYSTEM */
+.glass-capsule-premium {
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(40px) saturate(200%) brightness(1.1);
+    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.1);
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.5),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-capsule-premium::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.02) 40%,
+        transparent 60%,
+        rgba(255, 255, 255, 0.02) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.glass-refraction-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 80%);
+    pointer-events: none;
+    z-index: 0;
+    mix-blend-mode: overlay;
+}
+
+/* UI ELEMENTS */
+.glass-input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    padding: 12px 20px;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.glass-input:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(0, 240, 255, 0.5);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+}
+
+.glass-btn-premium {
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(0, 136, 255, 0.2));
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    border-radius: 14px;
+    padding: 14px 32px;
+    color: #00f0ff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.4s;
+}
+
+.glass-btn-premium:hover {
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.4), rgba(0, 136, 255, 0.4));
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+}
+
+.os-window-header {
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.os-window-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.5px;
+    flex-grow: 1;
+}
+
+.window-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.window-btn.close { background: #ff5f56; }
+.window-btn.min { background: #ffbd2e; }
+.window-btn.max { background: #27c93f; }
+
+.window-btn:hover {
+    filter: brightness(1.2);
+    transform: scale(1.1);
+}
+
+.os-window-content {
+    background: radial-gradient(circle at top left, rgba(255,255,255,0.05), transparent);
+}

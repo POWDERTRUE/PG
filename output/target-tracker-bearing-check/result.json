@@ -1,0 +1,215 @@
+{
+  "targetInfo": {
+    "target": {
+      "name": "Planet_Hologram",
+      "uuid": "161239bc-26ef-4628-a5d1-a21f6812cf3e",
+      "deterministicKey": "observer-system/planet/hologram",
+      "screenX": 896,
+      "screenY": 216,
+      "ndcX": 0.4000000000000002,
+      "ndcY": 0.4000000000000002
+    },
+    "candidates": [
+      {
+        "name": "Planet_Hologram",
+        "uuid": "161239bc-26ef-4628-a5d1-a21f6812cf3e",
+        "deterministicKey": "observer-system/planet/hologram",
+        "screenX": 896,
+        "screenY": 216,
+        "ndcX": 0.4000000000000002,
+        "ndcY": 0.4000000000000002
+      },
+      {
+        "name": "Planet_Hologram",
+        "uuid": "161239bc-26ef-4628-a5d1-a21f6812cf3e",
+        "deterministicKey": "observer-system/planet/hologram",
+        "screenX": 928,
+        "screenY": 234,
+        "ndcX": 0.4500000000000002,
+        "ndcY": 0.3500000000000002
+      },
+      {
+        "name": "Planet_Hologram",
+        "uuid": "161239bc-26ef-4628-a5d1-a21f6812cf3e",
+        "deterministicKey": "observer-system/planet/hologram",
+        "screenX": 928,
+        "screenY": 216,
+        "ndcX": 0.4500000000000002,
+        "ndcY": 0.4000000000000002
+      },
+      {
+        "name": "Planet_Hologram",
+        "uuid": "161239bc-26ef-4628-a5d1-a21f6812cf3e",
+        "deterministicKey": "observer-system/planet/hologram",
+        "screenX": 896,
+        "screenY": 198,
+        "ndcX": 0.4000000000000002,
+        "ndcY": 0.4500000000000002
+      },
+      {
+        "name": "Planet_Hologram",
+        "uuid": "161239bc-26ef-4628-a5d1-a21f6812cf3e",
+        "deterministicKey": "observer-system/planet/hologram",
+        "screenX": 960,
+        "screenY": 234,
+        "ndcX": 0.5000000000000002,
+        "ndcY": 0.3500000000000002
+      },
+      {
+        "name": "Planet_Hologram",
+        "uuid": "161239bc-26ef-4628-a5d1-a21f6812cf3e",
+        "deterministicKey": "observer-system/planet/hologram",
+        "screenX": 960,
+        "screenY": 216,
+        "ndcX": 0.5000000000000002,
+        "ndcY": 0.4000000000000002
+      },
+      {
+        "name": "Planet_Hologram",
+        "uuid": "161239bc-26ef-4628-a5d1-a21f6812cf3e",
+        "deterministicKey": "observer-system/planet/hologram",
+        "screenX": 896,
+        "screenY": 180,
+        "ndcX": 0.4000000000000002,
+        "ndcY": 0.5000000000000002
+      },
+      {
+        "name": "Planet_Hologram",
+        "uuid": "161239bc-26ef-4628-a5d1-a21f6812cf3e",
+        "deterministicKey": "observer-system/planet/hologram",
+        "screenX": 992,
+        "screenY": 234,
+        "ndcX": 0.5500000000000003,
+        "ndcY": 0.3500000000000002
+      },
+      {
+        "name": "Planet_Settings",
+        "uuid": "c34ecd3b-eac7-4948-9562-bc9f9b2631c8",
+        "deterministicKey": "observer-system/planet/settings",
+        "screenX": 960,
+        "screenY": 198,
+        "ndcX": 0.5000000000000002,
+        "ndcY": 0.4500000000000002
+      },
+      {
+        "name": "Planet_Hologram",
+        "uuid": "161239bc-26ef-4628-a5d1-a21f6812cf3e",
+        "deterministicKey": "observer-system/planet/hologram",
+        "screenX": 992,
+        "screenY": 216,
+        "ndcX": 0.5500000000000003,
+        "ndcY": 0.4000000000000002
+      },
+      {
+        "name": "Planet_Hologram",
+        "uuid": "161239bc-26ef-4628-a5d1-a21f6812cf3e",
+        "deterministicKey": "observer-system/planet/hologram",
+        "screenX": 896,
+        "screenY": 162,
+        "ndcX": 0.4000000000000002,
+        "ndcY": 0.5500000000000003
+      },
+      {
+        "name": "Planet_Hologram",
+        "uuid": "161239bc-26ef-4628-a5d1-a21f6812cf3e",
+        "deterministicKey": "observer-system/planet/hologram",
+        "screenX": 960,
+        "screenY": 180,
+        "ndcX": 0.5000000000000002,
+        "ndcY": 0.5000000000000002
+      }
+    ]
+  },
+  "trackerLocked": {
+    "active": true,
+    "visible": true,
+    "targetId": "161239bc-26ef-4628-a5d1-a21f6812cf3e",
+    "deterministicKey": "observer-system/planet/hologram",
+    "label": "Hologram",
+    "offscreen": false,
+    "behindCamera": false,
+    "screenX": 964,
+    "screenY": 168,
+    "bearingAngleDeg": 0
+  },
+  "trackerDomLocked": {
+    "className": "omega-target-tracker active",
+    "opacity": "0",
+    "transform": "translate3d(920px, 124px, 0px)",
+    "bearingAngle": "0rad",
+    "label": "HOLOGRAM",
+    "status": "LOCK ON"
+  },
+  "offscreenRotation": {
+    "steps": 3,
+    "state": {
+      "active": true,
+      "visible": true,
+      "targetId": "161239bc-26ef-4628-a5d1-a21f6812cf3e",
+      "deterministicKey": "observer-system/planet/hologram",
+      "label": "Hologram",
+      "offscreen": true,
+      "behindCamera": false,
+      "screenX": 1216,
+      "screenY": 139,
+      "bearingAngleDeg": 0
+    }
+  },
+  "offscreenTracker": {
+    "active": true,
+    "visible": true,
+    "targetId": "161239bc-26ef-4628-a5d1-a21f6812cf3e",
+    "deterministicKey": "observer-system/planet/hologram",
+    "label": "Hologram",
+    "offscreen": true,
+    "behindCamera": false,
+    "screenX": 1216,
+    "screenY": 139,
+    "bearingAngleDeg": 0
+  },
+  "trackerDomOffscreen": {
+    "className": "omega-target-tracker active is-offscreen",
+    "opacity": "1",
+    "transform": "translate3d(1172px, 95px, 0px)",
+    "bearingAngle": "0rad",
+    "label": "HOLOGRAM",
+    "status": "BEARING"
+  },
+  "rearRotation": {
+    "steps": 7,
+    "state": {
+      "active": true,
+      "visible": true,
+      "targetId": "161239bc-26ef-4628-a5d1-a21f6812cf3e",
+      "deterministicKey": "observer-system/planet/hologram",
+      "label": "Hologram",
+      "offscreen": true,
+      "behindCamera": true,
+      "screenX": 64,
+      "screenY": 476,
+      "bearingAngleDeg": 169
+    }
+  },
+  "rearTracker": {
+    "active": true,
+    "visible": true,
+    "targetId": "161239bc-26ef-4628-a5d1-a21f6812cf3e",
+    "deterministicKey": "observer-system/planet/hologram",
+    "label": "Hologram",
+    "offscreen": true,
+    "behindCamera": true,
+    "screenX": 64,
+    "screenY": 476,
+    "bearingAngleDeg": 169
+  },
+  "trackerDomRear": {
+    "className": "omega-target-tracker active is-offscreen is-behind",
+    "opacity": "1",
+    "transform": "translate3d(20px, 432px, 0px)",
+    "bearingAngle": "2.9433433118695316rad",
+    "label": "HOLOGRAM",
+    "status": "REAR ARC"
+  },
+  "consoleErrors": [],
+  "pageErrors": []
+}

@@ -1,0 +1,114 @@
+[
+  {
+    "name": "pointer-initial",
+    "state": "ui-visible",
+    "winner": "initial-menu",
+    "bodyClasses": [
+      "init-mode-active",
+      "pg-pointer-ui-visible",
+      "pg-reticle-primary-hidden"
+    ],
+    "bodyCursor": "default",
+    "pointerLocked": false,
+    "helperVisible": false,
+    "helperText": null,
+    "helperHidden": true,
+    "passwordVisible": false,
+    "passwordCursor": "text",
+    "reticleOpacity": "0"
+  },
+  {
+    "name": "pointer-password-open",
+    "state": "text-visible",
+    "winner": "initial-menu-password",
+    "bodyClasses": [
+      "init-mode-active",
+      "pg-pointer-text-visible",
+      "pg-reticle-primary-hidden"
+    ],
+    "bodyCursor": "text",
+    "pointerLocked": false,
+    "helperVisible": false,
+    "helperText": null,
+    "helperHidden": true,
+    "passwordVisible": true,
+    "passwordCursor": "text",
+    "reticleOpacity": "0"
+  },
+  {
+    "name": "pointer-password-closed",
+    "state": "ui-visible",
+    "winner": "initial-menu",
+    "bodyClasses": [
+      "init-mode-active",
+      "pg-pointer-ui-visible",
+      "pg-reticle-primary-hidden"
+    ],
+    "bodyCursor": "default",
+    "pointerLocked": false,
+    "helperVisible": false,
+    "helperText": null,
+    "helperHidden": true,
+    "passwordVisible": false,
+    "passwordCursor": "text",
+    "reticleOpacity": "0"
+  },
+  {
+    "name": "pointer-flight-entry",
+    "state": "flight-locked",
+    "winner": "nav-free-flight",
+    "bodyClasses": [
+      "pg-pointer-flight-locked",
+      "pg-reticle-primary-active"
+    ],
+    "bodyCursor": "none",
+    "pointerLocked": true,
+    "helperVisible": false,
+    "helperText": null,
+    "helperHidden": true,
+    "passwordVisible": false,
+    "passwordCursor": null,
+    "reticleOpacity": "0.92"
+  },
+  {
+    "name": "pointer-hud-mode",
+    "state": "ui-visible",
+    "winner": "hud-mode",
+    "bodyClasses": [
+      "pg-hud-mode",
+      "pg-tab-layout",
+      "pg-tab-has-target",
+      "pg-pointer-ui-visible",
+      "pg-reticle-primary-hidden"
+    ],
+    "bodyCursor": "default",
+    "pointerLocked": false,
+    "helperVisible": false,
+    "helperText": null,
+    "helperHidden": true,
+    "passwordVisible": false,
+    "passwordCursor": null,
+    "reticleOpacity": "0.92"
+  },
+  {
+    "name": "pointer-pause-menu",
+    "state": "ui-visible",
+    "winner": "game-menu",
+    "bodyClasses": [
+      "pg-hud-mode",
+      "pg-tab-layout",
+      "pg-tab-has-target",
+      "pg-game-paused",
+      "pg-pointer-ui-visible",
+      "pg-reticle-primary-hidden"
+    ],
+    "bodyCursor": "default",
+    "pointerLocked": false,
+    "helperVisible": false,
+    "helperText": null,
+    "helperHidden": true,
+    "passwordVisible": false,
+    "passwordCursor": null,
+    "reticleOpacity": "0"
+  }
+]

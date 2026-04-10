@@ -1,0 +1,8 @@
+[    1003ms] [ERROR] [FATAL ERROR] Uncaught ReferenceError: SharedArrayBuffer is not defined at http://127.0.0.1:4173/src/engine/core/EntityManager.js:96:51 ReferenceError: SharedArrayBuffer is not defined
+    at TypedArrayComponentPool.getStats (http://127.0.0.1:4173/src/engine/core/EntityManager.js:96:51)
+    at http://127.0.0.1:4173/src/engine/core/EntityManager.js:114:30
+    at http://127.0.0.1:4173/src/engine/core/EntityManager.js:119:3 @ http://127.0.0.1:4173/index.html:155
+[    1009ms] ReferenceError: SharedArrayBuffer is not defined
+    at TypedArrayComponentPool.getStats (http://127.0.0.1:4173/src/engine/core/EntityManager.js:96:51)
+    at http://127.0.0.1:4173/src/engine/core/EntityManager.js:114:30
+    at http://127.0.0.1:4173/src/engine/core/EntityManager.js:119:3

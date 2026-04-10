@@ -1,0 +1,15 @@
+# ======================================================
+# ROBOTS.TXT - Powder Galaxy V15
+# ======================================================
+
+User-agent: *
+Allow: /
+
+# Block system files
+Disallow: /backend/
+Disallow: /node_modules/
+Disallow: /database/
+
+Disallow: *.log
+Disallow: *.sql
+Disallow: *.env

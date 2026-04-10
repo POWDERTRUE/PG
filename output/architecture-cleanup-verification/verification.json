@@ -1,0 +1,46 @@
+{
+  "singletonState": {
+    "hasEngine": true,
+    "sameWindowDomInstance": true,
+    "sameRegistryWindowDom": true,
+    "sameRegistryWindowManager": true,
+    "workspaceManagerRegistered": true
+  },
+  "beforeMission": {
+    "tabLayout": true,
+    "windowIds": [
+      "os-window-terminal",
+      "os-window-gallery"
+    ],
+    "visibleWindows": [
+      "os-window-terminal",
+      "os-window-gallery"
+    ]
+  },
+  "missionOpen": {
+    "modularMode": true,
+    "modularSlots": [
+      {
+        "id": "os-window-terminal",
+        "column": "left"
+      },
+      {
+        "id": "os-window-gallery",
+        "column": "right"
+      }
+    ],
+    "layerChildren": [
+      "os-window-terminal",
+      "os-window-gallery"
+    ],
+    "statsVisible": true
+  },
+  "missionClosed": {
+    "modularMode": false,
+    "remainingSlots": 0
+  },
+  "consoleErrorCount": 0,
+  "pageErrorCount": 0,
+  "consoleErrors": [],
+  "pageErrors": []
+}

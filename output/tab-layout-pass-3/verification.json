@@ -1,0 +1,19 @@
+{
+  "hudMode": true,
+  "hiddenButtons": [
+    "explorer",
+    "database",
+    "hologram"
+  ],
+  "visibleButtons": [
+    "terminal",
+    "gallery",
+    "settings"
+  ],
+  "visibleLaunchers": [],
+  "bodyClasses": [
+    "pg-hud-mode",
+    "pg-tab-layout",
+    "pg-tab-has-windows"
+  ]
+}

@@ -1,0 +1,31 @@
+# ======================================================================
+# POWDER GALAXY - KERNEL TELEMETRY LOG 
+# SESSION: OMEGA V30 BOOT SEQUENCE
+# STATUS: PARTIAL BOOT (FALLBACK MODE ACTIVE)
+# ======================================================================
+
+[INFO]  [PowderGalaxy] Starting OMEGA V30 Bootstrap...
+[INFO]  [Kernel] Executing Boot Sequence OMEGA V30
+[INFO]  [CameraRig] Authoritative rig online.
+
+# --- BOOTGRAPH MOUNTING PHASE ---
+[INFO]  [BootGraph] 7 systems online.
+[INFO]  [BootGraph] 31 systems online.
+[INFO]  [Kernel] Boot Complete. Physics and UI online.
+[DEBUG] [Registry] Dump: [object BootGraphDebugger]
+[DEBUG] [BootGraph] Dump: [object BootGraphVisualizer]
+
+# --- SUBSYSTEM INITIALIZATION FAILURES ---
+[CRIT]  [Kernel] GalaxyGenerator FAILED — Engine in fallback mode.
+        -> Reason: ReferenceError: THREE is not defined
+
+# --- ASSET PIPELINE FAILURES (FILE SYSTEM) ---
+[NET]   [404_NOT_FOUND] Failed to load resource: (ProgressEvent)
+[NET]   [404_NOT_FOUND] Failed to load resource: (ProgressEvent)
+[NET]   [404_NOT_FOUND] Failed to load resource: (ProgressEvent)
+[NET]   [404_NOT_FOUND] Failed to load resource: (ProgressEvent)
+[NET]   [404_NOT_FOUND] Failed to load resource: (ProgressEvent)
+
+# ======================================================================
+# END OF LOG
+# ======================================================================

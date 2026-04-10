@@ -1,0 +1,136 @@
+{
+  "bridgeState": {
+    "stateBefore": {
+      "status": "READY",
+      "navigationState": "FREE_FLIGHT",
+      "paused": false,
+      "hudMode": true,
+      "pointerLocked": false,
+      "camera": {
+        "x": 520,
+        "y": 10800,
+        "z": 4600
+      },
+      "focusTarget": null,
+      "activeTarget": null,
+      "particleProjector": {
+        "active": true,
+        "phase": "SEEK_POINTER",
+        "host": null,
+        "particleCount": 4096,
+        "dockedCount": 0,
+        "dockedRatio": 0,
+        "transmutationTriggered": false,
+        "payloadLabel": "Thermal Vein",
+        "payloadUrl": "/assets/images/payload-thermal-vein.svg"
+      },
+      "stellarLod": {
+        "registeredSystems": 120,
+        "detailedCount": 0,
+        "proxyVisibleCount": 120
+      },
+      "ontologyMap": {
+        "isOpen": false,
+        "rootCount": 0,
+        "wisdomDisciplines": 0,
+        "services": 0,
+        "spatialNodeCount": 0,
+        "focusedNode": null
+      },
+      "activePayload": {
+        "activeTypes": [
+          "IMAGE"
+        ],
+        "image": {
+          "url": "/assets/images/payload-thermal-vein.svg",
+          "label": "Thermal Vein",
+          "source": "gallery-app-window",
+          "galleryId": "thermal-vein"
+        }
+      },
+      "render": {
+        "fpsTarget": null,
+        "drawCalls": 1
+      },
+      "galaxy": {
+        "mainStars": 120000,
+        "streamedSectors": 0,
+        "sceneOffset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    },
+    "stateAfter": {
+      "status": "READY",
+      "navigationState": "FREE_FLIGHT",
+      "paused": false,
+      "hudMode": true,
+      "pointerLocked": false,
+      "camera": {
+        "x": 520,
+        "y": 10800,
+        "z": 4600
+      },
+      "focusTarget": null,
+      "activeTarget": null,
+      "particleProjector": {
+        "active": false,
+        "phase": "DOCKED",
+        "host": "MegaSun",
+        "particleCount": 4096,
+        "dockedCount": 3891,
+        "dockedRatio": 0.95,
+        "transmutationTriggered": false,
+        "payloadLabel": "Thermal Vein",
+        "payloadUrl": "/assets/images/payload-thermal-vein.svg"
+      },
+      "stellarLod": {
+        "registeredSystems": 120,
+        "detailedCount": 0,
+        "proxyVisibleCount": 120
+      },
+      "ontologyMap": {
+        "isOpen": false,
+        "rootCount": 0,
+        "wisdomDisciplines": 0,
+        "services": 0,
+        "spatialNodeCount": 0,
+        "focusedNode": null
+      },
+      "activePayload": {
+        "activeTypes": [
+          "IMAGE"
+        ],
+        "image": {
+          "url": "/assets/images/payload-thermal-vein.svg",
+          "label": "Thermal Vein",
+          "source": "gallery-app-window",
+          "galleryId": "thermal-vein"
+        }
+      },
+      "render": {
+        "fpsTarget": null,
+        "drawCalls": 1
+      },
+      "galaxy": {
+        "mainStars": 120000,
+        "streamedSectors": 0,
+        "sceneOffset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    },
+    "hostName": "MegaSun",
+    "shellName": "MegaSun_particle_projection",
+    "shellVisible": true,
+    "payloadLabel": "Thermal Vein",
+    "payloadKey": "/assets/images/payload-thermal-vein.svg",
+    "injectedUrl": "http://127.0.0.1:5555/assets/images/payload-thermal-vein.svg"
+  },
+  "consoleErrors": [],
+  "pageErrors": []
+}

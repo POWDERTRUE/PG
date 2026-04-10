@@ -1,0 +1,262 @@
+{
+  "activation": {
+    "state": {
+      "status": "READY",
+      "navigationState": "FREE_FLIGHT",
+      "paused": false,
+      "hudMode": false,
+      "pointerLocked": true,
+      "camera": {
+        "x": 485.31,
+        "y": 10820.53,
+        "z": 4123.66
+      },
+      "focusTarget": null,
+      "activeTarget": "Hitbox_NamedStar_58",
+      "particleProjector": {
+        "active": true,
+        "phase": "SEEK_POINTER",
+        "host": null,
+        "particleCount": 4096,
+        "dockedCount": 0,
+        "dockedRatio": 0,
+        "transmutationTriggered": false
+      },
+      "render": {
+        "fpsTarget": null,
+        "drawCalls": 1
+      },
+      "galaxy": {
+        "mainStars": 120000,
+        "streamedSectors": 0,
+        "sceneOffset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    },
+    "debug": {
+      "active": true,
+      "phase": "SEEK_POINTER",
+      "host": null,
+      "particleCount": 4096,
+      "dockedCount": 0,
+      "dockedRatio": 0,
+      "transmutationTriggered": false
+    },
+    "pointsVisible": true,
+    "uniforms": {
+      "uOpacity": 0.84,
+      "uPointSize": 15.5,
+      "uHotspotBoost": 0.58
+    },
+    "sample": [
+      20.14,
+      -9.088,
+      -1.872,
+      20.77,
+      -8.021,
+      -1.63,
+      21.396,
+      -6.955,
+      -1.368,
+      22.018,
+      -5.889,
+      -1.088
+    ]
+  },
+  "seekMotion": {
+    "debug": {
+      "active": true,
+      "phase": "SEEK_POINTER",
+      "host": null,
+      "particleCount": 4096,
+      "dockedCount": 0,
+      "dockedRatio": 0,
+      "transmutationTriggered": false
+    },
+    "sampleBefore": [
+      21.548,
+      -15.124,
+      7.857,
+      22.148,
+      -14.064,
+      8.108,
+      22.743,
+      -13.003,
+      8.378,
+      23.334,
+      -11.943,
+      8.667
+    ],
+    "sampleAfter": [
+      8.478,
+      -14.131,
+      -8.582,
+      9.108,
+      -13.029,
+      -8.324,
+      9.733,
+      -11.926,
+      -8.046,
+      10.353,
+      -10.824,
+      -7.749
+    ],
+    "movedSum": 122.0368
+  },
+  "dockingSetup": {
+    "host": "MegaSun",
+    "mesh": "MegaSun",
+    "radius": 40,
+    "threshold": 3891,
+    "phase": "DOCKING"
+  },
+  "dockingFrames": {
+    "finalDebug": {
+      "active": false,
+      "phase": "DOCKED",
+      "host": "MegaSun",
+      "particleCount": 4096,
+      "dockedCount": 4096,
+      "dockedRatio": 1,
+      "transmutationTriggered": true
+    },
+    "counters": {
+      "reveal": 1,
+      "docked": 1,
+      "revealPayloads": [
+        {
+          "targetId": "d1720694-0e05-4a7c-9bdf-fa3ac509c4c8",
+          "hostName": "MegaSun",
+          "particleCount": 4096,
+          "dockedCount": 4096,
+          "threshold": 3891,
+          "shellAttached": true,
+          "source": "project-particles-system"
+        }
+      ]
+    },
+    "shellAttached": true,
+    "shellVisible": true,
+    "shellName": "MegaSun_particle_projection",
+    "shellHostName": "MegaSun",
+    "snapshots": [
+      {
+        "step": 0,
+        "active": false,
+        "phase": "DOCKED",
+        "dockedCount": 4096,
+        "dockedRatio": 1,
+        "transmutationTriggered": true,
+        "shellVisible": true
+      },
+      {
+        "step": 1,
+        "active": false,
+        "phase": "DOCKED",
+        "dockedCount": 4096,
+        "dockedRatio": 1,
+        "transmutationTriggered": true,
+        "shellVisible": true
+      },
+      {
+        "step": 2,
+        "active": false,
+        "phase": "DOCKED",
+        "dockedCount": 4096,
+        "dockedRatio": 1,
+        "transmutationTriggered": true,
+        "shellVisible": true
+      },
+      {
+        "step": 3,
+        "active": false,
+        "phase": "DOCKED",
+        "dockedCount": 4096,
+        "dockedRatio": 1,
+        "transmutationTriggered": true,
+        "shellVisible": true
+      },
+      {
+        "step": 4,
+        "active": false,
+        "phase": "DOCKED",
+        "dockedCount": 4096,
+        "dockedRatio": 1,
+        "transmutationTriggered": true,
+        "shellVisible": true
+      },
+      {
+        "step": 5,
+        "active": false,
+        "phase": "DOCKED",
+        "dockedCount": 4096,
+        "dockedRatio": 1,
+        "transmutationTriggered": true,
+        "shellVisible": true
+      },
+      {
+        "step": 6,
+        "active": false,
+        "phase": "DOCKED",
+        "dockedCount": 4096,
+        "dockedRatio": 1,
+        "transmutationTriggered": true,
+        "shellVisible": true
+      },
+      {
+        "step": 7,
+        "active": false,
+        "phase": "DOCKED",
+        "dockedCount": 4096,
+        "dockedRatio": 1,
+        "transmutationTriggered": true,
+        "shellVisible": true
+      }
+    ]
+  },
+  "originShift": {
+    "pointPosition": {
+      "x": 500,
+      "y": 1400,
+      "z": 2300
+    },
+    "anchorTarget": {
+      "x": 800,
+      "y": 1700,
+      "z": 2600
+    },
+    "dockingPoint": {
+      "x": 850,
+      "y": 1750,
+      "z": 2650
+    },
+    "localStable": true,
+    "localBefore": [
+      16,
+      -11.88,
+      0,
+      16.618,
+      -10.8,
+      0.255,
+      17.232,
+      -9.72,
+      0.529
+    ],
+    "localAfter": [
+      16,
+      -11.88,
+      0,
+      16.618,
+      -10.8,
+      0.255,
+      17.232,
+      -9.72,
+      0.529
+    ]
+  },
+  "consoleErrors": [],
+  "pageErrors": []
+}
