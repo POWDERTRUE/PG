@@ -27,6 +27,8 @@ import { InputStateSystem }      from './input/InputStateSystem.js';
 import { PointerPresentationController } from './input/PointerPresentationController.js';
 import { RaycastSelectionSystem } from './interaction/RaycastSelectionSystem.js';
 import { InteractionEventSystem } from './interaction/InteractionEventSystem.js';
+import { InputPriorityStack }       from './input/InputPriorityStack.js';
+import { InteractionModeController} from './input/InteractionModeController.js';
 import { HUDInteractionSystem }   from './interaction/HUDInteractionSystem.js';
 import { UniverseSocketClient }   from '../network/UniverseSocketClient.js';
 import { WebsocketBridgeSystem }  from '../network/WebsocketBridgeSystem.js';
@@ -302,6 +304,9 @@ export class UniverseKernel {
         Registry.register('PointerPresentationController', this.pointerPresentationController);
         Registry.register('pointerPresentation', this.pointerPresentationController);
         this.bootGraph.register('PointerPresentationController', this.pointerPresentationController, [], 'INPUT');
+
+        this.inputPriorityStack = new InputPriorityStack();
+        Registry.register('InputPriorityStack', this.inputPriorityStack);
 
         // InputStateSystem must be alive BEFORE the loop starts so frame-1 has input
         this.inputStateSystem = new InputStateSystem();
@@ -781,6 +786,14 @@ export class UniverseKernel {
         this.luluMindMapWindow.init();
         Registry.register('LULUMindMapWindow', this.luluMindMapWindow);
         this.scheduler.register(this.luluMindMapWindow, 'ui');
+
+        this.interactionModeController = new InteractionModeController({
+            runtimeSignals: this.runtimeSignals,
+            targetTrackingSystem: this.targetTrackingSystem,
+            orbitalMechanics: Registry.tryGet('orbitalMechanics')
+        });
+        this.interactionModeController.init();
+        Registry.register('InteractionModeController', this.interactionModeController);
         
         this.luluPanel.setResponsePanel(this.luluResponse);
         
