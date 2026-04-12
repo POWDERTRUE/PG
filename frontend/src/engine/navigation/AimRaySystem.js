@@ -14,13 +14,18 @@ export class AimRaySystem {
         this.mouse = new THREE.Vector2(0, 0);
         this.reticle = null;
         this.isVisible = false;
+        this._raycaster = new THREE.Raycaster();
+        this._direction = new THREE.Vector3();
+        this._aimPoint = new THREE.Vector3();
+        this._reticlePoint = new THREE.Vector3();
+        this._onMouseMove = (e) => {
+            this.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+            this.mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+        };
 
         this.registryDeps();
 
-        window.addEventListener("mousemove", (e) => {
-            this.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-            this.mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
-        });
+        window.addEventListener("mousemove", this._onMouseMove);
 
         // Retrasamos la instanciación de gráficos en caso the SceneGraph no haya booteado
         setTimeout(() => this._initReticle(), 100);
@@ -80,18 +85,18 @@ export class AimRaySystem {
     }
 
     getAimPoint(distance = 15000) {
-        if (!this.camera) return new THREE.Vector3();
+        if (!this.camera) return this._aimPoint.set(0, 0, 0);
 
-        const raycaster = new THREE.Raycaster();
+        const raycaster = this._raycaster;
         raycaster.setFromCamera(this.mouse, this.camera);
-        const direction = raycaster.ray.direction.clone();
+        const direction = this._direction.copy(raycaster.ray.direction);
         
-        const aimPt = raycaster.ray.origin.clone().add(direction.clone().multiplyScalar(distance));
+        const aimPt = this._aimPoint.copy(raycaster.ray.origin).addScaledVector(direction, distance);
         
         if (this.reticle && this.isVisible) {
             // Posicionar reticle flotante visualmente más cerca (para perspectiva)
             const reticleDistance = Math.min(distance, 500); 
-            const reticlePt = raycaster.ray.origin.clone().add(direction.clone().multiplyScalar(reticleDistance));
+            const reticlePt = this._reticlePoint.copy(raycaster.ray.origin).addScaledVector(direction, reticleDistance);
             this.reticle.position.copy(reticlePt);
             this.reticle.lookAt(this.camera.position); // Sprite/Bilboard math
         }
@@ -107,5 +112,20 @@ export class AimRaySystem {
                 this.reticle.rotation.z -= (delta || 0.016) * 3.5;
             }
         }
+    }
+
+    dispose() {
+        window.removeEventListener("mousemove", this._onMouseMove);
+        gsap.killTweensOf(this.reticle?.scale);
+        this.reticle?.parent?.remove(this.reticle);
+        this.reticle?.traverse?.((child) => {
+            child.geometry?.dispose?.();
+            if (Array.isArray(child.material)) {
+                child.material.forEach((material) => material?.dispose?.());
+            } else {
+                child.material?.dispose?.();
+            }
+        });
+        this.reticle = null;
     }
 }

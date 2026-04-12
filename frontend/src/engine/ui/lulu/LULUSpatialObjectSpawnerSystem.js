@@ -27,6 +27,12 @@ export class LULUSpatialObjectSpawnerSystem {
         
         this.isDragging = false;
         this.previousMousePosition = { x: 0, y: 0 };
+        this.previousCameraPosition = new THREE.Vector3();
+        this._hasPreviousCameraPosition = false;
+        this._cameraDelta = new THREE.Vector3();
+        this._worldPos = new THREE.Vector3();
+        this._targetOffset = new THREE.Vector3();
+        this._fallbackCameraPos = new THREE.Vector3();
     }
 
     init() {
@@ -913,15 +919,16 @@ export class LULUSpatialObjectSpawnerSystem {
         
         const gravity = -18.0;
         let groundY = -20;
-        let cameraDelta = new THREE.Vector3(0, 0, 0);
+        const cameraDelta = this._cameraDelta.set(0, 0, 0);
 
         if (this.camera) {
              // Forzar la actualización matemática de la cámara para eliminar el input-lag
              this.camera.updateMatrixWorld(true);
              groundY = this.camera.position.y - 12;
              
-             if (!this.previousCameraPosition) {
-                 this.previousCameraPosition = this.camera.position.clone();
+             if (!this._hasPreviousCameraPosition) {
+                 this.previousCameraPosition.copy(this.camera.position);
+                 this._hasPreviousCameraPosition = true;
              }
              cameraDelta.subVectors(this.camera.position, this.previousCameraPosition);
              this.previousCameraPosition.copy(this.camera.position);
@@ -933,11 +940,11 @@ export class LULUSpatialObjectSpawnerSystem {
              
              if (body.isEditing) {
                  // Inercia Cero: Pegado hermético a cámara agregando el salto primero
-                 body.mesh.position.add(cameraDelta);
+                  body.mesh.position.add(cameraDelta);
 
-                 if (this.camera && body.targetLocalPos) {
-                     const worldPos = body.targetLocalPos.clone().applyMatrix4(this.camera.matrixWorld);
-                     body.mesh.position.lerp(worldPos, 0.85);
+                  if (this.camera && body.targetLocalPos) {
+                      this._worldPos.copy(body.targetLocalPos).applyMatrix4(this.camera.matrixWorld);
+                      body.mesh.position.lerp(this._worldPos, 0.85);
                      
                      this.selectionMarker.position.copy(body.mesh.position);
                      this.selectionMarker.rotation.copy(body.mesh.rotation);
@@ -951,17 +958,17 @@ export class LULUSpatialObjectSpawnerSystem {
                  body.mesh.position.add(cameraDelta);
 
                  if (this.camera && body.levitationOffset) {
-                     const smoothSpeed = 10.0;
-                     const levitationDistance = 2.5;
-                     
-                     const targetOffset = new THREE.Vector3(
-                         body.levitationOffset.x,
-                         body.levitationOffset.y,
-                         -levitationDistance + body.levitationOffset.z
-                     );
-                     
-                     const worldPos = targetOffset.applyMatrix4(this.camera.matrixWorld);
-                     body.mesh.position.lerp(worldPos, smoothSpeed * deltaTime);
+                      const smoothSpeed = 10.0;
+                      const levitationDistance = 2.5;
+                      
+                      this._targetOffset.set(
+                          body.levitationOffset.x,
+                          body.levitationOffset.y,
+                          -levitationDistance + body.levitationOffset.z
+                      );
+                      
+                      this._worldPos.copy(this._targetOffset).applyMatrix4(this.camera.matrixWorld);
+                      body.mesh.position.lerp(this._worldPos, smoothSpeed * deltaTime);
                      body.mesh.lookAt(this.camera.position);
                  }
                  continue; // Salta la física de gravedad porque está levitando
@@ -987,16 +994,42 @@ export class LULUSpatialObjectSpawnerSystem {
         // V31 — Zero-GC sphere collision resolution (pre-allocated buffers)
         this._resolveSphereCollisions();
 
-        const cameraPos = this.camera ? this.camera.position : new THREE.Vector3();
+        const cameraPos = this.camera ? this.camera.position : this._fallbackCameraPos;
         for (let i = this.bodies.length - 1; i >= 0; i--) {
             const body = this.bodies[i];
             if (body.mesh.position.distanceTo(cameraPos) > 200 || body.mesh.position.y < groundY - 50) {
-                if (body.mesh.geometry) body.mesh.geometry.dispose();
-                if (body.mesh.material) body.mesh.material.dispose();
-                this.scene.remove(body.mesh);
+                this._disposeMesh(body.mesh);
                 this.bodies.splice(i, 1);
             }
         }
+    }
+
+    dispose() {
+        if (this.selectionMarker) {
+            this.scene?.remove(this.selectionMarker);
+            this.selectionMarker.geometry?.dispose?.();
+            this.selectionMarker.material?.dispose?.();
+            this.selectionMarker = null;
+        }
+
+        for (const body of this.bodies) {
+            this._disposeMesh(body.mesh);
+        }
+        this.bodies = [];
+        this.editingBody = null;
+    }
+
+    _disposeMesh(mesh) {
+        if (!mesh) return;
+        mesh.traverse?.((child) => {
+            child.geometry?.dispose?.();
+            if (Array.isArray(child.material)) {
+                child.material.forEach((material) => material?.dispose?.());
+            } else {
+                child.material?.dispose?.();
+            }
+        });
+        mesh.parent?.remove(mesh);
     }
     // ═══════════════════════════════════════════════════════════════
     //  V31 — RIGID BODY PHYSICS  (Zero-GC buffers + BVH Spatial Hash)

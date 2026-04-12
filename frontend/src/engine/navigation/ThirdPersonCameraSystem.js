@@ -14,6 +14,8 @@ export class ThirdPersonCameraSystem {
 
         // Vector default solicitado: 0, 50, 150
         this.offset = new THREE.Vector3(0, 50, 150);
+        this._dynamicOffset = new THREE.Vector3();
+        this._desired = new THREE.Vector3();
 
         this.registryDeps();
     }
@@ -53,11 +55,9 @@ export class ThirdPersonCameraSystem {
             scaleBoost = Math.max(1.0, (rad * absoluteScale) / 30); // Ecuación elástica para retención de distancia visual
         }
 
-        const dynamicOffset = this.offset.clone().multiplyScalar(scaleBoost);
+        const dynamicOffset = this._dynamicOffset.copy(this.offset).multiplyScalar(scaleBoost);
 
-        const desired = pawn.position.clone().add(
-            dynamicOffset.applyQuaternion(pawn.quaternion)
-        );
+        const desired = this._desired.copy(pawn.position).add(dynamicOffset.applyQuaternion(pawn.quaternion));
 
         const lerpFactor = 1 - Math.exp(-9.0 * (delta || 0.016)); // Frame-Independent Lerp
         this.camera.position.lerp(desired, lerpFactor);

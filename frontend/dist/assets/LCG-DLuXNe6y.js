@@ -1,0 +1,1 @@
+var e=class{constructor(e){this.m=2147483648,this.a=1103515245,this.c=12345,this.state=e||Math.floor(Math.random()*(this.m-1))}nextInt(){return this.state=(this.a*this.state+this.c)%this.m,this.state}nextFloat(){return this.nextInt()/(this.m-1)}nextRange(e,t){return e+this.nextFloat()*(t-e)}};export{e as t};

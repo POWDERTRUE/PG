@@ -29,6 +29,10 @@ export class HandInteractionSystem {
         
         this.baseBoneRotation = new THREE.Quaternion();
         this.targetBoneRotation = new THREE.Quaternion();
+        this._targetScaleLeft = new THREE.Vector3();
+        this._targetScaleRight = new THREE.Vector3();
+        this._localTarget = new THREE.Vector3();
+        this._currentQuat = new THREE.Quaternion();
 
         // --- Hologram Cybernetics ---
         this.indexFingerBone = null;
@@ -208,8 +212,10 @@ export class HandInteractionSystem {
         const targetScaleLeft = isVisible ? 1.0 : 0.0;
         const targetScaleRight = isVisible ? 1.0 : 0.0;
         
-        this.leftHand.scale.lerp(new THREE.Vector3(targetScaleLeft, targetScaleLeft, targetScaleLeft), deltaTime * 8);
-        this.rightHand.scale.lerp(new THREE.Vector3(targetScaleRight, targetScaleRight, targetScaleRight), deltaTime * 8);
+        this._targetScaleLeft.set(targetScaleLeft, targetScaleLeft, targetScaleLeft);
+        this._targetScaleRight.set(targetScaleRight, targetScaleRight, targetScaleRight);
+        this.leftHand.scale.lerp(this._targetScaleLeft, deltaTime * 8);
+        this.rightHand.scale.lerp(this._targetScaleRight, deltaTime * 8);
 
 
         // 1. Actualizar animaciones de huesos (Mixers)
@@ -234,10 +240,11 @@ export class HandInteractionSystem {
         if (this.pointingBone) {
             if (this.ikActive && this.ikTargetWorld) {
                 // Traducción de la cordenada Mundial del Sistema Solar al Espacio Local de la muñeca (pegada a la cámara)
-                const localTarget = this.pointingBone.parent.worldToLocal(this.ikTargetWorld.clone());
+                this._localTarget.copy(this.ikTargetWorld);
+                const localTarget = this.pointingBone.parent.worldToLocal(this._localTarget);
                 
                 // Backup orgánico
-                const currentQuat = this.pointingBone.quaternion.clone();
+                this._currentQuat.copy(this.pointingBone.quaternion);
 
                 // Fake LookAt 
                 this.pointingBone.lookAt(localTarget);
@@ -247,7 +254,7 @@ export class HandInteractionSystem {
                 // this.pointingBone.rotateY(-Math.PI / 2); 
 
                 this.targetBoneRotation.copy(this.pointingBone.quaternion);
-                this.pointingBone.quaternion.copy(currentQuat); // Revert to reality
+                this.pointingBone.quaternion.copy(this._currentQuat); // Revert to reality
 
                 // Slerp fluido hacia la meta ideal calculada
                 this.pointingBone.quaternion.slerp(this.targetBoneRotation, deltaTime * 8);
@@ -271,5 +278,32 @@ export class HandInteractionSystem {
                 }
             }
         }
+    }
+
+    dispose() {
+        for (const mixer of this.mixers) {
+            mixer.stopAllAction?.();
+            const root = mixer.getRoot?.();
+            if (root) mixer.uncacheRoot?.(root);
+        }
+        this.mixers = [];
+
+        const disposeObject = (object) => {
+            object.traverse?.((child) => {
+                child.geometry?.dispose?.();
+                if (Array.isArray(child.material)) {
+                    child.material.forEach((material) => material?.dispose?.());
+                } else {
+                    child.material?.dispose?.();
+                }
+            });
+            object.parent?.remove(object);
+        };
+
+        disposeObject(this.leftHand);
+        disposeObject(this.rightHand);
+        this.holoAuraMaterial = null;
+        this.pointingBone = null;
+        this.indexFingerBone = null;
     }
 }

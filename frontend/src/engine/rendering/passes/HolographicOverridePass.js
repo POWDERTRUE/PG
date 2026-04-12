@@ -20,6 +20,8 @@ export class HolographicOverridePass {
         // Referencias cacheadas
         this._originalClearColor = new THREE.Color();
         this._overrideColor = new THREE.Color('#0a192f');
+        this._fallbackBackground = new THREE.Color('#000008');
+        this._blendedBackground = new THREE.Color();
     }
 
     setMode(active) {
@@ -49,8 +51,8 @@ export class HolographicOverridePass {
         let originalBackground = scene.background;
         
         // Forzando el fondo a azul profundo
-        scene.background = this._overrideColor.clone().lerp(
-            (originalBackground && originalBackground.isColor) ? originalBackground : new THREE.Color('#000008'), 
+        scene.background = this._blendedBackground.copy(this._overrideColor).lerp(
+            (originalBackground && originalBackground.isColor) ? originalBackground : this._fallbackBackground,
             1.0 - this._transitionWeight
         );
 
@@ -64,5 +66,10 @@ export class HolographicOverridePass {
         // Restaurar estado
         scene.overrideMaterial = oldOverride;
         scene.background = originalBackground;
+    }
+
+    dispose() {
+        this.holographicMaterial?.dispose?.();
+        this.holographicMaterial = null;
     }
 }

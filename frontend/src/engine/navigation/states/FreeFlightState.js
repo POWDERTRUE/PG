@@ -52,6 +52,8 @@ export class FreeFlightState {
         // Reusable temporaries (no per-frame GC pressure)
         this._qDelta  = new THREE.Quaternion();
         this._axis    = new THREE.Vector3();
+        this._dir     = new THREE.Vector3();
+        this._shakeEuler = new THREE.Euler();
 
         // ── Banking (cosmetic only) ──────────────────────────────────────────
         this._bank        = 0;
@@ -246,7 +248,7 @@ export class FreeFlightState {
 
         // ── Movement ───────────────────────────────────────────────────────
         // Ctrl is now ONLY HUD mode — NOT used for movement or warp
-        const dir = new THREE.Vector3();
+        const dir = this._dir.set(0, 0, 0);
         const thrustAxis = inp?.getControlAxis?.('FLIGHT_THRUST') ?? 0;
         const strafeAxis = inp?.getControlAxis?.('FLIGHT_STRAFE') ?? 0;
         const elevationAxis = inp?.getControlAxis?.('FLIGHT_ELEVATION_DRONE') ?? 0;
@@ -296,11 +298,12 @@ export class FreeFlightState {
         if (this._shakeAmp > 0.005) {
             this._shakeSeed += dt * 33;
             const sAmp = this._shakeAmp * 0.004;
-            this._qDelta.setFromEuler(new THREE.Euler(
+            this._shakeEuler.set(
                 Math.sin(this._shakeSeed * 7.13) * sAmp,
                 Math.cos(this._shakeSeed * 11.7) * sAmp,
                 0
-            ));
+            );
+            this._qDelta.setFromEuler(this._shakeEuler);
             this.nav.cameraRig.quaternion.multiply(this._qDelta);
             this._shakeAmp *= Math.exp(-8 * dt);
         }

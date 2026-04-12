@@ -7,6 +7,7 @@ export class SpatialAnchorSystem {
         this.canvas = rendererDOMElement;
         this.anchoredWindows = new Map(); // Guarda { element, targetPosition, targetObject }
         this._raf = null;
+        this._projectedPosition = new THREE.Vector3();
         this.update = this.update.bind(this);
     }
 
@@ -54,7 +55,7 @@ export class SpatialAnchorSystem {
             }
             
             // Clonamos para no mutar la posición original del objeto
-            const pos = targetPosition.clone();
+            const pos = this._projectedPosition.copy(targetPosition);
             
             // Proyectamos el punto 3D a coordenadas normalizadas del dispositivo (NDC: -1 a +1)
             pos.project(this.camera);

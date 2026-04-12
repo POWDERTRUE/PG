@@ -447,4 +447,23 @@ export class CelestialPhysicsSystem {
             data.body.rotation.y += (data._savedSpeed * 2.5) * deltaTime;
         }
     }
+
+    dispose() {
+        for (let i = 0; i < this.orbitalNodes.length; i++) {
+            const data = this.orbitalNodes[i];
+            if (!data) continue;
+
+            gsap.killTweensOf(data.node?.position);
+            gsap.killTweensOf(data.node?.quaternion);
+            gsap.killTweensOf(data.body?.position);
+            gsap.killTweensOf(data.body?.quaternion);
+        }
+
+        this.orbitalNodes.length = 0;
+        this.mapModeSnapshot = null;
+        this.isMapModeActive = false;
+        this._rk4 = null;
+        this.kernel = null;
+        this.registry = null;
+    }
 }

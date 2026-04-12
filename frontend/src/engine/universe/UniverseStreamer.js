@@ -29,6 +29,8 @@ export class UniverseStreamer {
         this._scratchSector = new THREE.Vector3(Number.NaN, Number.NaN, Number.NaN);
         this._scratchWorldCenter = new THREE.Vector3();
         this._scratchParsedSector = new THREE.Vector3();
+        this._scratchEntityWorldPos = new THREE.Vector3();
+        this._requiredSectors = new Set();
     }
 
     async initialize() {
@@ -61,7 +63,8 @@ export class UniverseStreamer {
         const cx = currentSector.x;
         const cy = currentSector.y;
         const cz = currentSector.z;
-        const requiredSectors = new Set();
+        const requiredSectors = this._requiredSectors;
+        requiredSectors.clear();
 
         for (let x = cx - this.renderDistance; x <= cx + this.renderDistance; x++) {
             for (let y = cy - this.renderDistance; y <= cy + this.renderDistance; y++) {
@@ -107,9 +110,8 @@ export class UniverseStreamer {
                     eWorld.addComponent(eId, 'MeshComponent', new MeshComponent(child));
                     child.userData.entityId = eId;
 
-                    const worldPos = new THREE.Vector3();
-                    child.getWorldPosition(worldPos);
-                    this.spatialGrid.updateEntity(eId, worldPos);
+                    child.getWorldPosition(this._scratchEntityWorldPos);
+                    this.spatialGrid.updateEntity(eId, this._scratchEntityWorldPos);
                 }
             });
         } else {
@@ -152,6 +154,14 @@ export class UniverseStreamer {
                 }
             }
         });
+    }
+
+    dispose() {
+        for (const [sectorId, sectorGroup] of this.activeSectors) {
+            this.unloadSector(sectorId, sectorGroup);
+        }
+        this.activeSectors.clear();
+        this._requiredSectors.clear();
     }
 
     async generateSectorContent(sectorId, group) {

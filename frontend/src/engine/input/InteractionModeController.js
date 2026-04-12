@@ -1,55 +1,51 @@
-/**
- * InteractionModeController - OMEGA V-DIAMOND
- * Escucha la se\u00f1al de HUD Mode y orquesta sistemas perif\u00e9ricos 
- * (TargetTracker, OrbitalMechanics) para garantizar Friction-Zero escapes.
- */
 export class InteractionModeController {
-    constructor({ runtimeSignals, targetTrackingSystem, orbitalMechanics }) {
-        this.runtimeSignals = runtimeSignals;
+    constructor({ kernel, inputPriorityStack, navigationSystem, targetTrackingSystem }) {
+        this.kernel = kernel;
+        this.stack = inputPriorityStack;
+        this.navigationSystem = navigationSystem;
         this.targetTrackingSystem = targetTrackingSystem;
-        this.orbitalMechanics = orbitalMechanics;
-        
-        this._onHudModeChange = this._onHudModeChange.bind(this);
+        this.runtimeSignals = kernel?.runtimeSignals || window.Registry?.get('runtimeSignals');
+
+        this.registerListeners();
     }
 
-    init() {
+    registerListeners() {
         if (this.runtimeSignals) {
-            this.runtimeSignals.on('PG:HUD_MODE', this._onHudModeChange);
-        }
-        console.log('[InteractionModeController] Intelligent Escape Orbiter online.');
-    }
-
-    _onHudModeChange(payload) {
-        const isHudActive = payload.active;
-
-        if (isHudActive) {
-            this.enterHUDMode();
-        } else {
-            this.enterFlightMode();
+            this.runtimeSignals.on('PG:HUD_MODE', (payload) => {
+                const active = payload.active !== undefined ? payload.active : payload;
+                if (active) {
+                    this.enterHUD();
+                } else {
+                    this.exitHUD();
+                }
+            });
         }
     }
 
-    enterHUDMode() {
-        // Pausar TargetTracker para evitar jitter en modo HUD
+    enterHUD() {
+        if (this.stack.current() === "HUD") return;
+        
+        // InputStateSystem.js natively hands document.exitPointerLock(), 
+        // PG:NAV:ENGAGE_AUTO_BRAKE (cinematic damping), and body.pg-hud-mode (CSS pointer-events).
+        // Therefore, we only need to pause tracking and update the InputPriorityStack.
+        
         if (this.targetTrackingSystem && typeof this.targetTrackingSystem.pauseTracking === 'function') {
             this.targetTrackingSystem.pauseTracking();
         }
 
-        // Si es necesario, podemos congelar rotaciones planetarias
-        if (this.orbitalMechanics && typeof this.orbitalMechanics.freezeRotation === 'function') {
-            this.orbitalMechanics.freezeRotation(true);
-        }
+        this.stack.push("HUD");
     }
 
-    enterFlightMode() {
-        // Reanudar TargetTracker
+    exitHUD() {
+        if (this.stack.current() !== "HUD") return;
+
+        // InputStateSystem.js naturally commands the requestPointerLock(), 
+        // PG:NAV:DISENGAGE_AUTO_BRAKE, and body class removal.
+
         if (this.targetTrackingSystem && typeof this.targetTrackingSystem.resumeTracking === 'function') {
             this.targetTrackingSystem.resumeTracking();
         }
 
-        // Reanudar rotaciones planetarias
-        if (this.orbitalMechanics && typeof this.orbitalMechanics.freezeRotation === 'function') {
-            this.orbitalMechanics.freezeRotation(false);
-        }
+        this.stack.pop();
     }
 }

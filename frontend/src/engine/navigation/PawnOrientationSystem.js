@@ -11,6 +11,7 @@ export class PawnOrientationSystem {
         
         this.aimRay = null;
         this.pawnController = null;
+        this._dir = new THREE.Vector3();
 
         this.registryDeps();
     }
@@ -47,7 +48,7 @@ export class PawnOrientationSystem {
         if (!this.aimRay) return;
 
         const aimPoint = this.aimRay.getAimPoint();
-        const dir = new THREE.Vector3().subVectors(aimPoint, pawn.position);
+        const dir = this._dir.subVectors(aimPoint, pawn.position);
 
         const targetRotation = Math.atan2(dir.x, dir.z);
 

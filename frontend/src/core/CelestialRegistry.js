@@ -167,6 +167,21 @@ export class CelestialRegistry {
         }
     }
 
+    _disposeObjectResources(object) {
+        object?.traverse?.((child) => {
+            child.geometry?.dispose?.();
+            const material = child.material;
+            if (Array.isArray(material)) {
+                for (let i = 0; i < material.length; i++) {
+                    material[i]?.dispose?.();
+                }
+            } else {
+                material?.dispose?.();
+            }
+        });
+        object?.parent?.remove?.(object);
+    }
+
     getById(id){
         return this.bodies.get(id);
     }
@@ -286,7 +301,15 @@ export class CelestialRegistry {
         };
     }
 
-    clear(){
+    clear(options = {}){
+        const disposeResources = typeof options === 'boolean'
+            ? options
+            : Boolean(options?.disposeResources);
+
+        if (disposeResources) {
+            this.bodies.forEach((object) => this._disposeObjectResources(object));
+        }
+
         this.bodies.clear();
         this._byName.clear(); // V31: clear name index too
         Object.keys(this.byType).forEach(type=>{
@@ -297,6 +320,14 @@ export class CelestialRegistry {
         this._staticAnchors.length = 0;
         this._dynamicBodyRefs.length = 0;
         this._staticAnchorRefs.length = 0;
+    }
+
+    dispose(){
+        this.clear({ disposeResources: true });
+        this.discoveryLog = null;
+        this.events = null;
+        this.registry = null;
+        this.services = null;
     }
 }
 

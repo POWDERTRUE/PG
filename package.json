@@ -7,6 +7,9 @@
   "scripts": {
     "start": "node backend/server.js",
     "dev": "nodemon backend/server.js",
+    "dev:frontend": "vite",
+    "build:frontend": "vite build",
+    "preview:frontend": "vite preview --port 4173",
     "test": "echo \"No tests specified\" && exit 0",
     "test:gesture": "node tools/test-gesture-headless.js",
     "lint:gc": "node tools/zero-gc-lint.js",
@@ -27,15 +30,18 @@
     "express": "^4.22.1",
     "gsap": "^3.14.2",
     "helmet": "^8.1.0",
+    "html2canvas": "^1.4.1",
     "lil-gui": "^0.21.0",
     "postprocessing": "^6.39.0",
     "socket.io": "^4.8.3",
+    "socket.io-client": "^4.8.3",
     "stats.js": "^0.17.0",
     "three": "^0.183.2",
     "ws": "^8.20.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.4",
-    "playwright": "^1.58.2"
+    "playwright": "^1.58.2",
+    "vite": "^8.0.8"
   }
 }

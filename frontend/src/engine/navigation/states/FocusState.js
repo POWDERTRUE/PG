@@ -33,6 +33,12 @@ export class FocusState {
         this.zoomSpeed    = 0.10;
 
         this._input = null;
+        this._qYaw = new THREE.Quaternion();
+        this._qPitch = new THREE.Quaternion();
+        this._yawAxis = new THREE.Vector3(0, 1, 0);
+        this._pitchAxis = new THREE.Vector3(1, 0, 0);
+        this._offset = new THREE.Vector3();
+        this._desiredPos = new THREE.Vector3();
     }
 
     enter(data = {}) {
@@ -158,20 +164,16 @@ export class FocusState {
         }
 
         // ── Compute rig pose ──────────────────────────────────────────────
-        const qYaw = new THREE.Quaternion().setFromAxisAngle(
-            new THREE.Vector3(0, 1, 0), this.yaw
-        );
-        const qPitch = new THREE.Quaternion().setFromAxisAngle(
-            new THREE.Vector3(1, 0, 0), this.pitch
-        );
-        const orientation = qYaw.multiply(qPitch);
+        this._qYaw.setFromAxisAngle(this._yawAxis, this.yaw);
+        this._qPitch.setFromAxisAngle(this._pitchAxis, this.pitch);
+        this._qYaw.multiply(this._qPitch);
 
-        const offset = new THREE.Vector3(0, 0, 1)
-            .applyQuaternion(orientation)
+        this._offset.set(0, 0, 1)
+            .applyQuaternion(this._qYaw)
             .multiplyScalar(this.distance);
 
-        const desiredPos = this.target.clone().add(offset);
-        this.nav.cameraRig.position.lerp(desiredPos, Math.min(delta * 10, 1));
+        this._desiredPos.copy(this.target).add(this._offset);
+        this.nav.cameraRig.position.lerp(this._desiredPos, Math.min(delta * 10, 1));
         this.nav._computeLookQuaternion(this.nav.targetQuaternion, this.nav.cameraRig.position, this.target);
         this.nav.cameraRig.quaternion.slerp(this.nav.targetQuaternion, Math.min(delta * 12, 1));
     }

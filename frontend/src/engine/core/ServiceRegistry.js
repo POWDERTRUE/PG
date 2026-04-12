@@ -96,3 +96,14 @@ export class ServiceRegistry {
 
 // Exportamos una única instancia inmutable para todo el proyecto (Patrón Singleton)
 export const Registry = new ServiceRegistry();
+
+// ── Protocolo Anti-Zombi (HMR Vite) ──────────────────────────────────────────
+// ServiceRegistry es un Singleton con estado congelado (Registry.freeze()).
+// Un hot-patch parcial de Vite crearía un estado zombi donde el Kernel
+// mantiene referencias al módulo antiguo pero el grafo de dependencias
+// apunta al nuevo — colapsando Registry.get() silenciosamente.
+// decline() fuerza full-page reload al detectar un cambio en este archivo.
+if (import.meta.hot) {
+    import.meta.hot.decline();
+}
+

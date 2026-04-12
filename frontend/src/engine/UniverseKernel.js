@@ -29,6 +29,7 @@ import { RaycastSelectionSystem } from './interaction/RaycastSelectionSystem.js'
 import { InteractionEventSystem } from './interaction/InteractionEventSystem.js';
 import { InputPriorityStack }       from './input/InputPriorityStack.js';
 import { InteractionModeController} from './input/InteractionModeController.js';
+import { DockingModeController }    from './input/DockingModeController.js';
 import { HUDInteractionSystem }   from './interaction/HUDInteractionSystem.js';
 import { UniverseSocketClient }   from '../network/UniverseSocketClient.js';
 import { WebsocketBridgeSystem }  from '../network/WebsocketBridgeSystem.js';
@@ -41,8 +42,6 @@ import { HUDManager }               from '../hud/HUDManager.js';
 import { WindowManager }            from '../windows/WindowManager.js';
 import WorkspaceManager             from '../windows/WorkspaceManager.js';
 import { KernelBarSystem }          from '../ui/KernelBarSystem.js';
-import { InitialMenu }              from '../ui/InitialMenu.js';
-import { GameMenuSystem }           from '../ui/GameMenuSystem.js';
 import { GalaxyMapOverlaySystem }   from './ui/GalaxyMapOverlaySystem.js';
 import { detectGPUCapabilities }    from '../core/GPUCapabilityDetector.js';
 import { BootGraphDebugger }       from './devtools/BootGraphDebugger.js';
@@ -51,7 +50,6 @@ import { UniverseStreamer }       from './universe/UniverseStreamer.js';
 import { UniverseStreamingSystem } from './universe/UniverseStreamingSystem.js';
 import { GALAXY_SPEC, PHYSICS_CONSTANTS } from './config/UniverseSpec.js';
 
-import { BootGraphVisualizer }    from './devtools/BootGraphVisualizer.js';
 import { FrameScheduler }         from './core/FrameScheduler.js';
 import PayloadManager            from './core/PayloadManager.js';
 import PersistenceSystem        from './core/PersistenceSystem.js';
@@ -74,15 +72,9 @@ import { LuluScannerSystem }     from './ui/LuluScannerSystem.js';
 import { AudioEngine }           from './audio/AudioEngine.js';
 
 import TargetTrackingSystem from './ui/TargetTrackingSystem.js';
-import GalleryAppWindow from './ui/windows/GalleryAppWindow.js';
-import { LULUMindMapWindow } from './ui/windows/LULUMindMapWindow.js';
 import { ProjectParticlesSystem } from './systems/ProjectParticlesSystem.js';
 import { StellarLODSystem } from './systems/StellarLODSystem.js';
 import WarpCinematicSystem from './systems/WarpCinematicSystem.js';
-import { OntologyMapSystem } from './systems/OntologyMapSystem.js';
-import { CosmosMapSystem } from './systems/CosmosMapSystem.js';
-import { MacroWarpSystem } from './systems/MacroWarpSystem.js';
-import { CosmosWarpSystem } from './systems/CosmosWarpSystem.js';
 import { Orquestador } from './core/Orquestador.js';
 
 import { Registry } from './core/ServiceRegistry.js';
@@ -126,7 +118,12 @@ export class UniverseKernel {
         this.initialMenu       = null;
         this.luluPanel         = null;
         this.bootGraph         = new BootGraphDebugger({ debug: true });
+        this.onResize          = null;
+        this.onDevModeKeydown  = null;
         this.onToggleStelaryi  = null;
+        this.onToggleSolarSystem = null;
+        this._isDisposed       = false;
+        this._origin           = new THREE.Vector3();
         
         // Expose Registry locally for Systems that require `this.kernel.registry`
         this.registry          = Registry;
@@ -185,6 +182,7 @@ export class UniverseKernel {
         this.scheduler = new FrameScheduler();
         Registry.register('scheduler', this.scheduler);
         
+        const { BootGraphVisualizer } = await import('./devtools/BootGraphVisualizer.js');
         this.bootVisualizer = new BootGraphVisualizer(Registry);
         Registry.register('bootGraph', this.bootVisualizer);
 
@@ -231,24 +229,25 @@ export class UniverseKernel {
         this.cameraRig = new CameraRig(null);
         this.cameraRig.fov = 55;
         this.cameraRig.position.set(200, 11000, 200);
-        this.cameraRig.lookAt(new THREE.Vector3(0, 0, 0));
+        this.cameraRig.lookAt(this._origin);
         this.bootGraph.register('CameraRig', this.cameraRig, ['Camera'], 'CORE');
 
         // Sync camera al rig
         this.camera.fov = this.cameraRig.fov;
         this.camera.updateProjectionMatrix();
         this.camera.position.copy(this.cameraRig.position);
-        this.camera.lookAt(new THREE.Vector3(0, 0, 0));
+        this.camera.lookAt(this._origin);
         this.cameraRig.quaternion.copy(this.camera.quaternion);
 
-        window.addEventListener('resize', () => {
+        this.onResize = () => {
             if (this.camera) {
                 this.camera.aspect = window.innerWidth / window.innerHeight;
                 this.camera.updateProjectionMatrix();
                 this.renderer.setSize(window.innerWidth, window.innerHeight);
                 this._syncUIPerformance();
             }
-        }, { passive: true });
+        };
+        window.addEventListener('resize', this.onResize, { passive: true });
 
         // ── Fase 2: SceneGraph OMEGA V30 ──────────────────────────────────────
         this.sceneGraph = new SceneGraph();
@@ -391,9 +390,9 @@ export class UniverseKernel {
         this.bootGraph.register('LandingSystem', this.landingSystem, ['UniverseNavigationSystem'], 'NAVIGATION');
         this.scheduler.register(this.landingSystem, 'navigation');
 
-        // ── Fase 5: AWAIT Galaxy Generation ───────────────────────────────────
-        // ROOT CAUSE of Ghost Boot: if this is not awaited, the pipeline renders
-        // an empty scene and the physics system has zero registered orbits.
+        // ── Fase 5: Galaxy Generation (DEFERRED) ──────────────────────────────
+        // In OS architecture, we defer buildAsync() to PG:GALAXY:DEPLOY
+        // placing the pilot immediately into the Holodeck proxy environment.
         
         // ── GalaxyGenerationSystem (procedural starfield + instanced rendering) ──
         this.galaxyGenSystem = new GalaxyGenerationSystem();
@@ -420,21 +419,48 @@ export class UniverseKernel {
             maxOrbitCount: this.engineProfile === 'low' ? 24 : 40
         });
         
-        let galaxyBuilt = false;
-        try {
-            await this.galaxyGenerator.buildAsync(); // ← the critical await
-            galaxyBuilt = true;
-            // Register GalaxyGenerator animated subsystems (SunCorona + AsteroidBelt)
-            if (typeof this.galaxyGenerator.update === 'function') {
-                this.scheduler.register(this.galaxyGenerator, 'simulation');
+        let galaxyBuilt = false; // Intentionally deferred
+
+        // Deferred Deployment Protocol orchestrated by Tactical UI
+        this.deployGalaxy = async () => {
+            if (galaxyBuilt) return;
+            console.log('%c[Kernel] Deploying Galaxy Cluster...', 'color:#00ffcc');
+            
+            this.runtimeSignals?.emit('PG:NAV:WARP_SPOOLING');
+            
+            // Brief spooling delay to let effects and FOV ramp down
+            await new Promise(r => setTimeout(r, 600));
+            this.runtimeSignals?.emit('PG:NAV:WARP_TRANSIT');
+            
+            // Let Transit cinematic fill screen
+            await new Promise(r => setTimeout(r, 400));
+            
+            try {
+                const startTime = performance.now();
+                await this.galaxyGenerator.buildAsync();
+                
+                // Diminish Holodeck proxy
+                const holodeck = this.sceneGraph.layers.background.getObjectByName('pg-holodeck');
+                if (holodeck) holodeck.visible = false;
+
+                galaxyBuilt = true;
+                if (typeof this.galaxyGenerator.update === 'function') {
+                    this.scheduler.register(this.galaxyGenerator, 'simulation');
+                }
+                const ms = (performance.now() - startTime).toFixed(1);
+                console.log(`%c[Kernel] Galaxy deployment complete in ${ms}ms.`, 'color:#00ffcc');
+                
+            } catch (err) {
+                console.error('%c[Kernel] Galaxy deployment FAILED', 'color:#ff4444;font-weight:bold', err);
+            } finally {
+                // Ensure dropout flash happens even on failure
+                this.runtimeSignals?.emit('PG:NAV:WARP_DROPOUT');
             }
-            console.log('%c[Kernel] Galaxy build complete.', 'color:#00ffcc');
-        } catch (err) {
-            console.error(
-                '%c[Kernel] GalaxyGenerator FAILED — engine in fallback mode:', 
-                'color:#ff4444;font-weight:bold', err
-            );
-        }
+        };
+
+        this.runtimeSignals?.on('PG:GALAXY:DEPLOY', () => {
+            this.deployGalaxy();
+        });
 
         // ── Fase 6: All systems already in scheduler — no addSystem needed ──────
         // physicsSystem → 'physics' phase (registered line 223)
@@ -479,16 +505,43 @@ export class UniverseKernel {
         Registry.freeze();
     }
 
-    // ── Fallback scene visible at t=0 ─────────────────────────────────────────
+    // ── Holodeck / Tactical Map Room visible at t=0 ─────────────────────────
 
     _createFallbackScene() {
-        const grid = new THREE.GridHelper(500, 100, 0x00ffff, 0x003333);
-        const axes = new THREE.AxesHelper(50);
-        grid.name          = 'fallback_grid';
-        axes.name          = 'fallback_axes';
-        grid.userData      = { isFallback: true };
-        axes.userData      = { isFallback: true };
-        this.sceneGraph.layers.background.add(grid, axes);
+        const holodeckGroup = new THREE.Group();
+        holodeckGroup.name = 'pg-holodeck';
+        holodeckGroup.userData = { isFallback: true };
+
+        // 1. Tactical Grid Floor
+        const grid = new THREE.GridHelper(4000, 200, 0x00ffff, 0x003333);
+        grid.position.y = -100;
+
+        // 2. Neon bounding rig / "VR Training Room" skeletal scaffolding
+        const boxGeo = new THREE.BoxGeometry(2000, 2000, 2000);
+        const edges = new THREE.EdgesGeometry(boxGeo);
+        const lineMat = new THREE.LineBasicMaterial({ 
+            color: 0x00ffff, 
+            transparent: true, 
+            opacity: 0.15,
+            depthWrite: false
+        });
+        const wireframeCube = new THREE.LineSegments(edges, lineMat);
+        
+        // 3. Central Anchor (Capital Ship Proxy)
+        // A simple large cylinder to give immediate reference of scale
+        const shipGeo = new THREE.CylinderGeometry(20, 20, 200, 16);
+        shipGeo.rotateX(Math.PI / 2);
+        const shipEdges = new THREE.EdgesGeometry(shipGeo);
+        const shipMat = new THREE.LineBasicMaterial({ 
+            color: 0xffaa00, 
+            transparent: true, 
+            opacity: 0.6 
+        });
+        const shipWire = new THREE.LineSegments(shipEdges, shipMat);
+        shipWire.position.set(0, -20, 30);
+
+        holodeckGroup.add(grid, wireframeCube, shipWire);
+        this.sceneGraph.layers.background.add(holodeckGroup);
     }
 
     _syncUIPerformance() {
@@ -617,21 +670,25 @@ export class UniverseKernel {
         Registry.register('SectorStreamingSystem', this.sectorStreamingSystem);
         
         // Galactic Ontology Map (Dual-Scene Macro Renderer)
+        const { OntologyMapSystem } = await import('./systems/OntologyMapSystem.js');
         this.ontologyMapSystem = new OntologyMapSystem();
         Registry.register('OntologyMapSystem', this.ontologyMapSystem);
         this.bootGraph.register('OntologyMapSystem', this.ontologyMapSystem, ['RenderPipeline'], 'RENDER');
         this.scheduler.register(this.ontologyMapSystem, 'render');
 
+        const { MacroWarpSystem } = await import('./systems/MacroWarpSystem.js');
         this.macroWarpSystem = new MacroWarpSystem();
         Registry.register('MacroWarpSystem', this.macroWarpSystem);
         this.bootGraph.register('MacroWarpSystem', this.macroWarpSystem, ['RenderPipeline', 'OntologyMapSystem'], 'RENDER');
         this.scheduler.register(this.macroWarpSystem, 'render');
 
+        const { CosmosMapSystem } = await import('./systems/CosmosMapSystem.js');
         this.cosmosMapSystem = new CosmosMapSystem();
         Registry.register('CosmosMapSystem', this.cosmosMapSystem);
         this.bootGraph.register('CosmosMapSystem', this.cosmosMapSystem, ['RenderPipeline'], 'RENDER');
         this.scheduler.register(this.cosmosMapSystem, 'render');
 
+        const { CosmosWarpSystem } = await import('./systems/CosmosWarpSystem.js');
         this.cosmosWarpSystem = new CosmosWarpSystem();
         Registry.register('CosmosWarpSystem', this.cosmosWarpSystem);
         this.bootGraph.register('CosmosWarpSystem', this.cosmosWarpSystem, ['RenderPipeline', 'CosmosMapSystem'], 'RENDER');
@@ -726,10 +783,12 @@ export class UniverseKernel {
             kernel.navigationSystem?.toggleSolarSystem?.(candidateTarget);
         };
         window.addEventListener('PG:TOGGLE_SOLAR_SYSTEM', this.onToggleSolarSystem);
+        const { InitialMenu } = await import('../ui/InitialMenu.js');
         this.initialMenu = new InitialMenu(this);
         this.bootGraph.register('InitialMenu', this.initialMenu, ['HUDManager', 'WindowManager'], 'UI');
         this.initialMenu.render();
 
+        const { GameMenuSystem } = await import('../ui/GameMenuSystem.js');
         this.gameMenuSystem = new GameMenuSystem(this);
         Registry.register('GameMenuSystem', this.gameMenuSystem);
 
@@ -751,6 +810,7 @@ export class UniverseKernel {
         this.luluProcessor = new LULUCommandProcessor(this, this.luluResponse);
         this.luluResponse.processor = this.luluProcessor;
 
+        const { default: GalleryAppWindow } = await import('./ui/windows/GalleryAppWindow.js');
         this.galleryAppWindow = new GalleryAppWindow(this);
         this.galleryAppWindow.init();
         Registry.register('GalleryAppWindow', this.galleryAppWindow);
@@ -782,19 +842,31 @@ export class UniverseKernel {
         Registry.register('targetTrackingSystem', this.targetTrackingSystem);
         this.scheduler.register(this.targetTrackingSystem, 'ui');
 
+        const { LULUMindMapWindow } = await import('./ui/windows/LULUMindMapWindow.js');
         this.luluMindMapWindow = new LULUMindMapWindow(this);
         this.luluMindMapWindow.init();
         Registry.register('LULUMindMapWindow', this.luluMindMapWindow);
         this.scheduler.register(this.luluMindMapWindow, 'ui');
 
         this.interactionModeController = new InteractionModeController({
-            runtimeSignals: this.runtimeSignals,
-            targetTrackingSystem: this.targetTrackingSystem,
-            orbitalMechanics: Registry.tryGet('orbitalMechanics')
+            kernel: this,
+            inputPriorityStack: this.inputPriorityStack,
+            navigationSystem: this.navigationSystem,
+            targetTrackingSystem: this.targetTrackingSystem
         });
-        this.interactionModeController.init();
+        this.interactionModeController.init?.();
         Registry.register('InteractionModeController', this.interactionModeController);
+
+        this.dockingModeController = new DockingModeController({
+            kernel: this,
+            inputPriorityStack: this.inputPriorityStack,
+            navigationSystem: this.navigationSystem,
+            targetTrackingSystem: this.targetTrackingSystem
+        });
+        Registry.register('DockingModeController', this.dockingModeController);
         
+        // Ensure docking controller FSM evaluates every frame
+        this.scheduler.register(this.dockingModeController, 'ui');
         this.luluPanel.setResponsePanel(this.luluResponse);
         
         this.renderPipeline.addSystem({
@@ -836,13 +908,14 @@ export class UniverseKernel {
         Registry.register('Orquestador', orquestador);
         orquestador.init();
 
-        window.addEventListener('keydown', (e) => {
+        this.onDevModeKeydown = (e) => {
             if (e.key === 'F3') {
                 e.preventDefault();
                 document.body.classList.toggle('pg-dev-mode');
                 this.workspaceManager?.toggleMissionControl?.();
             }
-        });
+        };
+        window.addEventListener('keydown', this.onDevModeKeydown);
 
 
         console.log('%c[Kernel] UI Systems activated.', 'color:#00ffcc;font-weight:bold');
@@ -860,8 +933,50 @@ export class UniverseKernel {
     stop() {
         this.isRunning = false;
         if (this.animationFrameId) cancelAnimationFrame(this.animationFrameId);
+        this.animationFrameId = null;
         this.clock.stop();
         console.log("🛑 [OMEGA ENGINE] Kernel Master Loop Suspended.");
+    }
+
+    dispose() {
+        if (this._isDisposed) return;
+        this._isDisposed = true;
+        this.stop();
+
+        if (this.onResize) window.removeEventListener('resize', this.onResize);
+        if (this.onDevModeKeydown) window.removeEventListener('keydown', this.onDevModeKeydown);
+        if (this.onToggleStelaryi) window.removeEventListener('PG:TOGGLE_STELARYI', this.onToggleStelaryi);
+        if (this.onToggleSolarSystem) window.removeEventListener('PG:TOGGLE_SOLAR_SYSTEM', this.onToggleSolarSystem);
+
+        const services = new Set(Registry._services?.values?.() ?? []);
+        services.delete(this);
+        for (const service of services) {
+            service?.dispose?.();
+        }
+
+        this.scene?.traverse?.((object) => {
+            object.geometry?.dispose?.();
+            const material = object.material;
+            if (Array.isArray(material)) {
+                for (let i = 0; i < material.length; i++) {
+                    material[i]?.dispose?.();
+                }
+            } else {
+                material?.dispose?.();
+            }
+        });
+        this.scene?.clear?.();
+        this.renderer?.dispose?.();
+        Registry.clear();
+
+        this.renderer = null;
+        this.scene = null;
+        this.camera = null;
+        this.cameraRig = null;
+        this.sceneGraph = null;
+        this.renderPipeline = null;
+        this.frameGraph = null;
+        this.scheduler = null;
     }
 
     engineLoop() {
@@ -889,3 +1004,12 @@ export class UniverseKernel {
         }
     }
 }
+
+// ── Protocolo Anti-Zombi (HMR Vite) ──────────────────────────────────────────
+// El UniverseKernel es el punto raíz del árbol de boot. Un hot-patch dejaría
+// el Registry congelado apuntando a una instancia obsoleta del Kernel.
+// Se fuerza full-page reload para garantizar un arranque determinista limpio.
+if (import.meta.hot) {
+    import.meta.hot.decline();
+}
+

@@ -246,4 +246,25 @@ export class OntologyMapSystem {
         this.macroCamera.position.z = radius * Math.cos(this._orbitAngleX) * Math.cos(this._orbitAngleY);
         this.macroCamera.lookAt(0, 0, 0);
     }
+
+    dispose() {
+        this.isActive = false;
+
+        if (this.starCloud) {
+            this.starCloudContainer?.remove(this.starCloud);
+            this.starCloud.geometry?.dispose?.();
+            this.starCloud.material?.dispose?.();
+            this.starCloud = null;
+        }
+
+        if (this.starCloudContainer) {
+            this.macroScene?.remove(this.starCloudContainer);
+            this.starCloudContainer.clear?.();
+            this.starCloudContainer = null;
+        }
+
+        this.macroScene?.clear?.();
+        this.macroScene = null;
+        this.macroCamera = null;
+    }
 }

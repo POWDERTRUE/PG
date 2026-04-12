@@ -119,6 +119,10 @@ export class PlanetSurfacePatch {
         this._mesh      = null;
         this._uniforms  = null;
         this._attached  = false;
+        this._planetWorldPos = new THREE.Vector3();
+        this._surfaceDir = new THREE.Vector3();
+        this._patchPos = new THREE.Vector3();
+        this._upAxis = new THREE.Vector3(0, 1, 0);
 
         const bbox = new THREE.Box3().setFromObject(planetMesh);
         const size = bbox.getSize(new THREE.Vector3());
@@ -189,23 +193,22 @@ export class PlanetSurfacePatch {
         u.uTime.value += delta;
 
         // Get planet world position
-        const planetWorldPos = new THREE.Vector3();
-        this._planet.getWorldPosition(planetWorldPos);
-        u.uPlanetCenter.value.copy(planetWorldPos);
+        this._planet.getWorldPosition(this._planetWorldPos);
+        u.uPlanetCenter.value.copy(this._planetWorldPos);
 
         // Align patch center at the surface point directly below the camera
-        _camLocal.copy(cameraWorldPos).sub(planetWorldPos);
+        _camLocal.copy(cameraWorldPos).sub(this._planetWorldPos);
         const altitude = _camLocal.length() - this._radius;
 
         // Compute surface point in the direction of the camera
-        const surfaceDir = _camLocal.clone().normalize();
-        const patchPos   = planetWorldPos.clone().addScaledVector(surfaceDir, this._radius);
-        this._mesh.position.copy(patchPos);
+        this._surfaceDir.copy(_camLocal).normalize();
+        this._patchPos.copy(this._planetWorldPos).addScaledVector(this._surfaceDir, this._radius);
+        this._mesh.position.copy(this._patchPos);
 
         // Orientate the patch normal toward camera (face away from planet center)
         this._mesh.quaternion.setFromUnitVectors(
-            new THREE.Vector3(0, 1, 0),
-            surfaceDir
+            this._upAxis,
+            this._surfaceDir
         );
 
         // Fade in/out based on altitude
@@ -225,6 +228,10 @@ export class PlanetSurfacePatch {
         this._attached  = false;
 
         console.log('[PlanetSurfacePatch] Detached and disposed.');
+    }
+
+    dispose() {
+        this.detach();
     }
 
     get isAttached() { return this._attached; }

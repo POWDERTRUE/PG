@@ -71,3 +71,11 @@ export class FrameScheduler {
         }
     }
 }
+
+// ── Protocolo Anti-Zombi (HMR Vite) ──────────────────────────────────────────
+// Modificar el FrameScheduler en caliente desincronizaría el orden de fases
+// del motor. Se exige full-page reload para garantizar el bucle determinista.
+if (import.meta.hot) {
+    import.meta.hot.decline();
+}
+

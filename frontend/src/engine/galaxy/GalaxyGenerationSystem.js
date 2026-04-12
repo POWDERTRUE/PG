@@ -518,5 +518,37 @@ export class GalaxyGenerationSystem extends System {
     getNamedSystemDescriptors() {
         return this.namedSystemDescriptors;
     }
+
+    dispose() {
+        this.points?.parent?.remove(this.points);
+        this.points?.geometry?.dispose?.();
+        this.points?.material?.dispose?.();
+        this.points = null;
+        this.mat = null;
+
+        this._clusters?.dispose?.();
+        this._nebulae?.dispose?.();
+        this._hdri?.dispose?.();
+        this._supramass?.dispose?.();
+        resourceManager.release(MAIN_FIELD_STAR_TEXTURE_KEY);
+
+        const geometries = new Set();
+        const materials = new Set();
+        this.namedStarsGroup.traverse((object) => {
+            if (object.geometry) geometries.add(object.geometry);
+            if (Array.isArray(object.material)) {
+                object.material.forEach((material) => material && materials.add(material));
+            } else if (object.material) {
+                materials.add(object.material);
+            }
+        });
+        this.namedStarsGroup.parent?.remove(this.namedStarsGroup);
+        geometries.forEach((geometry) => geometry.dispose?.());
+        materials.forEach((material) => material.dispose?.());
+        this.namedStarsGroup.clear();
+        this._namedOrbitMaterials.length = 0;
+        this.namedSystemDescriptors.length = 0;
+        this._initialized = false;
+    }
 }
 

@@ -52,3 +52,7 @@ export function createHolographicMaterial() {
         side: THREE.DoubleSide
     });
 }
+
+export function disposeHolographicMaterial(material) {
+    material?.dispose?.();
+}

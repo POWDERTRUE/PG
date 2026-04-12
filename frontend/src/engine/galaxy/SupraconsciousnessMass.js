@@ -252,5 +252,25 @@ export class SupraconsciousnessMass {
     get group()              { return this._group; }
     get gravitationalMass()  { return SupraconsciousnessMass.GRAVITATIONAL_MASS; }
     get position()           { return this._group.position; } // siempre (0,0,0)
-}
 
+    dispose() {
+        if (!this._group) return;
+        const geometries = new Set();
+        const materials = new Set();
+        this._group.traverse((object) => {
+            if (object.geometry) geometries.add(object.geometry);
+            if (Array.isArray(object.material)) {
+                object.material.forEach((material) => material && materials.add(material));
+            } else if (object.material) {
+                materials.add(object.material);
+            }
+        });
+        this._group.parent?.remove(this._group);
+        geometries.forEach((geometry) => geometry.dispose?.());
+        materials.forEach((material) => material.dispose?.());
+        this._rings = [];
+        this._core = null;
+        this._field = null;
+        this._group = null;
+    }
+}

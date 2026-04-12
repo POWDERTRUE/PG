@@ -8,6 +8,7 @@ export class NotificationDroneSystem {
         this.drones = [];
         this.cameraArrivalTimer = null;
         this.notificationFocusTimer = null;
+        this._satPos = new THREE.Vector3();
 
         this.onSatelliteClicked = this.onSatelliteClicked.bind(this);
         this.onCameraArrived = this.onCameraArrived.bind(this);
@@ -123,17 +124,20 @@ export class NotificationDroneSystem {
 
         const cameraPos = this.navigationSystem.camera.position;
 
-        this.drones = this.drones.filter(drone => {
-            if (!drone || !drone.userData) return false;
+        for (let i = this.drones.length - 1; i >= 0; i--) {
+            const drone = this.drones[i];
+            if (!drone || !drone.userData) {
+                this.drones.splice(i, 1);
+                continue;
+            }
             if (drone.userData.state === 'orbiting') {
                 drone.userData.angle += drone.userData.orbitSpeed * deltaTime;
 
-                const satPos = new THREE.Vector3();
-                drone.userData.satellite.getWorldPosition(satPos);
+                drone.userData.satellite.getWorldPosition(this._satPos);
 
-                drone.position.x = satPos.x + Math.cos(drone.userData.angle) * drone.userData.orbitRadius;
-                drone.position.z = satPos.z + Math.sin(drone.userData.angle) * drone.userData.orbitRadius;
-                drone.position.y = satPos.y + Math.sin(drone.userData.angle * 2) * 2;
+                drone.position.x = this._satPos.x + Math.cos(drone.userData.angle) * drone.userData.orbitRadius;
+                drone.position.z = this._satPos.z + Math.sin(drone.userData.angle) * drone.userData.orbitRadius;
+                drone.position.y = this._satPos.y + Math.sin(drone.userData.angle * 2) * 2;
 
                 drone.rotation.y += 2 * deltaTime;
                 drone.rotation.x += 1 * deltaTime;
@@ -150,8 +154,7 @@ export class NotificationDroneSystem {
                 // mantener en foco de cámara
             }
 
-            return true;
-        });
+        }
     }
 
     _buildMessage(satellite, massObject) {
@@ -167,5 +170,21 @@ export class NotificationDroneSystem {
             'el satelite';
 
         return `TRANSMISION ESTABLE: ${satelliteName} reporta nuevos datos orbitales para ${parentName}.`;
+    }
+
+    dispose() {
+        window.removeEventListener('SATELLITE_CLICKED', this.onSatelliteClicked);
+        window.removeEventListener('CAMERA_ARRIVED_AT_SATELLITE', this.onCameraArrived);
+        window.removeEventListener('DRONE_HOLD_COMPLETE', this.onDroneHoldComplete);
+        window.removeEventListener('NOTIFICATION_DISMISSED', this.onNotificationDismissed);
+        clearTimeout(this.cameraArrivalTimer);
+        clearTimeout(this.notificationFocusTimer);
+
+        for (const drone of this.drones) {
+            drone.parent?.remove(drone);
+            drone.geometry?.dispose?.();
+            drone.material?.dispose?.();
+        }
+        this.drones = [];
     }
 }

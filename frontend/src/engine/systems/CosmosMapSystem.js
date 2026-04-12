@@ -157,4 +157,25 @@ export class CosmosMapSystem {
         this.cosmosCamera.position.z = radius * Math.cos(this._orbitAngleX) * Math.cos(this._orbitAngleY);
         this.cosmosCamera.lookAt(0, 0, 0);
     }
+
+    dispose() {
+        this.isActive = false;
+
+        if (this.cosmicWeb) {
+            this.cosmicWebContainer?.remove(this.cosmicWeb);
+            this.cosmicWeb.geometry?.dispose?.();
+            this.cosmicWeb.material?.dispose?.();
+            this.cosmicWeb = null;
+        }
+
+        if (this.cosmicWebContainer) {
+            this.cosmosScene?.remove(this.cosmicWebContainer);
+            this.cosmicWebContainer.clear?.();
+            this.cosmicWebContainer = null;
+        }
+
+        this.cosmosScene?.clear?.();
+        this.cosmosScene = null;
+        this.cosmosCamera = null;
+    }
 }

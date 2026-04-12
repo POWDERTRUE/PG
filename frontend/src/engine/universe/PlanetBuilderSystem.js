@@ -98,4 +98,18 @@ export class PlanetBuilderSystem {
             }
         }
     }
+
+    dispose() {
+        for (const [, planet] of this.planets) {
+            planet.sphere?.destroyTree?.();
+            planet.atmosphereMesh?.parent?.remove(planet.atmosphereMesh);
+            planet.atmosphereMesh?.geometry?.dispose?.();
+            planet.atmosphereMesh?.material?.dispose?.();
+            planet.group?.parent?.remove(planet.group);
+        }
+        this.planets.clear();
+        this.planetGroup?.parent?.remove(this.planetGroup);
+        this.planetGroup = null;
+        this.chunkPool = null;
+    }
 }

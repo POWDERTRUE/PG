@@ -120,7 +120,7 @@ export class TerminalPlanet extends CelestialBody {
      *   El material final (volcánico) vive en PlanetShaderSystem._textureCache,
      *   que ya funciona como su propio registry de texturas canónicas.
      *
-     * @param {import('../../galaxy/PlanetShaderSystem.js').PlanetShaderSystem} shaderSystem
+ * @param {import('../../rendering/PlanetShaderSystem.js').PlanetShaderSystem} shaderSystem
      * @returns {THREE.Mesh} this.mesh — La malla principal del planeta
      */
     buildMesh(shaderSystem) {

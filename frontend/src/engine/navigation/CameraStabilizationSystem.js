@@ -55,7 +55,7 @@ export class CameraStabilizationSystem {
         this._runtimeState = null;
 
         // Smoothed render-camera state (decoupled from physics rig)
-        this._smoothPos = null;
+        this._smoothPos = new THREE.Vector3();
         this._smoothQ   = new THREE.Quaternion();
         this._initialized = false;
 
@@ -70,7 +70,11 @@ export class CameraStabilizationSystem {
         this._nav      = kernel?.navigationSystem;
         this._rig      = this._nav?.cameraRig ?? this._cam;
         this._runtimeState = kernel?.runtimeState ?? Registry.tryGet('RuntimeState');
-        this._smoothPos = (this._cam?.position ?? new THREE.Vector3()).clone();
+        if (this._cam?.position) {
+            this._smoothPos.copy(this._cam.position);
+        } else {
+            this._smoothPos.set(0, 0, 0);
+        }
         this._smoothQ.copy(this._cam?.quaternion ?? new THREE.Quaternion());
         console.log('%c[CameraStabilization] ✦ Anti-jitter layer ONLINE', 'color:#00ffcc');
     }
@@ -84,7 +88,7 @@ export class CameraStabilizationSystem {
             this._rig    = this._nav?.cameraRig ?? this._cam;
             this._runtimeState = kernel?.runtimeState ?? Registry.tryGet('RuntimeState');
             if (!this._rig || !this._cam) return;
-            this._smoothPos = this._cam.position.clone();
+            this._smoothPos.copy(this._cam.position);
             this._smoothQ.copy(this._cam.quaternion);
             this._prevRigPos.copy(this._rig.position);
         }

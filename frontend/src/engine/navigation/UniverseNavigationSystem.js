@@ -159,6 +159,22 @@ export class UniverseNavigationSystem {
         this.autoBrakeActive = false;
         this.autoBrakeDamping = 0.85;
         this.alignBowActive = false;
+
+        // ── Docking Constraint Overlay ────────────────────────────────────────
+        // Applied by DockingModeController via setDockingConstraints().
+        // Never mutates base navigation parameters — overlay only, always reversible.
+        // null = no docking active. O(1) lookup per frame via _effectiveConstraints.
+        this._baseConstraints = Object.freeze({
+            maxLinearSpeed:     Infinity,  // m/s — uncapped in free flight
+            maxAngularSpeed:    Infinity,  // rad/s — uncapped in free flight
+            lateralDamping:     0,         // base lateral drift allowed
+            forwardAssist:      0,         // base forward propulsion assist
+            autoAlign:          false,     // orientation handled manually
+            captureRadius:      Infinity,  // distance threshold metadata
+            alignmentTolerance: Infinity,  // angular threshold metadata
+        });
+        this._runtimeConstraints    = null;  // set by DockingModeController
+        this._effectiveConstraints  = this._baseConstraints;
         this.frameDisplacement = new THREE.Vector3();
         this.worldUp = new THREE.Vector3(0, 1, 0);
         this.localXAxis = new THREE.Vector3(1, 0, 0);
@@ -585,6 +601,57 @@ export class UniverseNavigationSystem {
 
     isMapContextActive() {
         return this.getContextMode() === NAV_CONTEXT_STATES.MAP_MODE;
+    }
+
+    // ── Docking Constraint API ────────────────────────────────────────────────
+    // Called by DockingModeController on every FSM phase transition.
+    // Constraints are applied as a runtime overlay — base nav params unchanged.
+    //
+    // @param {Object} constraints
+    //   maxLinearSpeed     {number}         m/s cap on linear speed
+    //   maxAngularSpeed    {number}         rad/s cap on rotational speed
+    //   lateralDamping     {number}         drag factor against lateral translation
+    //   forwardAssist      {number}         forward propulsion boost/drag factor
+    //   autoAlign          {boolean}        whether to automatically align to docking port
+    //   targetPosition     {THREE.Vector3}  world-space docking port position
+    //   targetForward      {THREE.Vector3}  docking port forward axis
+    //   alignmentTolerance {number}         max allowed angular error in radians
+    //   captureRadius      {number}         m — capture envelope radius
+    setDockingConstraints(constraints) {
+        this._runtimeConstraints = constraints;
+        this._recomputeEffectiveConstraints();
+    }
+
+    // Removes all docking constraints and restores base navigation envelope.
+    // Called on DockingModeController exitDocking() and abort().
+    clearDockingConstraints() {
+        this._runtimeConstraints = null;
+        this._recomputeEffectiveConstraints();
+    }
+
+    // Returns the active effective constraints for the current frame.
+    // Consumers (FreeFlightState, ShipController) call this instead of reading
+    // raw freeFlightSpeed to honour docking phase velocity caps.
+    getDockingConstraints() {
+        return this._effectiveConstraints;
+    }
+
+    // Returns true if a docking constraint overlay is currently active.
+    isDockingConstrained() {
+        return this._runtimeConstraints !== null;
+    }
+
+    _recomputeEffectiveConstraints() {
+        if (this._runtimeConstraints === null) {
+            this._effectiveConstraints = this._baseConstraints;
+            return;
+        }
+        // Merge: runtime wins over base for every key present in runtime.
+        // Keys absent from runtime fall through to base values.
+        this._effectiveConstraints = {
+            ...this._baseConstraints,
+            ...this._runtimeConstraints,
+        };
     }
 
     _setContextMode(nextContext = NAV_CONTEXT_STATES.NONE) {

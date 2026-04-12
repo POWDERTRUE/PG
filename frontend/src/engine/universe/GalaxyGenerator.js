@@ -1,6 +1,5 @@
 // frontend/src/engine/universe/GalaxyGenerator.js
 import * as THREE from 'three';
-import { PlanetShaderSystem } from '../galaxy/PlanetShaderSystem.js';
 import { SunCoronaSystem } from '../galaxy/SunCoronaSystem.js';
 import { OrbitalRingSystem } from '../galaxy/OrbitalRingSystem.js';
 import { AsteroidBeltRenderer } from '../galaxy/AsteroidBeltRenderer.js';
@@ -17,7 +16,7 @@ export class GalaxyGenerator {
         this.sceneGraph = sceneGraph;
         this.physicsSystem = physicsSystem;
         this.appNodes = ['Terminal', 'Explorer', 'Gallery', 'Database', 'Hologram', 'Settings'];
-        this._planetShader = new PlanetShaderSystem();
+        this._planetShader = null;
         this._planetClasses = {
             Terminal: 'volcanic',
             Explorer: 'desert',
@@ -50,6 +49,11 @@ export class GalaxyGenerator {
     }
 
     async createHierarchicalSolarSystem() {
+        this._planetShader = this._getPlanetShader();
+        if (!this._planetShader) {
+            throw new Error('[GalaxyGenerator] PlanetShaderSystem is not registered.');
+        }
+
         const supramass = Registry
             .tryGet('SupraconsciousnessMass')
             ?.gravitationalMass
@@ -596,6 +600,45 @@ export class GalaxyGenerator {
     update(delta) {
         this.sunCorona?.update(delta);
         this.asteroidBelt?.update(delta);
-        this._planetShader?.update?.(delta, Registry.tryGet('camera'));
+    }
+
+    dispose() {
+        this.sunCorona?.dispose?.();
+        this.asteroidBelt?.dispose?.();
+        this.orbitRings?.dispose?.();
+
+        const shader = this._planetShader ?? Registry.tryGet('PlanetShaderSystem');
+        const geometries = new Set();
+        const materials = new Set();
+        this._solarSystemRoot?.traverse((object) => {
+            if (object.userData?.isApp || object.userData?.isPlanetShaderDecoration) {
+                shader?.detachPlanet?.(object);
+            }
+            if (object.geometry) geometries.add(object.geometry);
+            if (Array.isArray(object.material)) {
+                object.material.forEach((material) => material && materials.add(material));
+            } else if (object.material) {
+                materials.add(object.material);
+            }
+        });
+
+        this._solarSystemRoot?.parent?.remove(this._solarSystemRoot);
+        geometries.forEach((geometry) => geometry.dispose?.());
+        materials.forEach((material) => material.dispose?.());
+
+        for (const material of this._moonMatCache.values()) {
+            material.dispose?.();
+        }
+        this._moonMatCache.clear();
+        this._solarSystemRoot = null;
+        this.sunCorona = null;
+        this.asteroidBelt = null;
+        this.orbitRings = null;
+    }
+
+    _getPlanetShader() {
+        if (this._planetShader) return this._planetShader;
+        this._planetShader = Registry.tryGet('PlanetShaderSystem');
+        return this._planetShader;
     }
 }

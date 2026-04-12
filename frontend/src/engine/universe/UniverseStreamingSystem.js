@@ -36,6 +36,7 @@ export class UniverseStreamingSystem {
         this._scratchSector = new THREE.Vector3(Number.NaN, Number.NaN, Number.NaN);
         this._scratchWorldCenter = new THREE.Vector3();
         this._scratchParsedSector = new THREE.Vector3();
+        this._wantedSectors = new Set();
     }
 
     init() {
@@ -62,7 +63,8 @@ export class UniverseStreamingSystem {
         if (sectorKey === this._prevSectorKey) return;
         this._prevSectorKey = sectorKey;
 
-        const wanted = new Set();
+        const wanted = this._wantedSectors;
+        wanted.clear();
         for (let dx = -SectorGridSpec.LOAD_RADIUS; dx <= SectorGridSpec.LOAD_RADIUS; dx++) {
             for (let dy = -1; dy <= 1; dy++) {
                 for (let dz = -SectorGridSpec.LOAD_RADIUS; dz <= SectorGridSpec.LOAD_RADIUS; dz++) {
@@ -188,4 +190,11 @@ export class UniverseStreamingSystem {
     }
 
     get loadedSectorCount() { return this._sectors.size; }
+
+    dispose() {
+        for (const [key, pts] of this._sectors) {
+            this._unloadSector(key, pts);
+        }
+        this._wantedSectors.clear();
+    }
 }

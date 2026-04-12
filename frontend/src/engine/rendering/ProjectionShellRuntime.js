@@ -299,3 +299,10 @@ export function disposeProjectionShell(shell) {
         resourceManager.release(payloadKey);
     }
 }
+
+export function disposeProjectionRuntime() {
+    if (_fallbackTexture) {
+        resourceManager.release(DEFAULT_PROJECTION_TEXTURE_KEY);
+        _fallbackTexture = null;
+    }
+}

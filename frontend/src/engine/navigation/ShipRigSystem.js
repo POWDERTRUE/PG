@@ -200,4 +200,15 @@ export class ShipRigSystem {
         // 9. Update telemetry
         this.speed = this.velocity.length();
     }
+
+    dispose() {
+        this.deactivate();
+        this._cameraMount?.clear?.();
+        this.rig?.clear?.();
+        this._cameraMount = null;
+        this.rig = null;
+        this._controller = null;
+        this._scene = null;
+        this._prevCamParent = null;
+    }
 }

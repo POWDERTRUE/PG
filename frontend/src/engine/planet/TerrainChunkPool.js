@@ -146,4 +146,24 @@ export class TerrainChunkPool {
         chunk.locked = false;
         this.freeList.push(chunk);
     }
+
+    dispose() {
+        this.worker?.terminate?.();
+        this.worker = null;
+        const allChunks = [
+            ...this.freeList,
+            ...this.activeChunks.values(),
+        ];
+        for (const chunk of allChunks) {
+            chunk.mesh?.parent?.remove(chunk.mesh);
+            chunk.mesh?.geometry?.dispose?.();
+            if (chunk.mesh?.material === this.fallbackMaterial) {
+                chunk.mesh.material = null;
+            }
+        }
+        this.fallbackMaterial?.dispose?.();
+        this.freeList = [];
+        this.activeChunks.clear();
+        this.fallbackMaterial = null;
+    }
 }

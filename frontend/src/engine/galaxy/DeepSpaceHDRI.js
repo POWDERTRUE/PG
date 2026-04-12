@@ -230,4 +230,12 @@ export class DeepSpaceHDRI {
             this._sphere.position.copy(cameraPosition);
         }
     }
+
+    dispose() {
+        if (!this._sphere) return;
+        this._sphere.parent?.remove(this._sphere);
+        this._sphere.geometry?.dispose?.();
+        this._sphere.material?.dispose?.();
+        this._sphere = null;
+    }
 }

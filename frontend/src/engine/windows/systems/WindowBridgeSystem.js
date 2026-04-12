@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import html2canvas from 'https://unpkg.com/html2canvas@1.4.1/dist/html2canvas.esm.js';
+import html2canvas from 'html2canvas';
 
 export class WindowBridgeSystem {
     constructor() {

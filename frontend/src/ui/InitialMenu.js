@@ -89,7 +89,10 @@ export class InitialMenu {
             { id: 'wallpaper',  title: 'FONDO VIVO', description: 'Visual inmersivo',  color: '#f4fbff' },
             { id: 'salir',      title: 'SALIR',      description: 'Cerrar portal',     color: '#f7fbff' }
         ];
-        this.profileLabels = new Map(items.map(i => [i.id, i.title]));
+        this.profileLabels.clear();
+        for (let i = 0; i < items.length; i++) {
+            this.profileLabels.set(items[i].id, items[i].title);
+        }
 
         const itemsHTML = items.map(item => `
             <button type="button"

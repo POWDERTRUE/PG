@@ -20,6 +20,11 @@ export class LandingSystem {
         this._lastPlanet = null;
         this._lastAltitude = Number.POSITIVE_INFINITY;
         this._lastRadius = 0;
+        this._proximityPayload = { altitude: Number.POSITIVE_INFINITY, radius: 0, planet: null };
+        this._notificationDetail = {
+            target: null,
+            message: 'Proximidad orbital detectada. Presiona [L] para iniciar el descenso.',
+        };
 
         this._cameraWorldPos = new THREE.Vector3();
         this._planetWorldPos = new THREE.Vector3();
@@ -88,19 +93,15 @@ export class LandingSystem {
         this._lastAltitude = altitude;
         this._lastRadius = radius;
 
-        window.dispatchEvent(new CustomEvent('PLANET_PROXIMITY', {
-            detail: { altitude, radius, planet }
-        }));
+        this._proximityPayload.altitude = altitude;
+        this._proximityPayload.radius = radius;
+        this._proximityPayload.planet = planet;
+        this.events?.emit?.('PLANET_PROXIMITY', this._proximityPayload);
 
         if (altitude < this.autoDescentThreshold && this._lastNearPlanet !== planet) {
             this._lastNearPlanet = planet;
             console.log(`[LandingSystem] Close approach detected. Altitude ${altitude.toFixed(0)}. Press [L] to land.`);
-            window.dispatchEvent(new CustomEvent('SHOW_LARGE_NOTIFICATION', {
-                detail: {
-                    target: planet,
-                    message: 'Proximidad orbital detectada. Presiona [L] para iniciar el descenso.'
-                }
-            }));
+            this._dispatchLandingNotification(planet);
         }
     }
 
@@ -122,5 +123,12 @@ export class LandingSystem {
 
     canTriggerOrbitalDescent(targetPlanet = null) {
         return this.getProximitySnapshot(targetPlanet).canDescend;
+    }
+
+    _dispatchLandingNotification(planet) {
+        this._notificationDetail.target = planet;
+        window.dispatchEvent(new CustomEvent('SHOW_LARGE_NOTIFICATION', {
+            detail: this._notificationDetail,
+        }));
     }
 }

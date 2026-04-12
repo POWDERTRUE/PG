@@ -1,61 +1,397 @@
-// frontend/src/engine/rendering/PlanetShaderSystem.js
-import { Registry } from '../core/ServiceRegistry.js';
 import * as THREE from 'three';
+import { Registry } from '../core/ServiceRegistry.js';
+import { MaterialRegistry } from './MaterialRegistry.js';
 
 export class PlanetShaderSystem {
     constructor() {
         this.baseUniforms = {
             uCameraPos: { value: new THREE.Vector3() },
-            // Simulamos sol constante por ahora
             uSunPosition: { value: new THREE.Vector3(1000, 200, 1000).normalize() },
-            uExposure: { value: 0.9 }
+            uExposure: { value: 0.9 },
         };
-
         this.atmosphereProfiles = {
             TERRAN: {
                 rayleigh: new THREE.Vector3(0.13, 0.35, 0.85),
                 mie: 0.005,
                 mieAsymmetry: 0.76,
-                atmosphereDensity: 0.72
+                atmosphereDensity: 0.72,
             },
             MARTIAN: {
                 rayleigh: new THREE.Vector3(0.65, 0.25, 0.10),
                 mie: 0.015,
                 mieAsymmetry: 0.85,
-                atmosphereDensity: 0.48
+                atmosphereDensity: 0.48,
             },
             JOVIAN: {
                 rayleigh: new THREE.Vector3(0.05, 0.60, 0.85),
                 mie: 0.002,
                 mieAsymmetry: 0.90,
-                atmosphereDensity: 3.5
-            }
+                atmosphereDensity: 3.5,
+            },
         };
-        
-        // Caché de shaders precompilados
         this.atmosphereMaterialBase = null;
+        this._initialized = false;
+        this._schedulerRegistered = false;
+
+        this._textureCache = new Map();
+        this._normalCache = new Map();
+        this._cloudRefs = [];
+        this._atmosphereRefs = [];
+        this._cityLightRefs = [];
+        this._decorationOwners = new Set();
+        this._surfaceMaterials = new Set();
+        this._builderAtmosphereMaterials = new Set();
+        this._builderSurfaceMaterials = new Set();
+        this._cloudTickId = 0;
+        this._sunReference = null;
+
+        // REGLA 8: scratch buffers for radius lookups stay pre-allocated.
+        this._radiusBox = new THREE.Box3();
+        this._radiusSize = new THREE.Vector3();
+        this._ringVec = new THREE.Vector3();
+        this._sunVec = new THREE.Vector3(1000, 200, 1000).normalize();
+        this._cameraVec = new THREE.Vector3();
+        this._ownerVec = new THREE.Vector3();
     }
 
     init() {
-        Registry.get('scheduler').register(this, 'render');
+        if (this._initialized) return;
         this._compileShaders();
 
-        console.log("🌌 [PlanetShaderSystem] Atmospheric Core Online.");
+        const scheduler = Registry.tryGet('scheduler');
+        if (scheduler && !this._schedulerRegistered) {
+            scheduler.register(this, 'render');
+            this._schedulerRegistered = true;
+        }
+
+        this._initialized = true;
+        console.log('[PlanetShaderSystem] Canonical planetary shader core online.');
     }
 
-    update() {
-        // Zero-GC Update: Solo movemos los vectores por referencia en el FrameScheduler
-        const camera = Registry.get('camera');
-        if (camera) {
-            this.baseUniforms.uCameraPos.value.copy(camera.position);
+    upgradePlanet(mesh, planetClass = 'default', hasRings = false, options = {}) {
+        const {
+            preserveSurfaceMaterial = false,
+            cloudMaterialParams = null,
+            cityLightMaterialParams = null,
+            ringMaterialParams = null,
+            ringTiltX = null,
+        } = options;
+        const tex = this._getTexture(planetClass);
+        const normTex = this._getNormalTexture(planetClass);
+
+        if (!preserveSurfaceMaterial) {
+            this._releaseMeshMaterial(mesh.material);
+
+            mesh.material = new THREE.MeshStandardMaterial({
+                map: tex,
+                normalMap: normTex,
+                normalScale: new THREE.Vector2(2.0, 2.0),
+                roughness: this._roughness(planetClass),
+                metalness: this._metalness(planetClass),
+                emissiveMap: planetClass === 'volcanic' ? tex : null,
+                emissive: planetClass === 'volcanic' ? new THREE.Color(0xff2200) : new THREE.Color(0x000000),
+                emissiveIntensity: planetClass === 'volcanic' ? 0.22 : 0,
+            });
+            this._surfaceMaterials.add(mesh.material);
         }
-        
-        // El sol se actualizaría aquí consultando el CelestialRegistry en el futuro
+
+        const radius = this._getRadius(mesh);
+
+        this._addClouds(mesh, planetClass, radius, cloudMaterialParams);
+
+        const atmosphereGeo = new THREE.SphereGeometry(radius * 1.26, 64, 64);
+        const rayleighColor = this._atmosphereColor(planetClass);
+        const mieColor = this._horizonColor(planetClass);
+
+        const atmosphereMat = new THREE.ShaderMaterial({
+            uniforms: {
+                uBaseColor: { value: rayleighColor },
+                uMieColor: { value: mieColor },
+                uSunDirection: { value: new THREE.Vector3(1, 0.5, 1).normalize() },
+                uCameraPos: { value: new THREE.Vector3() },
+                uPlanetRadius: { value: radius },
+                uAtmoRadius: { value: radius * 1.26 },
+                uRayleighPow: { value: 3.5 },
+                uMiePow: { value: 7.5 },
+                uIntensity: { value: 0.82 },
+            },
+            vertexShader: /* glsl */`
+                varying vec3 vNormal;
+                varying vec3 vWorldPos;
+                void main() {
+                    vNormal = normalize((modelMatrix * vec4(normal, 0.0)).xyz);
+                    vWorldPos = (modelMatrix * vec4(position, 1.0)).xyz;
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                }
+            `,
+            fragmentShader: /* glsl */`
+                uniform vec3 uBaseColor;
+                uniform vec3 uMieColor;
+                uniform vec3 uSunDirection;
+                uniform vec3 uCameraPos;
+                uniform float uPlanetRadius;
+                uniform float uAtmoRadius;
+                uniform float uRayleighPow;
+                uniform float uMiePow;
+                uniform float uIntensity;
+                varying vec3 vNormal;
+                varying vec3 vWorldPos;
+
+                void main() {
+                    vec3 viewDir = normalize(uCameraPos - vWorldPos);
+                    float cosView = max(dot(vNormal, viewDir), 0.0);
+                    float cosSun = max(dot(vNormal, uSunDirection), 0.0);
+
+                    float rayleigh = pow(1.0 - cosView, uRayleighPow);
+                    float mie = pow(1.0 - cosView, uMiePow) * (0.4 + 0.6 * cosSun);
+
+                    vec3 col = uBaseColor * rayleigh * uIntensity
+                             + uMieColor * mie * uIntensity * 0.6;
+                    float alpha = clamp(rayleigh * 0.95 + mie * 0.45, 0.0, 1.0);
+                    gl_FragColor = vec4(col, alpha);
+                }
+            `,
+            transparent: true,
+            blending: THREE.AdditiveBlending,
+            side: THREE.BackSide,
+            depthWrite: false,
+        });
+        atmosphereMat.userData.isAtmosphere = true;
+
+        const atmosphere = new THREE.Mesh(atmosphereGeo, atmosphereMat);
+        atmosphere.name = `${mesh.name}_atmosphere`;
+        atmosphere.userData = {
+            isPlanetShaderDecoration: true,
+            isAtmosphere: true,
+        };
+        mesh.add(atmosphere);
+        this._decorationOwners.add(mesh);
+        this._atmosphereRefs.push({
+            ownerMesh: mesh,
+            atmosphereMesh: atmosphere,
+            mat: atmosphereMat,
+        });
+
+        if (['ocean', 'jungle', 'ice'].includes(planetClass)) {
+            this._addCityLights(mesh, planetClass, radius, cityLightMaterialParams);
+        }
+
+        if (hasRings || planetClass === 'gas_giant') {
+            this._addRings(mesh, radius, ringMaterialParams, ringTiltX);
+        }
+    }
+
+    _addClouds(mesh, planetClass, radius, cloudMaterialParams = null) {
+        const hasClouds = ['ocean', 'jungle', 'desert', 'ice', 'gas_giant'].includes(planetClass);
+        if (!hasClouds) return;
+
+        const cloudParams = cloudMaterialParams ?? {
+            cloudColor: this._cloudColorHex(planetClass),
+            coverage: this._cloudCoverage(planetClass),
+            opacity: 0.70,
+        };
+        const cloudMat = MaterialRegistry.get('cloud-shader', cloudParams);
+
+        const cloudMesh = new THREE.Mesh(
+            new THREE.SphereGeometry(radius * 1.05, 64, 64),
+            cloudMat
+        );
+        cloudMesh.name = `${mesh.name}_clouds`;
+        cloudMesh.userData = {
+            isPlanetShaderDecoration: true,
+            isCloudLayer: true,
+            cloudRegistryParams: cloudParams,
+        };
+        mesh.add(cloudMesh);
+        this._decorationOwners.add(mesh);
+
+        this._cloudRefs.push({
+            ownerMesh: mesh,
+            cloudMesh,
+            mat: cloudMat,
+            registryParams: cloudParams,
+        });
+    }
+
+    _addCityLights(mesh, planetClass, radius, cityLightMaterialParams = null) {
+        const cityParams = cityLightMaterialParams ?? this._cityLightMaterialParams(planetClass, mesh.name);
+        const cityMat = MaterialRegistry.get('city-lights-shader', cityParams);
+
+        const cityMesh = new THREE.Mesh(new THREE.SphereGeometry(radius * 1.001, 64, 64), cityMat);
+        cityMesh.name = `${mesh.name}_citylights`;
+        cityMesh.userData = {
+            isPlanetShaderDecoration: true,
+            isCityLights: true,
+            cityLightRegistryParams: cityParams,
+        };
+        mesh.add(cityMesh);
+        this._decorationOwners.add(mesh);
+        this._cityLightRefs.push({
+            ownerMesh: mesh,
+            cityMesh,
+            mat: cityMat,
+            registryParams: cityParams,
+        });
+    }
+
+    createPlanetaryMaterials(radius, type = 'TERRAN') {
+        if (!this.atmosphereMaterialBase) {
+            this._compileShaders();
+        }
+
+        const atmoMat = this.atmosphereMaterialBase.clone();
+        const profile = this.atmosphereProfiles[type] ?? this.atmosphereProfiles.TERRAN;
+
+        atmoMat.uniforms = {
+            ...this.baseUniforms,
+            uPlanetRadius: { value: radius },
+            uAtmoRadius: { value: radius * 1.05 },
+            uRayleigh: { value: profile.rayleigh.clone() },
+            uMie: { value: profile.mie },
+            uRayleighScale: { value: radius * 0.08 },
+            uMieScale: { value: radius * 0.012 },
+            uMieAsymmetry: { value: profile.mieAsymmetry },
+            uAtmosphereDensity: { value: profile.atmosphereDensity },
+        };
+        atmoMat.userData = {
+            ...(atmoMat.userData ?? {}),
+            isPlanetShaderMaterial: true,
+            materialRole: 'builder-atmosphere',
+        };
+        this._builderAtmosphereMaterials.add(atmoMat);
+
+        const surfaceMat = new THREE.MeshStandardMaterial({
+            color: 0xffffff,
+            roughness: 0.85,
+            metalness: 0.05,
+        });
+
+        surfaceMat.onBeforeCompile = (shader) => {
+            shader.uniforms.uPlanetCenter = { value: new THREE.Vector3(0, 0, 0) };
+            shader.uniforms.uPlanetRadius = { value: radius };
+            shader.uniforms.uColorDeep = { value: new THREE.Color(0x1a4559) };
+            shader.uniforms.uColorSand = { value: new THREE.Color(0xddc494) };
+            shader.uniforms.uColorGrass = { value: new THREE.Color(0x3a5e2f) };
+            shader.uniforms.uColorRock = { value: new THREE.Color(0x4a4a4a) };
+            shader.uniforms.uColorSnow = { value: new THREE.Color(0xffffff) };
+
+            if (type === 'JOVIAN') {
+                shader.uniforms.uColorDeep.value.set(0x2a1060);
+                shader.uniforms.uColorSand.value.set(0x8040a0);
+                shader.uniforms.uColorGrass.value.set(0x204080);
+                shader.uniforms.uColorRock.value.set(0x303050);
+                shader.uniforms.uColorSnow.value.set(0xaaddff);
+            } else if (type === 'MARTIAN') {
+                shader.uniforms.uColorDeep.value.set(0x4a1a00);
+                shader.uniforms.uColorSand.value.set(0xc8602a);
+                shader.uniforms.uColorGrass.value.set(0x8a4020);
+                shader.uniforms.uColorRock.value.set(0x5a3018);
+                shader.uniforms.uColorSnow.value.set(0xffe0c0);
+            }
+
+            shader.vertexShader = shader.vertexShader.replace(
+                '#include <common>',
+                `#include <common>
+                varying vec3 vWorldPos;
+                varying vec3 vNormalWorld;`
+            );
+            shader.vertexShader = shader.vertexShader.replace(
+                '#include <worldpos_vertex>',
+                `#include <worldpos_vertex>
+                vWorldPos = (modelMatrix * vec4(transformed, 1.0)).xyz;
+                vNormalWorld = normalize(mat3(modelMatrix) * objectNormal);`
+            );
+
+            shader.fragmentShader = shader.fragmentShader.replace(
+                '#include <common>',
+                `#include <common>
+                uniform vec3 uPlanetCenter;
+                uniform float uPlanetRadius;
+                uniform vec3 uColorDeep;
+                uniform vec3 uColorSand;
+                uniform vec3 uColorGrass;
+                uniform vec3 uColorRock;
+                uniform vec3 uColorSnow;
+                varying vec3 vWorldPos;
+                varying vec3 vNormalWorld;`
+            );
+
+            shader.fragmentShader = shader.fragmentShader.replace(
+                '#include <color_fragment>',
+                `#include <color_fragment>
+
+                float elevation = length(vWorldPos - uPlanetCenter) - uPlanetRadius;
+                vec3 localUp = normalize(vWorldPos - uPlanetCenter);
+                float slope = clamp(dot(vNormalWorld, localUp), 0.0, 1.0);
+
+                vec3 blendW = abs(vNormalWorld);
+                blendW = max(blendW - 0.2, 0.0);
+                blendW /= max(dot(blendW, vec3(1.0)), 0.0001);
+
+                float sandThresh = uPlanetRadius * 0.005;
+                float grassThresh = uPlanetRadius * 0.015;
+                float snowThresh = uPlanetRadius * 0.040;
+
+                vec3 biomeColor = uColorSand;
+                biomeColor = mix(biomeColor, uColorGrass, smoothstep(sandThresh, grassThresh, elevation));
+                biomeColor = mix(biomeColor, uColorSnow, smoothstep(snowThresh * 0.8, snowThresh * 1.2, elevation));
+
+                float rockBlend = 1.0 - smoothstep(0.45, 0.70, slope);
+                vec3 finalColor = mix(biomeColor, uColorRock, rockBlend);
+
+                diffuseColor = vec4(finalColor, opacity);
+                `
+            );
+        };
+
+        surfaceMat.customProgramCacheKey = () => `planet_geo_${type}_${radius}`;
+        surfaceMat.userData = {
+            ...(surfaceMat.userData ?? {}),
+            isPlanetShaderMaterial: true,
+            materialRole: 'builder-surface',
+        };
+        this._builderSurfaceMaterials.add(surfaceMat);
+
+        return { atmosphere: atmoMat, surface: surfaceMat };
+    }
+
+    setSunReference(sunMesh) {
+        this._sunReference = sunMesh ?? null;
+    }
+
+    _addRings(mesh, radius, ringMaterialParams = null, ringTiltX = null) {
+        const ringGeo = new THREE.RingGeometry(radius * 1.55, radius * 2.85, 128);
+        const pos = ringGeo.attributes.position;
+        const uv = ringGeo.attributes.uv;
+
+        for (let i = 0; i < pos.count; i++) {
+            // REGLA 8: reuse the pre-allocated ring vector instead of creating
+            // 128 throwaway THREE.Vector3 instances during ring setup.
+            this._ringVec.fromBufferAttribute(pos, i);
+            const frac = (this._ringVec.length() - radius * 1.55) / (radius * 1.3);
+            uv.setXY(i, frac, 0.5);
+        }
+        uv.needsUpdate = true;
+
+        const ringParams = ringMaterialParams ?? this._ringMaterialParams();
+        const ringMat = MaterialRegistry.get('ring-material', ringParams);
+
+        const ring = new THREE.Mesh(ringGeo, ringMat);
+        ring.rotation.x = ringTiltX ?? (Math.PI / 2 + 0.12);
+        ring.name = `${mesh.name}_ring`;
+        ring.userData = {
+            isPlanetShaderDecoration: true,
+            isPlanetRing: true,
+            ringRegistryParams: ringParams,
+        };
+        mesh.add(ring);
+        this._decorationOwners.add(mesh);
     }
 
     _compileShaders() {
-        // Definimos el Shader Base de Dispersión
-        const vertexShader = `
+        if (this.atmosphereMaterialBase) return;
+
+        const vertexShader = /* glsl */`
             varying vec3 vWorldPosition;
             varying vec3 vNormal;
             void main() {
@@ -66,7 +402,7 @@ export class PlanetShaderSystem {
             }
         `;
 
-        const fragmentShader = `
+        const fragmentShader = /* glsl */`
             uniform vec3 uSunPosition;
             uniform vec3 uCameraPos;
             uniform float uPlanetRadius;
@@ -89,24 +425,23 @@ export class PlanetShaderSystem {
                 float a = dot(rd, rd);
                 float b = 2.0 * dot(rd, r0);
                 float c = dot(r0, r0) - (sr * sr);
-                float d = (b*b) - 4.0*a*c;
+                float d = (b * b) - 4.0 * a * c;
                 if (d < 0.0) return vec2(1e5, -1e5);
-                return vec2((-b - sqrt(d))/(2.0*a), (-b + sqrt(d))/(2.0*a));
+                return vec2((-b - sqrt(d)) / (2.0 * a), (-b + sqrt(d)) / (2.0 * a));
             }
 
             void main() {
                 vec3 rayDir = normalize(vWorldPosition - uCameraPos);
-                vec2 atmoHit  = raySphereIntersect(uCameraPos, rayDir, uAtmoRadius);
+                vec2 atmoHit = raySphereIntersect(uCameraPos, rayDir, uAtmoRadius);
                 vec2 planetHit = raySphereIntersect(uCameraPos, rayDir, uPlanetRadius);
 
                 float tmin = max(0.0, atmoHit.x);
-                // FIX CRIT: tmax era min(atmoHit.y, atmoHit.y) — siempre igual, sin límite real
                 float tmax = atmoHit.y;
                 if (planetHit.x >= 0.0 && planetHit.x < 1e5) {
                     tmax = min(tmax, planetHit.x);
                 }
 
-                if(tmin >= tmax) discard;
+                if (tmin >= tmax) discard;
 
                 float stepSize = (tmax - tmin) / float(STEPS);
                 vec3 rayPos = uCameraPos + rayDir * (tmin + stepSize * 0.5);
@@ -121,33 +456,34 @@ export class PlanetShaderSystem {
                 float g2 = uMieAsymmetry * uMieAsymmetry;
                 float phaseM = 1.0 / (4.0 * PI) * ((1.0 - g2) / pow(1.0 + g2 - 2.0 * uMieAsymmetry * cosTheta, 1.5));
 
-                for(int i=0; i<STEPS; i++) {
+                for (int i = 0; i < STEPS; i++) {
                     float height = length(rayPos) - uPlanetRadius;
-                    if (height < 0.0) break; // no integrar dentro del sólido
+                    if (height < 0.0) break;
                     float hr = exp(-height / uRayleighScale) * stepSize;
                     float hm = exp(-height / uMieScale) * stepSize;
-                    
+
                     rayleighDepth += hr;
                     mieDepth += hm;
 
                     vec2 sunAtmoHit = raySphereIntersect(rayPos, uSunPosition, uAtmoRadius);
                     float sunStepSize = max(sunAtmoHit.y, 0.0) / 8.0;
                     vec3 sunPos = rayPos;
-                    
+
                     float lightRayleighDepth = 0.0;
                     float lightMieDepth = 0.0;
 
-                    for(int j=0; j<4; j++) {
+                    for (int j = 0; j < 4; j++) {
                         float sHeight = length(sunPos) - uPlanetRadius;
-                        if(sHeight < 0.0) break; 
+                        if (sHeight < 0.0) break;
                         lightRayleighDepth += exp(-sHeight / uRayleighScale) * sunStepSize;
                         lightMieDepth += exp(-sHeight / uMieScale) * sunStepSize;
                         sunPos += uSunPosition * sunStepSize;
                     }
 
-                    // Multiplicador de densidad global afecta todo el esparcimiento
-                    vec3 tau = uAtmosphereDensity * (uRayleigh * (rayleighDepth + lightRayleighDepth) + 
-                               vec3(uMie) * 1.1 * (mieDepth + lightMieDepth));
+                    vec3 tau = uAtmosphereDensity * (
+                        uRayleigh * (rayleighDepth + lightRayleighDepth) +
+                        vec3(uMie) * 1.1 * (mieDepth + lightMieDepth)
+                    );
                     vec3 attenuation = exp(-tau);
 
                     totalRayleigh += hr * attenuation;
@@ -157,172 +493,543 @@ export class PlanetShaderSystem {
 
                 vec3 color = uAtmosphereDensity * ((phaseR * uRayleigh * totalRayleigh) + (phaseM * uMie * totalMie));
                 color *= 0.36;
-
-                // ToneMapping Exponencial HDR (Evitar Supernovas)
                 color = 1.0 - exp(-color * uExposure);
 
-                // Alpha = densidad óptica visible:
-                // limbo tangente (rayo largo)  → alpha  alto → corona azul opaca
-                // vista cenital (rayo corto)   → alpha bajo → terreno visible
-                // espacio profundo (fuera SOI) → alpha = 0  → Bloom intacto
                 float intensity = max(max(color.r, color.g), color.b);
                 float horizonFade = clamp(1.0 - abs(dot(rayDir, vNormal)), 0.0, 1.0);
                 float alpha = clamp(intensity * horizonFade, 0.0, 1.0);
 
-                // Salida SIEMPRE en [0,1] — imposible inyectar HDR al G-Buffer
                 gl_FragColor = vec4(color, alpha);
             }
         `;
 
         this.atmosphereMaterialBase = new THREE.ShaderMaterial({
-            vertexShader: vertexShader,
-            fragmentShader: fragmentShader,
-            side: THREE.FrontSide, // Default: cara frontal = Z-Buffer descarta interior
+            vertexShader,
+            fragmentShader,
+            side: THREE.FrontSide,
             transparent: true,
-            depthWrite: false,     // No contaminar Z-buffer de los QuadTrees
-            // NormalBlending + pre-multiplied inverse trick:
-            // Comportamiento físico correcto sin corromper el canal Alpha del G-Buffer
+            depthWrite: false,
             blending: THREE.NormalBlending,
         });
+        this.atmosphereMaterialBase.userData = {
+            ...(this.atmosphereMaterialBase.userData ?? {}),
+            isPlanetShaderMaterial: true,
+            materialRole: 'atmosphere-base',
+        };
     }
 
-    /**
-     * Genera un ecosistema de materiales para un planeta específico.
-     * El ShaderMaterial de atmósfera opera en BackSide (Raymarching).
-     * El MeshStandardMaterial de superficie usa onBeforeCompile para inyectar
-     * Triplanar Mapping + Biomas sin perder el pipeline PBR de Three.js (Zero-GC).
-     */
-    createPlanetaryMaterials(radius, type = 'TERRAN') {
-        const atmoMat = this.atmosphereMaterialBase.clone();
-        
-        const profile = this.atmosphereProfiles[type] ?? this.atmosphereProfiles.TERRAN;
-        const rBeta = profile.rayleigh.clone();
-        const mBeta = profile.mie;
-        const gPhase = profile.mieAsymmetry;
-        const pDensity = profile.atmosphereDensity;
+    _getTexture(planetClass) {
+        if (this._textureCache.has(planetClass)) return this._textureCache.get(planetClass);
+        const canvas = document.createElement('canvas');
+        canvas.width = canvas.height = 512;
+        const ctx = canvas.getContext('2d');
+        this._paintPlanet(ctx, planetClass, 512);
+        const tex = new THREE.CanvasTexture(canvas);
+        tex.needsUpdate = true;
+        this._textureCache.set(planetClass, tex);
+        return tex;
+    }
 
-        atmoMat.uniforms = {
-            ...this.baseUniforms,
-            uPlanetRadius: { value: radius },
-            uAtmoRadius:   { value: radius * 1.05 },
-            uRayleigh:     { value: rBeta },
-            uMie:          { value: mBeta },
-            uRayleighScale:{ value: radius * 0.08 },
-            uMieScale:     { value: radius * 0.012 },
-            uMieAsymmetry: { value: gPhase },
-            uAtmosphereDensity: { value: pDensity }
-        };
+    _getNormalTexture(planetClass) {
+        if (this._normalCache.has(planetClass)) return this._normalCache.get(planetClass);
+        const canvas = document.createElement('canvas');
+        canvas.width = canvas.height = 256;
+        const ctx = canvas.getContext('2d');
+        this._paintNormal(ctx, planetClass, 256);
+        const tex = new THREE.CanvasTexture(canvas);
+        tex.needsUpdate = true;
+        this._normalCache.set(planetClass, tex);
+        return tex;
+    }
 
-        // ── NÚCLEO GEOLÓGICO: Triplanar + Biomas ──────────────────────────────
-        // Usamos onBeforeCompile para penetrar el pipeline PBR de Three.js sin
-        // perder iluminación, sombras ni ambient occlusion (Zero-GC, cero texturas).
-        const surfaceMat = new THREE.MeshStandardMaterial({
-            color: 0xffffff,
-            roughness: 0.85,
-            metalness: 0.05
-        });
+    _paintNormal(ctx, cls, size) {
+        ctx.fillStyle = '#8080ff';
+        ctx.fillRect(0, 0, size, size);
+        const randomBetween = (a, b) => a + Math.random() * (b - a);
 
-        surfaceMat.onBeforeCompile = (shader) => {
-            // 1. Uniforms geológicos
-            shader.uniforms.uPlanetCenter = { value: new THREE.Vector3(0, 0, 0) };
-            shader.uniforms.uPlanetRadius = { value: radius };
+        const bumpCount = {
+            volcanic: 120,
+            desert: 80,
+            ocean: 30,
+            ice: 60,
+            gas_giant: 20,
+            jungle: 90,
+        }[cls] ?? 50;
 
-            // Paleta bioma Clase-M (Tierra)
-            shader.uniforms.uColorDeep  = { value: new THREE.Color(0x1a4559) };
-            shader.uniforms.uColorSand  = { value: new THREE.Color(0xddc494) };
-            shader.uniforms.uColorGrass = { value: new THREE.Color(0x3a5e2f) };
-            shader.uniforms.uColorRock  = { value: new THREE.Color(0x4a4a4a) };
-            shader.uniforms.uColorSnow  = { value: new THREE.Color(0xffffff) };
+        for (let i = 0; i < bumpCount; i++) {
+            const x = randomBetween(0, size);
+            const y = randomBetween(0, size);
+            const radius = randomBetween(4, size * 0.1);
+            const angle = randomBetween(0, Math.PI * 2);
+            const dx = Math.cos(angle) * 0.3;
+            const dy = Math.sin(angle) * 0.3;
+            const red = Math.floor(128 + dx * 80);
+            const green = Math.floor(128 + dy * 80);
 
-            if (type === 'JOVIAN') {
-                shader.uniforms.uColorDeep.value.set(0x2a1060);
-                shader.uniforms.uColorSand.value.set(0x8040a0);
-                shader.uniforms.uColorGrass.value.set(0x204080);
-                shader.uniforms.uColorRock.value.set(0x303050);
-                shader.uniforms.uColorSnow.value.set(0xaaddff);
-            } else if (type === 'MARTIAN') {
-                shader.uniforms.uColorDeep.value.set(0x4a1a00);
-                shader.uniforms.uColorSand.value.set(0xc8602a);
-                shader.uniforms.uColorGrass.value.set(0x8a4020);
-                shader.uniforms.uColorRock.value.set(0x5a3018);
-                shader.uniforms.uColorSnow.value.set(0xffe0c0);
+            ctx.fillStyle = `rgba(${red},${green},255,0.12)`;
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    _paintPlanet(ctx, cls, size) {
+        const randomBetween = (a, b) => a + Math.random() * (b - a);
+
+        switch (cls) {
+            case 'ocean': {
+                const gradient = ctx.createLinearGradient(0, 0, 0, size);
+                gradient.addColorStop(0, '#001a66');
+                gradient.addColorStop(0.3, '#0044cc');
+                gradient.addColorStop(0.65, '#006699');
+                gradient.addColorStop(1, '#002244');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, size, size);
+
+                for (let i = 0; i < 8; i++) {
+                    const cx = randomBetween(0, size);
+                    const cy = randomBetween(0, size);
+                    const radius = randomBetween(20, size * 0.18);
+                    ctx.fillStyle = `rgba(${Math.floor(randomBetween(60, 120))},${Math.floor(randomBetween(100, 160))},${Math.floor(randomBetween(40, 80))},0.75)`;
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                ctx.fillStyle = 'rgba(255,255,255,0.1)';
+                for (let i = 0; i < 400; i++) {
+                    ctx.beginPath();
+                    ctx.arc(randomBetween(0, size), randomBetween(0, size), randomBetween(0.5, 2.5), 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                ctx.fillStyle = 'rgba(220,240,255,0.6)';
+                ctx.fillRect(0, 0, size, size * 0.07);
+                ctx.fillRect(0, size * 0.93, size, size * 0.07);
+                break;
             }
+            case 'desert': {
+                const gradient = ctx.createLinearGradient(0, 0, size, size);
+                gradient.addColorStop(0, '#cc5500');
+                gradient.addColorStop(0.4, '#ff8833');
+                gradient.addColorStop(0.7, '#dd7722');
+                gradient.addColorStop(1, '#aa3300');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, size, size);
 
-            // 2. Vertex: exportar WorldPos y WorldNormal al fragment
-            shader.vertexShader = shader.vertexShader.replace(
-                '#include <common>',
-                `#include <common>
-                varying vec3 vWorldPos;
-                varying vec3 vNormalWorld;`
-            );
-            shader.vertexShader = shader.vertexShader.replace(
-                '#include <worldpos_vertex>',
-                `#include <worldpos_vertex>
-                vWorldPos    = (modelMatrix * vec4(transformed, 1.0)).xyz;
-                vNormalWorld = normalize(mat3(modelMatrix) * objectNormal);`
-            );
+                for (let i = 0; i < 180; i++) {
+                    ctx.fillStyle = `rgba(${Math.floor(randomBetween(160, 200))},${Math.floor(randomBetween(80, 120))},${Math.floor(randomBetween(20, 60))},0.25)`;
+                    ctx.beginPath();
+                    ctx.ellipse(
+                        randomBetween(0, size),
+                        randomBetween(0, size),
+                        randomBetween(8, 40),
+                        randomBetween(2, 10),
+                        randomBetween(0, Math.PI),
+                        0,
+                        Math.PI * 2
+                    );
+                    ctx.fill();
+                }
 
-            // 3. Fragment: Declaraciones de uniforms y varyings
-            shader.fragmentShader = shader.fragmentShader.replace(
-                '#include <common>',
-                `#include <common>
-                uniform vec3  uPlanetCenter;
-                uniform float uPlanetRadius;
-                uniform vec3  uColorDeep;
-                uniform vec3  uColorSand;
-                uniform vec3  uColorGrass;
-                uniform vec3  uColorRock;
-                uniform vec3  uColorSnow;
-                varying vec3  vWorldPos;
-                varying vec3  vNormalWorld;`
-            );
+                for (let i = 0; i < 12; i++) {
+                    const cx = randomBetween(0, size);
+                    const cy = randomBetween(0, size);
+                    const radius = randomBetween(5, 20);
+                    ctx.strokeStyle = 'rgba(100,50,10,0.3)';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+                break;
+            }
+            case 'gas_giant': {
+                const bands = ['#cc8844', '#aa6622', '#dd9955', '#bb7733', '#ee9966', '#aa5511', '#ffaa55', '#cc7733', '#bb6622', '#ee8844'];
+                const bandHeight = size / bands.length;
+                bands.forEach((color, index) => {
+                    ctx.fillStyle = color;
+                    ctx.fillRect(0, index * bandHeight, size, bandHeight + 2);
+                });
 
-            // 4. Fragment: Triplanar + Bioma, inyectado en el slot color_fragment
-            shader.fragmentShader = shader.fragmentShader.replace(
-                '#include <color_fragment>',
-                `#include <color_fragment>
+                ctx.fillStyle = 'rgba(255,220,160,0.15)';
+                for (let i = 0; i < 20; i++) {
+                    const y = randomBetween(0, size);
+                    const height = randomBetween(2, 12);
+                    ctx.fillRect(0, y + Math.sin(i * 2.3) * 8, size, height);
+                }
 
-                // ── A. Cálculos Topológicos ──────────────────────────────────
-                float elevation  = length(vWorldPos - uPlanetCenter) - uPlanetRadius;
-                vec3  localUp    = normalize(vWorldPos - uPlanetCenter);
-                float slope      = clamp(dot(vNormalWorld, localUp), 0.0, 1.0);
+                const eyeX = randomBetween(size * 0.2, size * 0.8);
+                const eyeY = randomBetween(size * 0.3, size * 0.7);
+                const eyeRadius = randomBetween(12, 28);
+                const eyeGradient = ctx.createRadialGradient(eyeX, eyeY, 0, eyeX, eyeY, eyeRadius);
+                eyeGradient.addColorStop(0, 'rgba(255,100,50,0.7)');
+                eyeGradient.addColorStop(0.5, 'rgba(200,80,30,0.3)');
+                eyeGradient.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.fillStyle = eyeGradient;
+                ctx.beginPath();
+                ctx.ellipse(eyeX, eyeY, eyeRadius, eyeRadius * 0.6, 0, 0, Math.PI * 2);
+                ctx.fill();
+                break;
+            }
+            case 'ice': {
+                const gradient = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size * 0.7);
+                gradient.addColorStop(0, '#f0f8ff');
+                gradient.addColorStop(0.5, '#c8e8ff');
+                gradient.addColorStop(0.8, '#aaddff');
+                gradient.addColorStop(1, '#8898bb');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, size, size);
 
-                // ── B. Pesos Triplanares ──────────────────────────────────────
-                // (Para texturas futuras: sample x3 y combinar con estos pesos)
-                vec3 blendW = abs(vNormalWorld);
-                blendW = max(blendW - 0.2, 0.0);         // Afilado de transición
-                blendW /= dot(blendW, vec3(1.0));         // Normalización a suma=1
+                ctx.strokeStyle = 'rgba(100,160,220,0.5)';
+                ctx.lineWidth = 1;
+                for (let i = 0; i < 80; i++) {
+                    ctx.beginPath();
+                    ctx.moveTo(randomBetween(0, size), randomBetween(0, size));
+                    const cx = randomBetween(0, size);
+                    const cy = randomBetween(0, size);
+                    ctx.lineTo(cx, cy);
+                    ctx.lineTo(cx + randomBetween(-30, 30), cy + randomBetween(-30, 30));
+                    ctx.stroke();
+                }
 
-                // ── C. Bioma por Altitud (Smoothstep escalonado) ─────────────
-                vec3 biomeColor;
+                ctx.fillStyle = 'rgba(180,220,255,0.2)';
+                for (let i = 0; i < 40; i++) {
+                    ctx.beginPath();
+                    ctx.arc(randomBetween(0, size), randomBetween(0, size), randomBetween(5, 30), 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                break;
+            }
+            case 'volcanic': {
+                ctx.fillStyle = '#0d0200';
+                ctx.fillRect(0, 0, size, size);
 
-                // Piso: Arena/Valle
-                float sandThresh  = uPlanetRadius * 0.005;
-                float grassThresh = uPlanetRadius * 0.015;
-                float snowThresh  = uPlanetRadius * 0.040;
+                for (let i = 0; i < 120; i++) {
+                    const alpha = randomBetween(0.3, 0.7);
+                    ctx.fillStyle = `rgba(${Math.floor(randomBetween(180, 255))},${Math.floor(randomBetween(20, 80))},0,${alpha})`;
+                    ctx.beginPath();
+                    ctx.arc(randomBetween(0, size), randomBetween(0, size), randomBetween(3, 18), 0, Math.PI * 2);
+                    ctx.fill();
+                }
 
-                biomeColor = uColorSand;
-                biomeColor = mix(biomeColor, uColorGrass,
-                    smoothstep(sandThresh,  grassThresh, elevation));
-                biomeColor = mix(biomeColor, uColorSnow,
-                    smoothstep(snowThresh * 0.8, snowThresh * 1.2, elevation));
+                ctx.fillStyle = 'rgba(255,150,30,0.2)';
+                for (let i = 0; i < 50; i++) {
+                    ctx.beginPath();
+                    ctx.arc(randomBetween(0, size), randomBetween(0, size), randomBetween(1, 7), 0, Math.PI * 2);
+                    ctx.fill();
+                }
 
-                // ── D. Invasión de Roca por Pendiente ────────────────────────
-                // slope ≈ 0 → acantilado vertical → roca pura
-                // slope ≈ 1 → terreno plano → bioma normal
-                float rockBlend = 1.0 - smoothstep(0.45, 0.70, slope);
-                vec3  finalColor = mix(biomeColor, uColorRock, rockBlend);
+                ctx.fillStyle = 'rgba(30,10,0,0.4)';
+                for (let i = 0; i < 200; i++) {
+                    ctx.beginPath();
+                    ctx.arc(randomBetween(0, size), randomBetween(0, size), randomBetween(4, 25), 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                break;
+            }
+            case 'jungle': {
+                const gradient = ctx.createLinearGradient(0, 0, size, size);
+                gradient.addColorStop(0, '#001500');
+                gradient.addColorStop(0.4, '#004400');
+                gradient.addColorStop(0.7, '#006600');
+                gradient.addColorStop(1, '#002200');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, size, size);
 
-                // ── E. Sobrescribir color difuso PBR ─────────────────────────
-                diffuseColor = vec4(finalColor, opacity);
-                `
-            );
+                for (let i = 0; i < 250; i++) {
+                    const shade = Math.floor(randomBetween(30, 90));
+                    ctx.fillStyle = `rgba(0,${shade},0,0.4)`;
+                    ctx.beginPath();
+                    ctx.arc(randomBetween(0, size), randomBetween(0, size), randomBetween(3, 22), 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                ctx.fillStyle = 'rgba(0,50,80,0.3)';
+                for (let i = 0; i < 6; i++) {
+                    ctx.beginPath();
+                    ctx.moveTo(randomBetween(0, size), randomBetween(0, size));
+                    ctx.bezierCurveTo(
+                        randomBetween(0, size), randomBetween(0, size),
+                        randomBetween(0, size), randomBetween(0, size),
+                        randomBetween(0, size), randomBetween(0, size)
+                    );
+                    ctx.lineWidth = randomBetween(2, 10);
+                    ctx.stroke();
+                }
+                break;
+            }
+            default: {
+                const hue = Math.floor(Math.random() * 360);
+                ctx.fillStyle = `hsl(${hue},50%,25%)`;
+                ctx.fillRect(0, 0, size, size);
+                ctx.fillStyle = `hsla(${hue},60%,45%,0.3)`;
+                for (let i = 0; i < 120; i++) {
+                    ctx.beginPath();
+                    ctx.arc(randomBetween(0, size), randomBetween(0, size), randomBetween(3, 16), 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+        }
+    }
+
+    update(delta = 0, camera = null) {
+        const safeDelta = Number.isFinite(delta) ? delta : 0;
+        this._cloudTickId += 1;
+        const tickId = this._cloudTickId;
+
+        for (const { mat } of this._cloudRefs) {
+            if (mat?.userData?._cloudTickId === tickId) continue;
+            if (mat?.userData) {
+                mat.userData._cloudTickId = tickId;
+            }
+            if (mat?.uniforms?.time) {
+                mat.uniforms.time.value += safeDelta;
+            }
+        }
+
+        const activeCamera = camera ?? Registry.tryGet('camera');
+        if (activeCamera?.getWorldPosition) {
+            activeCamera.getWorldPosition(this._cameraVec);
+        } else if (activeCamera?.position && this._isFiniteVector3(activeCamera.position)) {
+            this._cameraVec.copy(activeCamera.position);
+        }
+
+        if (!this._isFiniteVector3(this._cameraVec)) {
+            this._cameraVec.set(0, 0, 0);
+        }
+        this.baseUniforms.uCameraPos.value.copy(this._cameraVec);
+
+        if (this._sunReference?.getWorldPosition) {
+            this._sunReference.getWorldPosition(this._sunVec);
+        } else {
+            this._sunVec.set(1000, 200, 1000);
+        }
+
+        if (!this._isFiniteVector3(this._sunVec) || this._sunVec.lengthSq() < 1e-8) {
+            this._sunVec.set(1000, 200, 1000);
+        }
+        this.baseUniforms.uSunPosition.value.copy(this._sunVec).normalize();
+
+        const hasCamera = !!activeCamera && this._isFiniteVector3(this._cameraVec);
+        for (const { ownerMesh, mat } of this._atmosphereRefs) {
+            this._updateLightVectors(ownerMesh, mat, true, hasCamera);
+        }
+
+        for (const { ownerMesh, mat } of this._cityLightRefs) {
+            this._updateLightVectors(ownerMesh, mat, false, false);
+        }
+    }
+
+    detachPlanet(mesh) {
+        if (!mesh) return;
+
+        const remainingRefs = [];
+        for (const ref of this._cloudRefs) {
+            if (ref.ownerMesh === mesh) {
+                MaterialRegistry.release('cloud-shader', ref.registryParams);
+            } else {
+                remainingRefs.push(ref);
+            }
+        }
+        this._cloudRefs = remainingRefs;
+        this._atmosphereRefs = this._atmosphereRefs.filter((ref) => ref.ownerMesh !== mesh);
+        this._cityLightRefs = this._cityLightRefs.filter((ref) => ref.ownerMesh !== mesh);
+        this._decorationOwners.delete(mesh);
+
+        for (let i = mesh.children.length - 1; i >= 0; i--) {
+            const child = mesh.children[i];
+            if (!child.userData?.isPlanetShaderDecoration) continue;
+
+            mesh.remove(child);
+            child.geometry?.dispose?.();
+
+            const materialMeta = MaterialRegistry.getMaterialMeta(child.material);
+            if (materialMeta) {
+                if (materialMeta.type !== 'cloud-shader') {
+                    MaterialRegistry.release(materialMeta.type, materialMeta.param);
+                }
+                continue;
+            }
+            child.material?.dispose?.();
+        }
+    }
+
+    _getRadius(mesh) {
+        this._radiusBox.setFromObject(mesh);
+        return this._radiusBox.getSize(this._radiusSize).length() / 2;
+    }
+
+    _roughness(cls) {
+        return { ocean: 0.1, ice: 0.05, gas_giant: 0.35, volcanic: 0.92, desert: 0.92, jungle: 0.72 }[cls] ?? 0.65;
+    }
+
+    _metalness(cls) {
+        return { ocean: 0.08, ice: 0.04, gas_giant: 0.0, volcanic: 0.15, desert: 0.0, jungle: 0.04 }[cls] ?? 0.08;
+    }
+
+    _cloudColorHex(cls) {
+        const map = {
+            ocean: 0xf5f8ff,
+            jungle: 0xeef8ee,
+            desert: 0xffe8cc,
+            ice: 0xffffff,
+            gas_giant: 0xffeecc,
         };
+        return map[cls] ?? 0xffffff;
+    }
 
-        // Marcar como 'customProgramCacheKey' para que Three no comparta la caché
-        // con otros MeshStandardMaterials (crítico cuando tenemos múltiples planetas)
-        surfaceMat.customProgramCacheKey = () => `planet_geo_${type}_${radius}`;
+    _cloudCoverage(cls) {
+        return { ocean: 0.6, jungle: 0.55, desert: 0.25, ice: 0.45, gas_giant: 0.8 }[cls] ?? 0.4;
+    }
 
-        return { atmosphere: atmoMat, surface: surfaceMat };
+    _ringMaterialParams() {
+        return {
+            color1: 0xddcc99,
+            color2: 0x886644,
+            color3: 0xfff8ee,
+        };
+    }
+
+    _cityLightMaterialParams(planetClass, registryKey) {
+        const presets = {
+            ocean: { cityColor: 0xffeeaa, transitionWidth: 0.20, intensity: 0.58 },
+            jungle: { cityColor: 0xaaffcc, transitionWidth: 0.23, intensity: 0.50 },
+            ice: { cityColor: 0xaaccff, transitionWidth: 0.18, intensity: 0.62 },
+        };
+        return {
+            ...(presets[planetClass] ?? presets.ocean),
+            textureId: 'city-lights-mask',
+            registryKey,
+        };
+    }
+
+    _updateLightVectors(ownerMesh, material, updateCameraPos, hasCamera) {
+        if (!ownerMesh || !material?.uniforms?.uSunDirection?.value) return;
+
+        ownerMesh.getWorldPosition(this._ownerVec);
+        if (!this._isFiniteVector3(this._ownerVec)) {
+            this._ownerVec.set(0, 0, 0);
+        }
+        material.uniforms.uSunDirection.value.subVectors(this._sunVec, this._ownerVec);
+
+        if (
+            !this._isFiniteVector3(material.uniforms.uSunDirection.value) ||
+            material.uniforms.uSunDirection.value.lengthSq() < 1e-8
+        ) {
+            material.uniforms.uSunDirection.value.set(1, 0.5, 1).normalize();
+        } else {
+            material.uniforms.uSunDirection.value.normalize();
+        }
+
+        if (updateCameraPos && hasCamera && material.uniforms.uCameraPos?.value) {
+            material.uniforms.uCameraPos.value.copy(this._cameraVec);
+        }
+    }
+
+    _atmosphereColor(cls) {
+        const map = {
+            ocean: new THREE.Color(0x4488ff),
+            desert: new THREE.Color(0xff9944),
+            gas_giant: new THREE.Color(0xffcc88),
+            ice: new THREE.Color(0xbbddff),
+            volcanic: new THREE.Color(0xff3300),
+            jungle: new THREE.Color(0x44ff88),
+        };
+        return map[cls] ?? new THREE.Color(0x88aaff);
+    }
+
+    _horizonColor(cls) {
+        const map = {
+            ocean: new THREE.Color(0xffffff),
+            desert: new THREE.Color(0xff7700),
+            gas_giant: new THREE.Color(0xffbb55),
+            ice: new THREE.Color(0xeef8ff),
+            volcanic: new THREE.Color(0xff7700),
+            jungle: new THREE.Color(0xbbffcc),
+        };
+        return map[cls] ?? new THREE.Color(0xffeedd);
+    }
+
+    dispose() {
+        const owners = new Set(this._decorationOwners);
+        for (const ref of this._cloudRefs) owners.add(ref.ownerMesh);
+        for (const ref of this._atmosphereRefs) owners.add(ref.ownerMesh);
+        for (const ref of this._cityLightRefs) owners.add(ref.ownerMesh);
+        for (const owner of owners) {
+            this.detachPlanet(owner);
+        }
+
+        for (const material of this._surfaceMaterials) {
+            this._disposeMaterial(material);
+        }
+        for (const material of this._builderAtmosphereMaterials) {
+            this._disposeMaterial(material);
+        }
+        for (const material of this._builderSurfaceMaterials) {
+            this._disposeMaterial(material);
+        }
+        if (this.atmosphereMaterialBase) {
+            this._disposeMaterial(this.atmosphereMaterialBase);
+        }
+
+        for (const [, tex] of this._textureCache) tex.dispose();
+        for (const [, tex] of this._normalCache) tex.dispose();
+
+        this._textureCache.clear();
+        this._normalCache.clear();
+        this._cloudRefs = [];
+        this._atmosphereRefs = [];
+        this._cityLightRefs = [];
+        this._decorationOwners.clear();
+        this._surfaceMaterials.clear();
+        this._builderAtmosphereMaterials.clear();
+        this._builderSurfaceMaterials.clear();
+        this._sunReference = null;
+        this.atmosphereMaterialBase = null;
+        this._initialized = false;
+        this._schedulerRegistered = false;
+    }
+
+    _releaseMeshMaterial(material) {
+        if (!material) return;
+        if (Array.isArray(material)) {
+            for (const item of material) {
+                this._releaseMeshMaterial(item);
+            }
+            return;
+        }
+
+        if (this._surfaceMaterials.has(material)) {
+            this._surfaceMaterials.delete(material);
+            material.dispose?.();
+            return;
+        }
+
+        const materialMeta = MaterialRegistry.getMaterialMeta(material);
+        if (materialMeta) {
+            MaterialRegistry.release(materialMeta.type, materialMeta.param);
+            return;
+        }
+
+        material.dispose?.();
+    }
+
+    _disposeMaterial(material) {
+        if (!material) return;
+        if (Array.isArray(material)) {
+            for (const item of material) {
+                this._disposeMaterial(item);
+            }
+            return;
+        }
+        material.dispose?.();
+    }
+
+    _isFiniteVector3(vector) {
+        return !!vector &&
+            Number.isFinite(vector.x) &&
+            Number.isFinite(vector.y) &&
+            Number.isFinite(vector.z);
     }
 }

@@ -21,6 +21,7 @@ export class WindowDOMSystem {
         this.worldPulseObjects = new Map();
         this._droneOrbitRaf = null;
         this._messengerRaf = null;
+        this._droneOrbitCenter = new THREE.Vector3();
         this.hudModeActive = false;
         this.layoutContextAppId = null;
         this._layoutRaf = null;
@@ -1326,7 +1327,7 @@ export class WindowDOMSystem {
                 const { drone, massObject } = entry;
                 if (!massObject) return;
 
-                const center = new THREE.Vector3();
+                const center = this._droneOrbitCenter;
                 massObject.getWorldPosition(center);
                 const orbit = drone.userData.orbitSettings;
 

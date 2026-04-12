@@ -2,80 +2,148 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Powder Galaxy OMEGA V30</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#040912">
+    <title>Powder Galaxy OMEGA V31</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <style>
-        body { margin: 0; overflow: hidden; background: #000; color: #fff; font-family: 'Courier New', monospace; user-select: none; }
+        body { margin: 0; overflow: hidden; background: #000; color: #fff; font-family: 'Courier New', monospace; user-select: none; font-size: clamp(14px, 1.1vw, 16px); line-height: 1.55; }
         #pg-root { position: relative; width: 100vw; height: 100vh; }
-        #pg-renderer { display: block; position: absolute; inset: 0; width: 100%; height: 100%; outline: none; touch-action: none; }
+        #pg-renderer { display: block; position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; }
+        #pg-renderer:focus-visible { outline: 2px solid rgba(154, 234, 255, 0.85); outline-offset: -4px; }
         .ui-layer { position: absolute; inset: 0; pointer-events: none; z-index: 10; }
+        #hud-layer { pointer-events: none; }
         .interactive { pointer-events: none; z-index: 20; }
         #window-layer > *, #kernel-bar > * { pointer-events: auto; }
 
         /* ── Cursor: hidden in universe mode, visible in HUD mode ── */
-        body:not(.pg-hud-mode),
-        body:not(.pg-hud-mode) * { cursor: none !important; }
-        body.pg-hud-mode        { cursor: default; }
-        body.pg-game-paused,
-        body.pg-game-paused * { cursor: default !important; }
-        body.pg-game-paused button,
-        body.pg-game-paused a,
-        body.pg-game-paused input,
-        body.pg-game-paused select,
-        body.pg-game-paused textarea { cursor: pointer !important; }
-        body.init-mode-active,
-        body.init-mode-active * { cursor: default !important; }
-        body.init-mode-active button,
-        body.init-mode-active a,
-        body.init-mode-active input,
-        body.init-mode-active select,
-        body.init-mode-active textarea { cursor: pointer !important; }
-        /* UI elements always get pointer regardless of mode */
+        body.pg-pointer-ui-visible { cursor: default !important; }
+        body.pg-pointer-text-visible { cursor: text !important; }
+        body.pg-pointer-drag-visible,
+        body.pg-pointer-drag-visible * { cursor: grabbing !important; }
+        body.pg-pointer-flight-locked,
+        body.pg-pointer-flight-locked * { cursor: none !important; }
+        body.pg-pointer-flight-pending { cursor: crosshair !important; }
+
+        body.pg-pointer-ui-visible button,
+        body.pg-pointer-ui-visible [role="button"],
+        body.pg-pointer-ui-visible a,
+        body.pg-pointer-ui-visible summary,
+        body.pg-pointer-ui-visible select,
+        body.pg-pointer-ui-visible input[type="range"],
+        body.pg-pointer-ui-visible input[type="checkbox"],
+        body.pg-pointer-ui-visible input[type="radio"],
+        body.pg-pointer-text-visible button,
+        body.pg-pointer-text-visible [role="button"],
+        body.pg-pointer-text-visible a,
+        body.pg-pointer-text-visible summary,
+        body.pg-pointer-text-visible select,
+        body.pg-pointer-text-visible input[type="range"],
+        body.pg-pointer-text-visible input[type="checkbox"],
+        body.pg-pointer-text-visible input[type="radio"] { cursor: pointer !important; }
+
+        body.pg-pointer-text-visible input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),
+        body.pg-pointer-text-visible textarea,
+        body.pg-pointer-text-visible [contenteditable="true"] { cursor: text !important; }
+
+        body.pg-pointer-ui-visible [class*="glass-window"],
+        body.pg-pointer-ui-visible [class*="os-window"],
+        body.pg-pointer-ui-visible #kernel-bar,
+        body.pg-pointer-ui-visible #hud-layer,
+        body.pg-pointer-text-visible [class*="glass-window"],
+        body.pg-pointer-text-visible [class*="os-window"],
+        body.pg-pointer-text-visible #kernel-bar,
+        body.pg-pointer-text-visible #hud-layer,
         body.pg-hud-mode [class*="glass-window"],
         body.pg-hud-mode [class*="os-window"],
         body.pg-hud-mode #kernel-bar,
-        body.pg-hud-mode #hud-layer,
         body.pg-hud-mode button,
         body.pg-hud-mode input,
-        body.pg-hud-mode a        { pointer-events: auto; cursor: pointer; }
+        body.pg-hud-mode a { pointer-events: auto; }
+
+        body.pg-reticle-primary-hidden .spatial-reticle {
+            opacity: 0 !important;
+            transform: translate(-50%, -50%) scale(0.96);
+            transition-duration: 0s !important;
+            animation: none !important;
+        }
+
+        body.pg-reticle-primary-dim .spatial-reticle {
+            opacity: 0.55 !important;
+        }
+
+        body.pg-reticle-primary-active .spatial-reticle {
+            opacity: 0.92 !important;
+        }
+
+        .pg-pointer-helper {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, 20px);
+            min-width: 180px;
+            width: min(90vw, 320px);
+            padding: 10px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(7, 14, 26, 0.72);
+            backdrop-filter: blur(12px);
+            color: rgba(242, 248, 255, 0.82);
+            font-family: 'Courier New', monospace;
+            font-size: clamp(11px, 1.1vw, 13px);
+            letter-spacing: 1.2px;
+            text-align: center;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.18s ease, transform 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+            z-index: 9500;
+        }
+
+        body.pg-pointer-helper-visible .pg-pointer-helper {
+            opacity: 1;
+            transform: translate(-50%, 16px);
+        }
+
+        body.pg-pointer-lock-error .pg-pointer-helper {
+            color: rgba(255, 223, 183, 0.92);
+            border-color: rgba(255, 176, 120, 0.28);
+        }
 
         /* ── HUD toggle badge ── */
         #pg-hud-badge {
-            position: fixed; bottom: 22px; right: 22px; z-index: 9000;
-            background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
-            border: 1px solid rgba(0,255,204,0.3); border-radius: 6px;
-            padding: 6px 14px; font-family: 'Courier New', monospace;
-            font-size: 11px; letter-spacing: 2px; color: rgba(0,255,204,0.9);
+            position: fixed; bottom: 18px; right: 18px; z-index: 9000;
+            background: rgba(0,0,0,0.72); backdrop-filter: blur(8px);
+            border: 1px solid rgba(0,255,204,0.3); border-radius: 8px;
+            padding: 6px 12px; font-family: 'Courier New', monospace;
+            font-size: clamp(10px, 1vw, 12px); letter-spacing: 1.8px; color: rgba(0,255,204,0.92);
             pointer-events: none;
-            opacity: 0; transform: translateY(6px);
+            opacity: 0; transform: translate3d(0, 6px, 0);
             transition: opacity 0.18s ease, transform 0.18s ease;
+            will-change: opacity, transform;
+            max-width: calc(100vw - 32px);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         body.pg-hud-mode #pg-hud-badge {
-            opacity: 1; transform: translateY(0);
+            opacity: 1; transform: translate3d(0, 0, 0);
         }
         body.pg-game-paused #pg-hud-badge {
-            opacity: 0; transform: translateY(6px);
+            opacity: 0; transform: translate3d(0, 6px, 0);
         }
     </style>
 
-
-    <script type="importmap">
-        {
-          "imports": {
-            "three": "https://unpkg.com/three@0.176.0/build/three.module.js",
-            "three/addons/": "https://unpkg.com/three@0.176.0/examples/jsm/",
-            "three/examples/jsm/": "https://unpkg.com/three@0.176.0/examples/jsm/",
-            "gsap": "https://esm.sh/gsap@3.14.2",
-            "gsap/Draggable": "https://esm.sh/gsap@3.14.2/Draggable",
-            "postprocessing": "https://unpkg.com/postprocessing@6.39.0/build/postprocessing.esm.js",
-            "stats.js": "https://esm.sh/stats.js@0.17.0",
-            "lil-gui": "https://esm.sh/lil-gui@0.21.0",
-            "socket.io-client": "https://esm.sh/socket.io-client@4.8.1"
-          }
-        }
-    </script>
-  <script type="module" crossorigin src="/assets/index-Cc2TIbXn.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-CdJBPPZv.css">
+    <!-- CDN Import Map removed: Vite resolves all deps from local node_modules -->
+  <script type="module" crossorigin src="./assets/index-B0SGze8I.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/rolldown-runtime-DF2fYuay.js">
+  <link rel="modulepreload" crossorigin href="./assets/LULUCanon-ZNRMW4JC.js">
+  <link rel="modulepreload" crossorigin href="./assets/ServiceRegistry-CU0F0t6D.js">
+  <link rel="modulepreload" crossorigin href="./assets/ControlsManifest-B0cSolkq.js">
+  <link rel="modulepreload" crossorigin href="./assets/GalleryPayloadCatalog-BLhLvj7I.js">
+  <link rel="modulepreload" crossorigin href="./assets/vendor-hLruerWX.js">
+  <link rel="stylesheet" crossorigin href="./assets/index-UNA0Vv42.css">
 </head>
 <body>
     <div id="pg-root">
